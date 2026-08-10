@@ -93,12 +93,6 @@
   }
 
 
-  .wave {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
   /* ---------- Filter bar ---------- */
   .filter-bar {
     position: sticky;
@@ -208,6 +202,12 @@
   }
 
   .card-make {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .card-model {
     font-size: 13px;
     color: var(--muted);
     margin: 0;
@@ -327,7 +327,7 @@
   <div class="filter-inner">
     <div class="field" style="flex: 1 1 200px;">
       <label for="search">Search</label>
-      <input id="search" type="text" placeholder="Name, make, park&hellip;">
+      <input id="search" type="text" placeholder="Name, make, model, park&hellip;">
     </div>
     <div class="field">
       <label for="location">Park</label>
@@ -336,6 +336,10 @@
     <div class="field">
       <label for="make">Make</label>
       <select id="make"><option value="all">All makes</option></select>
+    </div>
+    <div class="field">
+      <label for="model">model</label>
+      <select id="model"><option value="all">All models</option></select>
     </div>
     <div class="field">
       <label for="bedrooms">Bedrooms</label>
@@ -377,7 +381,7 @@
   };
 
   const state = {
-    search: '', location: 'all', make: 'all', bedrooms: 'all',
+    search: '', location: 'all', make: 'all', model: 'all', bedrooms: 'all',
     minPrice: '', maxPrice: '', sort: 'price-asc'
   };
 
@@ -403,6 +407,7 @@
   function populateFilters(data) {
     const locations = [...new Set(data.map(d => d.location).filter(Boolean))].sort();
     const makes = [...new Set(data.map(d => d.make).filter(Boolean))].sort();
+    const models = [...new Set(data.map(d => d.model).filter(Boolean))].sort();
     const bedroomVals = [...new Set(data.map(d => d.bedrooms).filter(v => v !== null && v !== undefined))].sort((a, b) => a - b);
     const hasUnspecified = data.some(d => d.bedrooms === null || d.bedrooms === undefined);
 
@@ -411,6 +416,9 @@
 
     const makeSel = document.getElementById('make');
     makes.forEach(m => makeSel.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`));
+
+    const modelSel = document.getElementById('model');
+    models.forEach(m => modelSel.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`));
 
     const bedSel = document.getElementById('bedrooms');
     bedroomVals.forEach(b => bedSel.insertAdjacentHTML('beforeend', `<option value="${b}">${b} bed${b == 1 ? '' : 's'}</option>`));
@@ -425,6 +433,7 @@
       }
       if (state.location !== 'all' && d.location !== state.location) return false;
       if (state.make !== 'all' && d.make !== state.make) return false;
+      if (state.model !== 'all' && d.model !== state.model) return false;
       if (state.bedrooms !== 'all') {
         if (state.bedrooms === 'unspecified') {
           if (d.bedrooms !== null && d.bedrooms !== undefined) return false;
@@ -494,16 +503,18 @@
     document.getElementById('search').addEventListener('input', e => { state.search = e.target.value; render(); });
     document.getElementById('location').addEventListener('change', e => { state.location = e.target.value; render(); });
     document.getElementById('make').addEventListener('change', e => { state.make = e.target.value; render(); });
+    document.getElementById('model').addEventListener('change', e => { state.model = e.target.value; render(); });
     document.getElementById('bedrooms').addEventListener('change', e => { state.bedrooms = e.target.value; render(); });
     document.getElementById('min-price').addEventListener('input', e => { state.minPrice = e.target.value; render(); });
     document.getElementById('max-price').addEventListener('input', e => { state.maxPrice = e.target.value; render(); });
     document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
     document.getElementById('clear-btn').addEventListener('click', () => {
-      state.search = ''; state.location = 'all'; state.make = 'all';
+      state.search = ''; state.location = 'all'; state.make = 'all'; state.model = 'all';
       state.bedrooms = 'all'; state.minPrice = ''; state.maxPrice = ''; state.sort = 'price-asc';
       document.getElementById('search').value = '';
       document.getElementById('location').value = 'all';
       document.getElementById('make').value = 'all';
+      document.getElementById('model').value = 'all';
       document.getElementById('bedrooms').value = 'all';
       document.getElementById('min-price').value = '';
       document.getElementById('max-price').value = '';
