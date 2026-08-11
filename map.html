@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search by Region &middot; Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  header.hero {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 44px 24px 0;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px);
+    letter-spacing: 0.01em;
+    margin: 0 0 10px;
+    line-height: 0.95;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #D8DFE3;
+    max-width: 46ch;
+    margin: 0 0 18px;
+  }
+
+  nav.site-nav {
+    display: flex;
+    gap: 18px;
+    padding: 0 0 18px;
+  }
+
+  nav.site-nav a {
+    color: #D8DFE3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+
+  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.site-nav a:hover { color: var(--mustard); }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  h2.page-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: 0.01em;
+    margin: 0 0 22px;
+    line-height: 0.95;
+  }
+
+  .map-layout {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .map-wrap {
+    flex: 1 1 460px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .map-wrap svg { width: 100%; height: auto; display: block; }
+
+  .region {
+    cursor: pointer;
+    stroke: var(--cream);
+    stroke-width: 2;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    transform-origin: center;
+  }
+
+  .region:hover, .region:focus {
+    opacity: 0.82;
+  }
+
+  .region:focus { outline: none; }
+
+  .pin {
+    pointer-events: none;
+    fill: #FFFDF8;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
+  }
+
+  .region-label {
+    pointer-events: none;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    fill: rgba(255,255,255,0.92);
+    text-anchor: middle;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .region-group:hover .region-label { opacity: 1; }
+
+  .side-panel {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .selected-card {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .selected-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mustard);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  .selected-card .region-name {
+    font-family: var(--font-display);
+    font-size: 30px;
+    margin: 0 0 14px;
+    letter-spacing: 0.01em;
+  }
+
+  .go-btn {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    background: var(--mustard);
+    color: var(--mustard-dark);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  .go-btn:hover { filter: brightness(0.96); }
+  .go-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .region-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .region-list button {
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .region-list button .swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .region-list button:hover, .region-list button.active {
+    border-color: var(--teal);
+    background: rgba(31, 111, 110, 0.08);
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px;
+  }
+
+  @media (max-width: 720px) {
+    .map-layout { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Static Caravan Watch</h1>
+    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
+    <nav class="site-nav">
+      <a href="index.html">All listings</a>
+      <a href="map.html" class="active">Search by region</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="parks.html">list of parks</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="page-eyebrow">Search</p>
+  <h2 class="page-title">By region</h2>
+
+  <div class="map-layout">
+    <div class="map-wrap">
+      <svg id="uk-map" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of the UK and Ireland, split into clickable regions">
+        <!-- regions are drawn in by JS below -->
+      </svg>
+    </div>
+
+    <div class="side-panel">
+      <div class="selected-card">
+        <p class="label">Selected region</p>
+        <p class="region-name" id="selected-name">None yet</p>
+        <button class="go-btn" id="go-btn" disabled>Search this region &rarr;</button>
+      </div>
+
+      <ul class="region-list" id="region-list"></ul>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

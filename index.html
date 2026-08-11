@@ -92,6 +92,26 @@
     background: var(--mustard);
   }
 
+  nav.site-nav {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0 0;
+  }
+
+  nav.site-nav a {
+    color: #D8DFE3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+
+  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.site-nav a:hover { color: var(--mustard); }
+
 
   /* ---------- Filter bar ---------- */
   .filter-bar {
@@ -318,8 +338,13 @@
     <h1 class="hero-title">Static Caravan Watch</h1>
     <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
     <span class="hero-updated" id="updated-badge"><span class="dot"></span>Loading&hellip;</span>
+    <nav class="site-nav">
+      <a href="index.html" class="active">All listings</a>
+      <a href="map.html">Search by region</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="parks.html">list of parks</a>
+    </nav>
   </div>
-  </svg>
 </header>
 
 
@@ -542,6 +567,16 @@
       </div>`;
   }
 
+  // Picks up a region name passed in from map.html (index.html?search=Wales)
+  // and drops it straight into the search box, as if the user had typed it.
+  function applyIncomingSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const incoming = params.get('search');
+    if (!incoming) return;
+    state.search = incoming;
+    document.getElementById('search').value = incoming;
+  }
+
   async function init() {
     try {
       const res = await fetch('data.json');
@@ -552,6 +587,7 @@
       ALL_DATA = JSON.parse(text);
       populateFilters(ALL_DATA);
       wireControls();
+      applyIncomingSearch();
       setUpdatedBadge(ALL_DATA);
       render();
     } catch (err) {

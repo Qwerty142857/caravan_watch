@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming soon &middot; Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  header.hero {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 44px 24px 0;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px);
+    letter-spacing: 0.01em;
+    margin: 0 0 10px;
+    line-height: 0.95;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #D8DFE3;
+    max-width: 46ch;
+    margin: 0 0 18px;
+  }
+
+  nav.site-nav {
+    display: flex;
+    gap: 18px;
+    padding: 0 0 18px;
+  }
+
+  nav.site-nav a {
+    color: #D8DFE3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+
+  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.site-nav a:hover { color: var(--mustard); }
+
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 90px 24px 100px;
+    text-align: center;
+  }
+
+  .wip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--mustard-dark);
+    background: rgba(232, 169, 61, 0.16);
+    border: 1px solid rgba(232, 169, 61, 0.4);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(32px, 6vw, 46px);
+    margin: 0 0 12px;
+    letter-spacing: 0.01em;
+  }
+
+  main p.lead {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 42ch;
+    margin: 0 auto 28px;
+  }
+
+  .back-link {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    padding: 10px 18px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .back-link:hover { background: rgba(31, 111, 110, 0.08); }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Static Caravan Watch</h1>
+    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
+    <nav class="site-nav">
+      <a href="index.html">All listings</a>
+      <a href="map.html">Search by region</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="parks.html" class="active">list of parks</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="wip-badge">Work in progress</span>
+  <h2>Nothing here yet</h2>
+  <p class="lead">This page is a placeholder while we build the next part of the site. Check back soon.</p>
+  <a class="back-link" href="index.html">&larr; Back to all listings</a>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use.</footer>
+
+</body>
+</html>
