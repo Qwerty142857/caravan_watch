@@ -11,6 +11,7 @@
   :root {
     --ink: #16283A;
     --navy: #122536;
+    --navy-deep: #0C1B29;
     --cream: #F6F0E4;
     --card: #FFFDF8;
     --mustard: #E8A93D;
@@ -35,568 +36,327 @@
 
   a { color: var(--teal); }
 
-  /* ---------- Header ---------- */
+  /* ---------- Hero ---------- */
   header.hero {
-    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
     color: var(--cream);
-    padding: 44px 24px 0;
+    padding: 0 0 130px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  /* soft colour wash + fine texture, all in CSS so nothing extra to load */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
-    padding-bottom: 40px;
+    padding: 68px 24px 0;
   }
 
   .hero-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--mustard);
     font-weight: 600;
-    margin: 0 0 6px;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 20px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
   }
 
   h1.hero-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(40px, 7vw, 64px);
-    letter-spacing: 0.01em;
-    margin: 0 0 10px;
-    line-height: 0.95;
+    font-size: clamp(52px, 10vw, 104px);
+    letter-spacing: 0.005em;
+    margin: 0 0 16px;
+    line-height: 0.9;
   }
+  h1.hero-title .accent { color: var(--mustard); }
 
   .hero-sub {
-    font-size: 16px;
-    color: #D8DFE3;
-    max-width: 46ch;
-    margin: 0 0 18px;
+    font-size: 17.5px;
+    color: #CFDAE2;
+    max-width: 50ch;
+    margin: 0;
   }
 
-  .hero-updated {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    background: rgba(232, 169, 61, 0.14);
-    border: 1px solid rgba(232, 169, 61, 0.4);
-    color: var(--mustard);
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  .hero-updated .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
+  .hero-rule {
+    width: 68px;
+    height: 4px;
+    border-radius: 2px;
     background: var(--mustard);
+    margin: 26px 0 0;
   }
 
-  nav.site-nav {
-    display: flex;
-    gap: 18px;
-    padding: 18px 0 0;
-  }
-
-  nav.site-nav a {
-    color: #D8DFE3;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 4px;
-  }
-
-  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
-  nav.site-nav a:hover { color: var(--mustard); }
-
-
-  /* ---------- Filter bar ---------- */
-  .filter-bar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--cream);
-    border-bottom: 1px solid var(--line);
-    padding: 16px 24px;
-  }
-
-  .filter-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: end;
-  }
-
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .field label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  .field input, .field select {
-    font-family: var(--font-body);
-    font-size: 14px;
-    padding: 9px 10px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    background: var(--card);
-    color: var(--ink);
-    min-width: 130px;
-  }
-
-  .field input:focus, .field select:focus {
-    outline: 2px solid var(--teal);
-    outline-offset: 1px;
-  }
-
-  #search { min-width: 200px; }
-  .price-field { flex-direction: row; align-items: center; gap: 6px; }
-  .price-field input { width: 90px; }
-
-  .clear-btn {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--teal);
-    background: none;
-    border: 1px solid var(--teal);
-    border-radius: 6px;
-    padding: 9px 14px;
-    cursor: pointer;
-  }
-  .clear-btn:hover { background: rgba(31, 111, 110, 0.08); }
-
-  /* ---------- Results ---------- */
+  /* ---------- Options ---------- */
   main {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px 24px 60px;
+    margin: -86px auto 0;
+    position: relative;
+    z-index: 2;
+    padding: 0 24px 76px;
   }
 
-  .results-count {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 4px 0 18px;
-  }
-
-  .grid {
+  .option-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
     gap: 18px;
   }
 
-  .card {
+  a.option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .card-name {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0 0 2px;
-  }
-
-  .card-make {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0;
-  }
-
-  .card-model {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0;
-  }
-
-  .price-tag {
-    flex-shrink: 0;
-    background: var(--mustard);
-    color: var(--mustard-dark);
-    font-weight: 700;
-    font-size: 14px;
-    font-variant-numeric: tabular-nums;
-    padding: 6px 10px 6px 12px;
-    border-radius: 4px;
-    border-left: 2px dashed rgba(138, 95, 30, 0.5);
-    transform: rotate(-1.5deg);
-    white-space: nowrap;
-  }
-
-  .card-meta {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--ink);
-  }
-
-  .card-meta li {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-
-  .card-meta svg {
-    flex-shrink: 0;
-    width: 14px;
-    height: 14px;
-    color: var(--teal);
-  }
-
-  .card-footer {
-    border-top: 1px solid var(--line);
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .card-source {
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .card-link {
-    font-size: 13px;
-    font-weight: 600;
+    border-radius: 14px;
+    padding: 26px 24px 22px;
     text-decoration: none;
-    white-space: nowrap;
+    color: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(12, 27, 41, 0.10);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
-  .card-link:hover { text-decoration: underline; }
 
-  /* ---------- Empty / error states ---------- */
-  .state-msg {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
+  /* accent rail along the top of each card */
+  a.option::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s cubic-bezier(0.22, 0.8, 0.3, 1);
   }
-  .state-msg h2 {
+
+  a.option:hover, a.option:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 18px 38px rgba(12, 27, 41, 0.16);
+  }
+  a.option:hover::before, a.option:focus-visible::before { transform: scaleX(1); }
+  a.option:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .option-index {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  h3.option-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 28px;
-    color: var(--ink);
-    margin: 0 0 8px;
-    letter-spacing: 0.01em;
+    font-size: 31px;
+    letter-spacing: 0.012em;
+    line-height: 1;
+    margin: 0;
+    transition: color 0.18s ease;
   }
-  .state-msg p { margin: 0 0 16px; font-size: 14px; }
-  .state-msg code {
-    background: var(--line);
-    padding: 2px 6px;
-    border-radius: 4px;
+  a.option:hover h3.option-title { color: var(--accent); }
+
+  .option-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 0;
+    flex: 1 1 auto;
+  }
+
+  .option-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 10px;
+    padding-top: 13px;
+    border-top: 1px solid var(--line);
   }
+  .option-go .arrow {
+    transition: transform 0.22s cubic-bezier(0.22, 0.8, 0.3, 1);
+  }
+  a.option:hover .option-go .arrow { transform: translateX(5px); }
+
+  /* per-card accents, all drawn from the site palette */
+  .option.c-teal    { --accent: var(--teal); }
+  .option.c-ink     { --accent: #2C5D8A; }
+  .option.c-coral   { --accent: var(--coral); }
+  .option.c-mustard { --accent: var(--mustard-dark); }
 
   footer {
     text-align: center;
     font-size: 12px;
     color: var(--muted);
-    padding: 24px;
+    padding: 4px 24px 32px;
   }
 
   @media (max-width: 640px) {
-    .filter-inner { flex-direction: column; align-items: stretch; }
-    .field input, .field select { min-width: 0; width: 100%; }
-    .price-field { flex-direction: row; }
+    header.hero { padding: 0 0 110px; }
+    .hero-inner { padding-top: 46px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
+    main { margin-top: -76px; }
   }
 </style>
 </head>
 <body>
 
 <header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html">Compare</a>
+        <a href="caravans.html">All listings</a>
+        <a href="map.html">Search by region</a>
+        <a href="parks.html">List of parks</a>
+      </nav>
+    </div>
+  </div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Static caravans &amp; holiday homes</p>
-    <h1 class="hero-title">Static Caravan Watch</h1>
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Static Caravan <span class="accent">Watch</span></h1>
     <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
-    <span class="hero-updated" id="updated-badge"><span class="dot"></span>Loading&hellip;</span>
-    <nav class="site-nav">
-      <a href="index.html" class="active">All listings</a>
-      <a href="map.html">Search by region</a>
-      <a href="coming-soon.html">Coming soon</a>
-      <a href="parks.html">list of parks</a>
-    </nav>
+    <div class="hero-rule"></div>
   </div>
 </header>
 
-
-<div class="filter-bar">
-  <div class="filter-inner">
-    <div class="field" style="flex: 1 1 200px;">
-      <label for="search">Search</label>
-      <input id="search" type="text" placeholder="Name, make, model, park&hellip;">
-    </div>
-    <div class="field">
-      <label for="location">Park</label>
-      <select id="location"><option value="all">All parks</option></select>
-    </div>
-    <div class="field">
-      <label for="make">Make</label>
-      <select id="make"><option value="all">All makes</option></select>
-    </div>
-    <div class="field">
-      <label for="model">model</label>
-      <select id="model"><option value="all">All models</option></select>
-    </div>
-    <div class="field">
-      <label for="bedrooms">Bedrooms</label>
-      <select id="bedrooms"><option value="all">Any</option></select>
-    </div>
-    <div class="field">
-      <label for="min-price">Price range</label>
-      <div class="price-field">
-        <input id="min-price" type="number" min="0" placeholder="Min">
-        <span>&ndash;</span>
-        <input id="max-price" type="number" min="0" placeholder="Max">
-      </div>
-    </div>
-    <div class="field">
-      <label for="sort">Sort by</label>
-      <select id="sort">
-        <option value="price-asc">Price: low to high</option>
-        <option value="price-desc">Price: high to low</option>
-        <option value="name-asc">Name: A&ndash;Z</option>
-        <option value="location-asc">Park: A&ndash;Z</option>
-      </select>
-    </div>
-    <button class="clear-btn" id="clear-btn" type="button">Clear filters</button>
-  </div>
-</div>
-
 <main>
-  <p class="results-count" id="results-count" aria-live="polite"></p>
-  <div class="grid" id="grid"></div>
+  <div class="option-grid">
+
+    <a class="option c-teal" href="compare.html">
+      <span class="option-index">01</span>
+      <h3 class="option-title">Compare caravans</h3>
+      <p class="option-desc">for if your looking at buying a caravan, enter its details and see similar caravans on the market, cheapest first</p>
+      <span class="option-go">Compare a caravan <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-ink" href="caravans.html">
+      <span class="option-index">02</span>
+      <h3 class="option-title">Search for a caravan</h3>
+      <p class="option-desc">have a general idea of what kind of caravan you want to look for?, search and browse caravans</p>
+      <span class="option-go">Start searching <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-coral" href="map.html">
+      <span class="option-index">03</span>
+      <h3 class="option-title">Find parks</h3>
+      <p class="option-desc">Explore holiday parks on the map by region, with pitch fees and contact details for each one.</p>
+      <span class="option-go">Open the map <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-mustard" href="comingsoon.html">
+      <span class="option-index">04</span>
+      <h3 class="option-title">Find cheapest caravan (coming soon(later really))</h3>
+      <p class="option-desc">Pick a make and model and see the lowest price we've found for it anywhere.</p>
+      <span class="option-go">Coming soon <span class="arrow">&rarr;</span></span>
+    </a>
+
+  </div>
 </main>
 
 <footer>Data collected weekly from public caravan listing sites, for personal browsing use.</footer>
 
-<script>
-  const ICONS = {
-    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>',
-    ruler: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="10" y1="9" x2="10" y2="12"/><line x1="14" y1="9" x2="14" y2="12"/><line x1="18" y1="9" x2="18" y2="12"/></svg>',
-    bed: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v2"/><path d="M12 12h7a2 2 0 0 1 2 2v4"/><path d="M3 18h18"/><rect x="3" y="9" width="7" height="3.5" rx="1"/></svg>'
-  };
-
-  const state = {
-    search: '', location: 'all', make: 'all', model: 'all', bedrooms: 'all',
-    minPrice: '', maxPrice: '', sort: 'price-asc'
-  };
-
-  let ALL_DATA = [];
-
-  const gridEl = document.getElementById('grid');
-  const countEl = document.getElementById('results-count');
-  const updatedBadge = document.getElementById('updated-badge');
-
-  function escapeHTML(str) {
-    return String(str ?? '').replace(/[&<>"']/g, s => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]
-    ));
-  }
-
-  function formatDate(iso) {
-    if (!iso) return 'unknown date';
-    const d = new Date(iso + 'T00:00:00');
-    if (isNaN(d)) return iso;
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  function populateFilters(data) {
-    const locations = [...new Set(data.map(d => d.location).filter(Boolean))].sort();
-    const makes = [...new Set(data.map(d => d.make).filter(Boolean))].sort();
-    const models = [...new Set(data.map(d => d.model).filter(Boolean))].sort();
-    const bedroomVals = [...new Set(data.map(d => d.bedrooms).filter(v => v !== null && v !== undefined))].sort((a, b) => a - b);
-    const hasUnspecified = data.some(d => d.bedrooms === null || d.bedrooms === undefined);
-
-    const locSel = document.getElementById('location');
-    locations.forEach(l => locSel.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(l)}">${escapeHTML(l)}</option>`));
-
-    const makeSel = document.getElementById('make');
-    makes.forEach(m => makeSel.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`));
-
-    const modelSel = document.getElementById('model');
-    models.forEach(m => modelSel.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`));
-
-    const bedSel = document.getElementById('bedrooms');
-    bedroomVals.forEach(b => bedSel.insertAdjacentHTML('beforeend', `<option value="${b}">${b} bed${b == 1 ? '' : 's'}</option>`));
-    if (hasUnspecified) bedSel.insertAdjacentHTML('beforeend', `<option value="unspecified">Not specified</option>`);
-  }
-
-  function applyFilters(data) {
-    return data.filter(d => {
-      if (state.search) {
-        const hay = `${d.name} ${d.make} ${d.model} ${d.location}`.toLowerCase();
-        if (!hay.includes(state.search.toLowerCase())) return false;
-      }
-      if (state.location !== 'all' && d.location !== state.location) return false;
-      if (state.make !== 'all' && d.make !== state.make) return false;
-      if (state.model !== 'all' && d.model !== state.model) return false;
-      if (state.bedrooms !== 'all') {
-        if (state.bedrooms === 'unspecified') {
-          if (d.bedrooms !== null && d.bedrooms !== undefined) return false;
-        } else if (Number(d.bedrooms) !== Number(state.bedrooms)) {
-          return false;
-        }
-      }
-      if (state.minPrice !== '' && d.price_number < Number(state.minPrice)) return false;
-      if (state.maxPrice !== '' && d.price_number > Number(state.maxPrice)) return false;
-      return true;
-    });
-  }
-
-  function applySort(list) {
-    const arr = [...list];
-    switch (state.sort) {
-      case 'price-asc': arr.sort((a, b) => a.price_number - b.price_number); break;
-      case 'price-desc': arr.sort((a, b) => b.price_number - a.price_number); break;
-      case 'name-asc': arr.sort((a, b) => a.name.localeCompare(b.name)); break;
-      case 'location-asc': arr.sort((a, b) => a.location.localeCompare(b.location)); break;
-    }
-    return arr;
-  }
-
-  function cardHTML(d) {
-    const dims = d.dimensions ? escapeHTML(d.dimensions) : 'Dimensions not listed';
-    const beds = (d.bedrooms !== null && d.bedrooms !== undefined) ? `${d.bedrooms} bedroom${d.bedrooms == 1 ? '' : 's'}` : 'Bedrooms not specified';
-    return `
-      <article class="card">
-        <div class="card-top">
-          <div>
-            <h3 class="card-name">${escapeHTML(d.name)}</h3>
-            <p class="card-make">${escapeHTML(d.make)} &middot; ${escapeHTML(d.model)}</p>
-          </div>
-          <div class="price-tag">${escapeHTML(d.price_display)}</div>
-        </div>
-        <ul class="card-meta">
-          <li>${ICONS.pin} ${escapeHTML(d.location)}</li>
-          <li>${ICONS.ruler} ${dims}</li>
-          <li>${ICONS.bed} ${beds}</li>
-        </ul>
-        <div class="card-footer">
-          <span class="card-source">Seen on ${escapeHTML(d.source_site)} &middot; ${formatDate(d.date_scraped)}</span>
-          <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">View listing &rarr;</a>
-        </div>
-      </article>
-    `;
-  }
-
-  function render() {
-    const filtered = applySort(applyFilters(ALL_DATA));
-    countEl.textContent = `Showing ${filtered.length} of ${ALL_DATA.length} caravans`;
-
-    if (filtered.length === 0) {
-      gridEl.innerHTML = `
-        <div class="state-msg" style="grid-column: 1 / -1;">
-          <h2>No matches</h2>
-          <p>No caravans fit those filters. Try widening your search.</p>
-          <button class="clear-btn" onclick="document.getElementById('clear-btn').click()">Clear filters</button>
-        </div>`;
-      return;
-    }
-    gridEl.innerHTML = filtered.map(cardHTML).join('');
-  }
-
-  function wireControls() {
-    document.getElementById('search').addEventListener('input', e => { state.search = e.target.value; render(); });
-    document.getElementById('location').addEventListener('change', e => { state.location = e.target.value; render(); });
-    document.getElementById('make').addEventListener('change', e => { state.make = e.target.value; render(); });
-    document.getElementById('model').addEventListener('change', e => { state.model = e.target.value; render(); });
-    document.getElementById('bedrooms').addEventListener('change', e => { state.bedrooms = e.target.value; render(); });
-    document.getElementById('min-price').addEventListener('input', e => { state.minPrice = e.target.value; render(); });
-    document.getElementById('max-price').addEventListener('input', e => { state.maxPrice = e.target.value; render(); });
-    document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
-    document.getElementById('clear-btn').addEventListener('click', () => {
-      state.search = ''; state.location = 'all'; state.make = 'all'; state.model = 'all';
-      state.bedrooms = 'all'; state.minPrice = ''; state.maxPrice = ''; state.sort = 'price-asc';
-      document.getElementById('search').value = '';
-      document.getElementById('location').value = 'all';
-      document.getElementById('make').value = 'all';
-      document.getElementById('model').value = 'all';
-      document.getElementById('bedrooms').value = 'all';
-      document.getElementById('min-price').value = '';
-      document.getElementById('max-price').value = '';
-      document.getElementById('sort').value = 'price-asc';
-      render();
-    });
-  }
-
-  function setUpdatedBadge(data) {
-    const dates = data.map(d => d.date_scraped).filter(Boolean).sort();
-    const latest = dates[dates.length - 1];
-    updatedBadge.innerHTML = `<span class="dot"></span>Last updated ${formatDate(latest)}`;
-  }
-
-  function showLoadError() {
-    updatedBadge.innerHTML = `<span class="dot"></span>Data unavailable`;
-    countEl.textContent = '';
-    gridEl.innerHTML = `
-      <div class="state-msg" style="grid-column: 1 / -1;">
-        <h2>Couldn't load the listings</h2>
-        <p>This page loads its data from <code>data.json</code> sitting next to it. If you opened this file directly<br>
-        from disk, your browser blocks that for security. Serve it locally instead, e.g.:</p>
-        <p><code>python -m http.server</code> &nbsp;then open <code>http://localhost:8000</code></p>
-        <p>Once deployed to GitHub Pages, Netlify, or similar, this will load automatically.</p>
-      </div>`;
-  }
-
-  // Picks up a region name passed in from map.html (index.html?search=Wales)
-  // and drops it straight into the search box, as if the user had typed it.
-  function applyIncomingSearch() {
-    const params = new URLSearchParams(window.location.search);
-    const incoming = params.get('search');
-    if (!incoming) return;
-    state.search = incoming;
-    document.getElementById('search').value = incoming;
-  }
-
-  async function init() {
-    try {
-      const res = await fetch('data.json');
-      if (!res.ok) throw new Error('Fetch failed: ' + res.status);
-      let text = await res.text();
-      // defensive: tolerate bare NaN tokens if the export script hasn't been fixed to emit strict JSON yet
-      text = text.replace(/:\s*NaN/g, ': null');
-      ALL_DATA = JSON.parse(text);
-      populateFilters(ALL_DATA);
-      wireControls();
-      applyIncomingSearch();
-      setUpdatedBadge(ALL_DATA);
-      render();
-    } catch (err) {
-      console.error(err);
-      showLoadError();
-    }
-  }
-
-  init();
-</script>
 </body>
 </html>

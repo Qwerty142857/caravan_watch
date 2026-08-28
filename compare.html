@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare caravans &middot; Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --navy-deep: #0C1B29;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  /* ---------- Header (shared with the home page) ---------- */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 0 0 40px;
+  }
+
+  /* soft colour wash + fine texture, all in CSS so nothing extra to load */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 44px 24px 0;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 16px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(44px, 8vw, 76px);
+    letter-spacing: 0.005em;
+    margin: 0 0 12px;
+    line-height: 0.9;
+  }
+  h1.hero-title .accent { color: var(--mustard); }
+
+  .hero-sub {
+    font-size: 16.5px;
+    color: #CFDAE2;
+    max-width: 52ch;
+    margin: 0 0 18px;
+  }
+
+  .hero-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    background: rgba(232, 169, 61, 0.14);
+    border: 1px solid rgba(232, 169, 61, 0.4);
+    color: var(--mustard);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .hero-updated .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  /* ---------- Form panel ---------- */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 26px 24px 60px;
+  }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    box-shadow: 0 8px 22px rgba(12, 27, 41, 0.06);
+  }
+
+  .panel h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    margin: 0 0 4px;
+  }
+
+  .panel-note {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 5px; }
+
+  .field label, .field .field-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .field input, .field select {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .field input:focus, .field select:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
+
+  .hint { font-size: 11.5px; color: var(--muted); }
+
+  .dim-row { display: flex; align-items: center; gap: 8px; }
+  .dim-row input { width: 100%; }
+  .dim-x { color: var(--muted); font-size: 14px; flex-shrink: 0; }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .btn-primary {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 6px;
+    padding: 11px 22px;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #185856; }
+
+  .clear-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--teal);
+    border-radius: 6px;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+  .clear-btn:hover { background: rgba(31, 111, 110, 0.08); }
+
+  .form-error {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--coral);
+    margin: 0;
+  }
+  .form-error.hidden { display: none; }
+
+  /* ---------- Results ---------- */
+  .criteria-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31, 111, 110, 0.09);
+    border: 1px solid rgba(31, 111, 110, 0.28);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    margin: 26px 0 12px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px 11px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  /* ---------- Price summary ---------- */
+  .price-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px 20px;
+    margin: 0 0 20px;
+  }
+
+  .price-box h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+
+  .scale {
+    position: relative;
+    height: 60px;
+    margin: 0 2px;
+  }
+
+  .scale-track {
+    position: absolute;
+    top: 39px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #BBD8D7 0%, var(--teal) 100%);
+  }
+
+  /* one faint mark per listing, so the shape of the market is visible */
+  .scale-tick {
+    position: absolute;
+    top: 40px;
+    width: 2px;
+    height: 10px;
+    border-radius: 1px;
+    background: rgba(255, 253, 248, 0.7);
+    transform: translateX(-1px);
+  }
+
+  .scale-median {
+    position: absolute;
+    top: 33px;
+    width: 3px;
+    height: 24px;
+    border-radius: 2px;
+    background: var(--ink);
+    box-shadow: 0 0 0 2px var(--card);
+    transform: translateX(-1.5px);
+  }
+
+  .scale-mid-label {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .scale-mid-label .lab {
+    display: block;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .scale-mid-label .val {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  .scale-ends {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 2px;
+  }
+
+  .scale-end {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .scale-end.right { text-align: right; }
+
+  .scale-end-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .scale-end-value {
+    font-size: 19px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  .price-single {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .results-count {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 18px;
+  }
+
+  /* ---------- Results table ---------- */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow-x: auto;
+  }
+
+  table.results {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  table.results th, table.results td {
+    text-align: left;
+    padding: 10px 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  table.results thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--card);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+
+  table.results tbody tr { border-bottom: 1px solid rgba(223, 213, 193, 0.55); }
+  table.results tbody tr:last-child { border-bottom: none; }
+  table.results tbody tr:nth-child(even) { background: rgba(223, 213, 193, 0.14); }
+  table.results tbody tr:hover { background: rgba(31, 111, 110, 0.08); }
+
+  table.results td.col-name, table.results th.col-name {
+    white-space: normal;
+    min-width: 190px;
+    max-width: 300px;
+    overflow-wrap: anywhere;
+  }
+
+  table.results td.col-park, table.results th.col-park {
+    white-space: normal;
+    min-width: 130px;
+    max-width: 190px;
+    overflow-wrap: anywhere;
+    color: var(--muted);
+  }
+  .col-num { text-align: right; font-variant-numeric: tabular-nums; }
+  .col-price { text-align: right; }
+
+  .row-name {
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .row-name:hover { color: var(--teal); text-decoration: underline; }
+  .row-name .ext { color: var(--teal); font-weight: 400; }
+
+  .row-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .row-price {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--mustard-dark);
+    white-space: nowrap;
+  }
+
+  .size-note {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    background: rgba(31, 111, 110, 0.10);
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-left: 6px;
+  }
+
+  .dash { color: var(--muted); }
+
+  /* On narrow screens a wide table is unreadable, so each row becomes its own
+     block with the column names printed beside the values. */
+  @media (max-width: 720px) {
+    table.results thead { display: none; }
+    table.results, table.results tbody, table.results tr, table.results td { display: block; width: 100%; }
+
+    table.results tbody tr {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    table.results tbody tr:nth-child(even) { background: none; }
+
+    table.results td {
+      padding: 2px 0;
+      white-space: normal;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    table.results td::before {
+      content: attr(data-label);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      font-weight: 700;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    table.results td .cell { text-align: right; }
+    table.results td.col-name { display: block; margin-bottom: 6px; }
+    table.results td.col-name::before { content: none; }
+    table.results td.col-name, table.results td.col-park { min-width: 0; max-width: none; }
+  }
+
+  /* ---------- Pagination ---------- */
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    margin-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+  .pagination.hidden { display: none; }
+  .pagination-info { font-size: 13px; color: var(--muted); }
+  .pagination-controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+  .page-btn, .page-num-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 11px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .page-btn:hover:not(:disabled), .page-num-btn:hover:not(.active) {
+    border-color: var(--teal); color: var(--teal);
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: default; }
+  .page-num-btn { min-width: 34px; text-align: center; }
+  .page-num-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; cursor: default; }
+  .page-numbers { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .page-ellipsis { padding: 0 4px; color: var(--muted); font-size: 13px; }
+
+  /* ---------- States ---------- */
+  .state-msg {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--muted);
+  }
+  .state-msg h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    letter-spacing: 0.01em;
+  }
+  .state-msg p { margin: 0 0 10px; font-size: 14px; }
+  .state-msg code { background: var(--line); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 24px; }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 0 0 32px; }
+    .hero-inner { padding-top: 34px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
+  }
+
+  @media (max-width: 560px) {
+    .scale-end-value { font-size: 17px; }
+  }
+
+  @media (max-width: 640px) {
+    .form-actions .btn-primary { width: 100%; }
+    .pagination { flex-direction: column; align-items: stretch; }
+    .pagination-controls { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html" class="active">Compare</a>
+        <a href="caravans.html">All listings</a>
+        <a href="map.html">Search by region</a>
+        <a href="parks.html">List of parks</a>
+      </nav>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Compare <span class="accent">Caravans</span></h1>
+    <p class="hero-sub">Looking at a caravan? Put in whatever you know about it and we'll show you what similar ones on the market are going for.</p>
+    <span class="hero-updated" id="updated-badge"><span class="dot"></span>Loading&hellip;</span>
+  </div>
+</header>
+
+<main>
+  <form class="panel" id="compare-form" autocomplete="off">
+    <h2>The caravan you're looking at</h2>
+    <p class="panel-note">Fill in as much or as little as you know &mdash; every field is optional, but you need at least one.</p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="in-make">Make</label>
+        <input id="in-make" type="text" list="make-list" placeholder="e.g. Willerby">
+        <datalist id="make-list"></datalist>
+      </div>
+
+      <div class="field">
+        <label for="in-model">Model</label>
+        <input id="in-model" type="text" list="model-list" placeholder="e.g. Winchester">
+        <datalist id="model-list"></datalist>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Dimensions (feet)</span>
+        <div class="dim-row">
+          <input id="in-length" type="number" min="0" step="1" placeholder="Length" aria-label="Length in feet">
+          <span class="dim-x">&times;</span>
+          <input id="in-width" type="number" min="0" step="1" placeholder="Width" aria-label="Width in feet">
+        </div>
+        <span class="hint">Closest sizes come first</span>
+      </div>
+
+      <div class="field">
+        <label for="in-bedrooms">Bedrooms</label>
+        <select id="in-bedrooms">
+          <option value="">Any</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="in-year">Year</label>
+        <select id="in-year">
+          <option value="">Any year</option>
+        </select>
+        <span class="hint">Shows that year and newer</span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" type="submit">Find matching caravans</button>
+      <button class="clear-btn" type="button" id="reset-btn">Start again</button>
+      <p class="form-error hidden" id="form-error">Enter at least one detail &mdash; make, model, a dimension, bedrooms or a year.</p>
+    </div>
+  </form>
+
+  <div id="results"></div>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use. Give it a few seconds to load if you don't see anything.</footer>
+
+<script>
+
+  /* ============================================================================
+     Make & model tidy-up — same rules as the main listings page, so the
+     suggestions here line up with what you see over there.
+     ========================================================================== */
+  const MM_DROP_WORDS = new Set([
+    'premier','premiere','permier','deluxe','delux','exclusive','elite','plus',
+    'super','gold','platinum','special','edition','limited','ltd','range',
+    'lp','hf','h/f','fe','cs','cl','c/l','hm','lw','se','es','dp','wcf','bf',
+    'resi','spec','upgrade','reserved','sold','new','static','fl',
+    'alum','aluminium','canexel','showground'
+  ]);
+  const MM_PITCH_RE = /^[a-z]{0,3}\d{1,3}[a-z]?$/i;
+  const MM_MKVER_RE = /^mk\s*\d+$/i;
+  const MM_ROMAN_RE = /^(?:i{1,3}|iv|v|vi{0,3}|ix|x{1,3}v?i{0,3})$/i;
+
+  function mmCleanName(raw) {
+    let s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+    s = s.replace(/\s*[–—-]\s+.*$/, '');
+    s = s.replace(/\([^)]*\)/g, ' ');
+    s = s.replace(/[*!]+/g, ' ');
+    s = s.replace(/\s+/g, ' ').trim();
+    let toks = s.split(' ');
+    if (toks.length > 1 && /^the$/i.test(toks[0])) toks = toks.slice(1);
+    const kept = toks.filter(function (t, i) {
+      if (i === 0) return true;
+      const w = t.toLowerCase().replace(/[.,]/g, '');
+      if (MM_MKVER_RE.test(w) || MM_ROMAN_RE.test(w)) return true;
+      if (/^mk$/i.test(toks[i - 1]) && /^\d+$/.test(w)) return true;
+      if (MM_DROP_WORDS.has(w)) return false;
+      if (/^(19|20)\d{2}$/.test(w)) return false;
+      if (MM_PITCH_RE.test(w)) return false;
+      return true;
+    });
+    const out = [];
+    kept.forEach(function (t) {
+      if (!out.length || out[out.length - 1].toLowerCase() !== t.toLowerCase()) out.push(t);
+    });
+    if (out.length > 1 && /^series$/i.test(out[out.length - 1])) out.pop();
+    const res = out.join(' ').replace(/\s+/g, ' ').trim();
+    return res.replace(/[^A-Za-z0-9]/g, '').length < 3 ? toks.join(' ') : res;
+  }
+
+  function mmKey(name) {
+    let k = String(name == null ? '' : name).toLowerCase().replace(/[^a-z0-9]+/g, '');
+    if (k.length > 4 && k.charAt(k.length - 1) === 's') k = k.slice(0, -1);
+    return k;
+  }
+
+  function mmPrettier(a, b) {
+    const score = function (s) {
+      return (s === s.toUpperCase() && /[A-Z]{2}/.test(s)) ? 0 : (s === s.toLowerCase() ? 1 : 2);
+    };
+    return score(b) > score(a) ? b : a;
+  }
+
+  function mmTitle(s) {
+    return String(s).split(' ').map(function (w) {
+      if (w === w.toUpperCase() && /[A-Z]/.test(w) && w.replace(/[^A-Za-z]/g, '').length < 5) return w;
+      if (w !== w.toUpperCase() && w !== w.toLowerCase()) return w;
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    }).join(' ');
+  }
+
+  function mmDist(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    const rows = [];
+    for (let j = 0; j <= b.length; j++) rows[j] = j;
+    let prev2 = null, prev = rows;
+    for (let i = 1; i <= a.length; i++) {
+      const cur = [i];
+      let best = i;
+      for (let j = 1; j <= b.length; j++) {
+        const cost = a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1;
+        let v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        if (i > 1 && j > 1 && a.charAt(i - 1) === b.charAt(j - 2) && a.charAt(i - 2) === b.charAt(j - 1)) {
+          v = Math.min(v, prev2[j - 2] + 1);
+        }
+        cur[j] = v;
+        if (v < best) best = v;
+      }
+      if (best > max) return max + 1;
+      prev2 = prev; prev = cur;
+    }
+    return prev[b.length];
+  }
+
+  function mmVersionish(a, b) {
+    const strip = function (s) {
+      return s.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ')
+        .filter(function (w) { return !MM_ROMAN_RE.test(w) && !/\d/.test(w); }).join(' ');
+    };
+    return strip(a) === strip(b);
+  }
+
+  function mmTypoMap(counts, opts) {
+    const entries = [...counts.entries()].sort(function (a, b) { return b[1] - a[1]; });
+    const map = new Map();
+    entries.forEach(function (pair, i) {
+      const rare = pair[0], rareN = pair[1];
+      if (opts.maxRare && rareN > opts.maxRare) return;
+      for (let j = 0; j < i; j++) {
+        const big = entries[j][0], bigN = entries[j][1];
+        if (bigN < opts.minTarget || bigN < rareN * opts.minRatio) continue;
+        const short = Math.min(big.length, rare.length);
+        if (short < 5) continue;
+        if (mmVersionish(big, rare)) continue;
+        const a = rare.toLowerCase(), b = big.toLowerCase();
+        if (a.charAt(0) !== b.charAt(0)) continue;
+        const d = mmDist(a, b, opts.far ? 2 : 1);
+        const farOk = opts.far && d === 2 && short >= 7 && rareN <= 2 &&
+          a.slice(0, 2) === b.slice(0, 2) && a.slice(-2) === b.slice(-2);
+        if (d <= 1 || farOk) { map.set(rare, big); return; }
+      }
+    });
+    return map;
+  }
+
+  function buildCanonMaps(data) {
+    const makeCounts = new Map(), makeByKey = new Map();
+    data.forEach(function (d) {
+      const raw = (d.make || '').trim();
+      const key = mmKey(raw);
+      if (!key) return;
+      const bucket = makeByKey.get(key) || new Map();
+      bucket.set(raw, (bucket.get(raw) || 0) + 1);
+      makeByKey.set(key, bucket);
+      makeCounts.set(key, (makeCounts.get(key) || 0) + 1);
+    });
+    const makeLabel = new Map();
+    makeByKey.forEach(function (bucket, key) {
+      let best = null, bestN = -1;
+      bucket.forEach(function (n, name) {
+        if (n > bestN) { best = name; bestN = n; }
+        else if (n === bestN) best = mmPrettier(best, name);
+      });
+      makeLabel.set(key, mmTitle(best));
+    });
+    const labelCounts = new Map();
+    makeCounts.forEach(function (n, key) {
+      const l = makeLabel.get(key);
+      labelCounts.set(l, (labelCounts.get(l) || 0) + n);
+    });
+    const makeTypos = mmTypoMap(labelCounts, { minRatio: 1, minTarget: 1, maxRare: 2 });
+    const makeFinal = new Map();
+    makeLabel.forEach(function (l, key) { makeFinal.set(key, makeTypos.get(l) || l); });
+
+    const modelByMake = new Map();
+    data.forEach(function (d) {
+      const mk = makeFinal.get(mmKey(d.make || '')) || 'Unknown';
+      const cleaned = mmCleanName(d.model);
+      const key = mmKey(cleaned);
+      if (!key) return;
+      if (!modelByMake.has(mk)) modelByMake.set(mk, new Map());
+      const byKey = modelByMake.get(mk);
+      const bucket = byKey.get(key) || new Map();
+      bucket.set(cleaned, (bucket.get(cleaned) || 0) + 1);
+      byKey.set(key, bucket);
+    });
+
+    const modelFinal = new Map();
+    modelByMake.forEach(function (byKey, mk) {
+      const labels = new Map(), counts = new Map();
+      byKey.forEach(function (bucket, key) {
+        let best = null, bestN = -1, total = 0;
+        bucket.forEach(function (n, name) {
+          total += n;
+          if (n > bestN) { best = name; bestN = n; }
+          else if (n === bestN) best = mmPrettier(best, name);
+        });
+        const label = mmTitle(best);
+        labels.set(key, label);
+        counts.set(label, (counts.get(label) || 0) + total);
+      });
+      const typos = mmTypoMap(counts, { minRatio: 5, minTarget: 3, maxRare: 0, far: true });
+      labels.forEach(function (label, key) {
+        modelFinal.set(mk + ' ' + key, typos.get(label) || label);
+      });
+    });
+
+    return { makeFinal: makeFinal, modelFinal: modelFinal };
+  }
+
+  function canonicalise(data) {
+    const maps = buildCanonMaps(data);
+    data.forEach(function (d) {
+      const mk = maps.makeFinal.get(mmKey(d.make || '')) || 'Unknown';
+      d.make_canon = mk;
+      const cleaned = mmCleanName(d.model);
+      const key = mmKey(cleaned);
+      d.model_canon = key ? (maps.modelFinal.get(mk + ' ' + key) || cleaned) : '';
+    });
+  }
+
+  /* ============================================================================
+     Dimension parsing
+     Listings write sizes every which way: "36ft x 12ft", "36' x 12'",
+     "36 x 12", "10.9m x 3.7m". Pull out a length and a width in feet.
+     ========================================================================== */
+  function parseDims(raw) {
+    const s = String(raw == null ? '' : raw).toLowerCase();
+    if (!s) return null;
+    const m = s.match(/(\d+(?:\.\d+)?)\s*(m\b|metres?|meters?|ft\b|feet|foot|'|")?\s*(?:x|by|\*|×)\s*(\d+(?:\.\d+)?)\s*(m\b|metres?|meters?|ft\b|feet|foot|'|")?/);
+    if (!m) return null;
+    const toFeet = function (val, unit) {
+      const n = parseFloat(val);
+      if (!isFinite(n)) return null;
+      const metric = unit && /^m/.test(unit);
+      return metric ? n * 3.28084 : n;
+    };
+    // if only one side carries a unit, assume both use it
+    const unitA = m[2] || m[4];
+    const unitB = m[4] || m[2];
+    let a = toFeet(m[1], unitA);
+    let b = toFeet(m[3], unitB);
+    if (a === null || b === null) return null;
+    // no unit anywhere and the numbers look metric (small) — treat as metres
+    if (!unitA && !unitB && a < 20 && b < 8) { a *= 3.28084; b *= 3.28084; }
+    const length = Math.max(a, b), width = Math.min(a, b);
+    if (length < 8 || length > 80 || width < 5 || width > 40) return null;
+    return { length: length, width: width };
+  }
+
+  /* ============================================================================
+     State + data
+     ========================================================================== */
+  let ALL_DATA = [];
+  let lastResults = [];
+  let lastCriteria = null;
+  let lastUsesDims = false;
+  let page = 1;
+  const PAGE_SIZE = 50;
+
+  const resultsEl = document.getElementById('results');
+  const updatedBadge = document.getElementById('updated-badge');
+  const formEl = document.getElementById('compare-form');
+  const errorEl = document.getElementById('form-error');
+
+  function escapeHTML(str) {
+    return String(str ?? '').replace(/[&<>"']/g, s => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]
+    ));
+  }
+
+  function formatDate(iso) {
+    if (!iso) return 'unknown date';
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function norm(str) {
+    return String(str ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  /* ---- matching -------------------------------------------------------- */
+
+  // A typed make/model matches a listing if either string contains the other
+  // (so "willer" finds Willerby, and "Winchester Lodge" finds "Winchester"),
+  // or if it's within one keystroke of it.
+  function textMatches(query, candidates) {
+    const q = norm(query);
+    if (!q) return false;
+    const qKey = q.replace(/ /g, '');
+    for (const c of candidates) {
+      const n = norm(c);
+      if (!n) continue;
+      if (n.includes(q) || q.includes(n)) return true;
+      const nKey = n.replace(/ /g, '');
+      if (qKey.length >= 5 && nKey.length >= 5 && mmDist(qKey, nKey, 1) <= 1) return true;
+    }
+    return false;
+  }
+
+  function matchesCriteria(d, c) {
+    if (c.make && !textMatches(c.make, [d.make_canon, d.make])) return false;
+    if (c.model && !textMatches(c.model, [d.model_canon, d.model, d.name])) return false;
+
+    if (c.bedrooms !== '') {
+      if (d.bedrooms === null || d.bedrooms === undefined) return false;
+      if (String(d.bedrooms) !== c.bedrooms) return false;
+    }
+
+    // Year is a "from" filter: that year and anything newer. Listings that
+    // don't state a year drop out once you pick one.
+    if (c.year !== '') {
+      const y = Number(d.year);
+      if (d.year === null || d.year === undefined || isNaN(y)) return false;
+      if (y < Number(c.year)) return false;
+    }
+    return true;
+  }
+
+  // How far a listing's size is from what was typed, in feet. Only the sides
+  // you filled in count. null when the listing doesn't state a size, or when
+  // no size was asked for.
+  function sizeGap(d, c) {
+    if (c.length === null && c.width === null) return null;
+    const dims = parseDims(d.dimensions);
+    if (!dims) return null;
+    let gap = 0;
+    if (c.length !== null) gap += Math.abs(dims.length - c.length);
+    if (c.width !== null) gap += Math.abs(dims.width - c.width);
+    return Math.round(gap * 10) / 10;
+  }
+
+  function readCriteria() {
+    const lenRaw = document.getElementById('in-length').value.trim();
+    const widRaw = document.getElementById('in-width').value.trim();
+    return {
+      make: document.getElementById('in-make').value.trim(),
+      model: document.getElementById('in-model').value.trim(),
+      length: lenRaw === '' ? null : Number(lenRaw),
+      width: widRaw === '' ? null : Number(widRaw),
+      bedrooms: document.getElementById('in-bedrooms').value,
+      year: document.getElementById('in-year').value
+    };
+  }
+
+  function criteriaEmpty(c) {
+    return !c.make && !c.model && c.length === null && c.width === null &&
+      c.bedrooms === '' && c.year === '';
+  }
+
+  function priceOf(d) {
+    const p = d.price_number;
+    return (p === null || p === undefined || isNaN(p)) ? Infinity : p;
+  }
+
+  // Filter on make / model / bedrooms, then order: closest size first (when a
+  // size was given), and within the same closeness, cheapest first. Listings
+  // with no size on them sit at the back of the queue.
+  function search(c) {
+    const usesDims = c.length !== null || c.width !== null;
+    const out = ALL_DATA.filter(d => matchesCriteria(d, c));
+    out.forEach(d => { d._gap = sizeGap(d, c); });
+
+    out.sort((a, b) => {
+      if (usesDims) {
+        const ga = a._gap === null ? Infinity : a._gap;
+        const gb = b._gap === null ? Infinity : b._gap;
+        if (ga !== gb) return ga - gb;
+      }
+      const pa = priceOf(a), pb = priceOf(b);
+      if (pa !== pb) return pa - pb;
+      return String(a.name || '').localeCompare(String(b.name || ''));
+    });
+    return { list: out, usesDims: usesDims };
+  }
+
+  /* ---- rendering ------------------------------------------------------- */
+
+  function criteriaChips(c) {
+    const chips = [];
+    if (c.make) chips.push('Make: ' + c.make);
+    if (c.model) chips.push('Model: ' + c.model);
+    if (c.length !== null && c.width !== null) chips.push('Size: ' + c.length + 'ft × ' + c.width + 'ft');
+    else if (c.length !== null) chips.push('Length: ' + c.length + 'ft');
+    else if (c.width !== null) chips.push('Width: ' + c.width + 'ft');
+    if (c.bedrooms !== '') chips.push(c.bedrooms + ' bedroom' + (c.bedrooms === '1' ? '' : 's'));
+    if (c.year !== '') chips.push(c.year + ' or newer');
+    return chips.map(t => '<span class="chip">' + escapeHTML(t) + '</span>').join('');
+  }
+
+  function rowHTML(d) {
+    const dims = d.dimensions ? escapeHTML(d.dimensions) : '<span class="dash">&mdash;</span>';
+    const beds = (d.bedrooms !== null && d.bedrooms !== undefined)
+      ? escapeHTML(String(d.bedrooms)) : '<span class="dash">&mdash;</span>';
+    const yearVal = (d.year !== null && d.year !== undefined && !isNaN(d.year))
+      ? String(Math.round(d.year)) : '<span class="dash">&mdash;</span>';
+    let note = '';
+    if (lastUsesDims) {
+      if (d._gap === null) note = '<span class="size-note">no size</span>';
+      else if (d._gap === 0) note = '<span class="size-note">exact</span>';
+      else note = `<span class="size-note">${d._gap}ft off</span>`;
+    }
+    const seen = `Seen on ${d.source_site} \u00b7 ${formatDate(d.date_scraped)}`;
+    return `
+      <tr title="${escapeHTML(seen)}">
+        <td class="col-name">
+          <a class="row-name" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">${escapeHTML(d.name)} <span class="ext">&nearr;</span></a>
+          <span class="row-sub">${escapeHTML(d.make)} &middot; ${escapeHTML(d.model)}</span>
+        </td>
+        <td class="col-park" data-label="Park"><span class="cell">${escapeHTML(d.location)}</span></td>
+        <td class="col-num" data-label="Year"><span class="cell">${yearVal}</span></td>
+        <td data-label="Size"><span class="cell">${dims}${note}</span></td>
+        <td class="col-num" data-label="Beds"><span class="cell">${beds}</span></td>
+        <td class="col-price" data-label="Price"><span class="cell"><span class="row-price">${escapeHTML(d.price_display)}</span></span></td>
+      </tr>`;
+  }
+
+  function tableHTML(items) {
+    return `<div class="table-wrap">
+      <table class="results">
+        <thead>
+          <tr>
+            <th class="col-name">Caravan</th>
+            <th class="col-park">Park</th>
+            <th class="col-num">Year</th>
+            <th>Size</th>
+            <th class="col-num">Beds</th>
+            <th class="col-price">Price</th>
+          </tr>
+        </thead>
+        <tbody>${items.map(rowHTML).join('')}</tbody>
+      </table>
+    </div>`;
+  }
+
+  function money(n) {
+    return '\u00a3' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  // Min / median / max across the matching listings, drawn on one scale with a
+  // faint mark for every listing so you can see where the bunching is.
+  function priceBoxHTML(list) {
+    const priced = list
+      .filter(d => typeof d.price_number === 'number' && !isNaN(d.price_number))
+      .slice()
+      .sort((a, b) => a.price_number - b.price_number);
+
+    if (!priced.length) return '';
+
+    const values = priced.map(d => d.price_number);
+    const min = values[0];
+    const max = values[values.length - 1];
+    const mid = values.length % 2
+      ? values[(values.length - 1) / 2]
+      : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
+
+    if (priced.length === 1 || min === max) {
+      return `<div class="price-box">
+        <h3>Prices</h3>
+        <p class="price-single">Every match is priced at <strong>${escapeHTML(priced[0].price_display)}</strong>.</p>
+      </div>`;
+    }
+
+    const pct = v => ((v - min) / (max - min)) * 100;
+    const ticks = priced.map(d => `<span class="scale-tick" style="left:${pct(d.price_number).toFixed(2)}%" title="${escapeHTML(d.name)} — ${escapeHTML(d.price_display)}"></span>`).join('');
+    const midPct = pct(mid);
+    // keep the floating label from hanging off either end of the box
+    const labelPct = Math.min(90, Math.max(10, midPct));
+
+    return `<div class="price-box">
+      <h3>Prices across these ${priced.length} matches</h3>
+      <div class="scale">
+        <div class="scale-track"></div>
+        ${ticks}
+        <span class="scale-median" style="left:${midPct.toFixed(2)}%" title="Middle (median) ${money(mid)}"></span>
+        <span class="scale-mid-label" style="left:${labelPct.toFixed(2)}%">
+          <span class="lab">Middle</span>
+          <span class="val">${money(mid)}</span>
+        </span>
+      </div>
+      <div class="scale-ends">
+        <span class="scale-end">
+          <span class="scale-end-label">Lowest</span>
+          <span class="scale-end-value">${escapeHTML(priced[0].price_display)}</span>
+        </span>
+        <span class="scale-end right">
+          <span class="scale-end-label">Highest</span>
+          <span class="scale-end-value">${escapeHTML(priced[priced.length - 1].price_display)}</span>
+        </span>
+      </div>
+    </div>`;
+  }
+
+  function buildPageNumbers(current, total) {
+    const keep = new Set([1, total, current, current - 1, current + 1]);
+    const sorted = [...keep].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+    const out = [];
+    let prev = null;
+    sorted.forEach(p => {
+      if (prev !== null && p - prev > 1) out.push('...');
+      out.push(p);
+      prev = p;
+    });
+    return out;
+  }
+
+  function renderResults() {
+    const c = lastCriteria;
+    const list = lastResults;
+
+    if (!list.length) {
+      resultsEl.innerHTML = `
+        <div class="criteria-bar"><strong>Looking for:</strong> ${criteriaChips(c)}</div>
+        <div class="state-msg">
+          <h2>No matches</h2>
+          <p>Nothing on the market right now fits that. Try dropping a detail &mdash; the model or the size is usually the strictest one.</p>
+          <p><a href="caravans.html">Browse all listings instead &rarr;</a></p>
+        </div>`;
+      return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    if (page > totalPages) page = totalPages;
+    const start = (page - 1) * PAGE_SIZE;
+    const items = list.slice(start, start + PAGE_SIZE);
+
+    const orderText = lastUsesDims
+      ? 'closest to your size first, then cheapest'
+      : 'cheapest first';
+
+    resultsEl.innerHTML = `
+      <div class="criteria-bar"><strong>Looking for:</strong> ${criteriaChips(c)}</div>
+      <p class="results-count">${list.length} matching caravan${list.length === 1 ? '' : 's'}, ${orderText}.</p>
+      ${priceBoxHTML(list)}
+      ${tableHTML(items)}
+      <div class="pagination${totalPages > 1 ? '' : ' hidden'}">
+        <div class="pagination-info">Page ${page} of ${totalPages} &mdash; showing ${start + 1}&ndash;${Math.min(start + PAGE_SIZE, list.length)} of ${list.length}</div>
+        <div class="pagination-controls">
+          <button type="button" class="page-btn" data-action="prev"${page <= 1 ? ' disabled' : ''}>&lsaquo; Prev</button>
+          <div class="page-numbers">${buildPageNumbers(page, totalPages).map(e =>
+            e === '...' ? '<span class="page-ellipsis">&hellip;</span>'
+              : `<button type="button" class="page-num-btn${e === page ? ' active' : ''}" data-page="${e}">${e}</button>`
+          ).join('')}</div>
+          <button type="button" class="page-btn" data-action="next"${page >= totalPages ? ' disabled' : ''}>Next &rsaquo;</button>
+        </div>
+      </div>`;
+
+    const bar = resultsEl.querySelector('.pagination');
+    if (bar) {
+      bar.addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (!btn || btn.disabled) return;
+        if (btn.dataset.action === 'prev') page -= 1;
+        else if (btn.dataset.action === 'next') page += 1;
+        else if (btn.dataset.page) page = Number(btn.dataset.page);
+        else return;
+        renderResults();
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  /* ---- setup ----------------------------------------------------------- */
+
+  function populateInputs(data) {
+    const makes = [...new Set(data.map(d => d.make_canon).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    const models = [...new Set(data.map(d => d.model_canon).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    document.getElementById('make-list').innerHTML = makes.map(m => `<option value="${escapeHTML(m)}">`).join('');
+    document.getElementById('model-list').innerHTML = models.map(m => `<option value="${escapeHTML(m)}">`).join('');
+
+    const beds = [...new Set(data.map(d => d.bedrooms).filter(v => v !== null && v !== undefined))].sort((a, b) => a - b);
+    const sel = document.getElementById('in-bedrooms');
+    beds.forEach(b => {
+      const opt = document.createElement('option');
+      opt.value = String(b);
+      opt.textContent = `${b} bedroom${b == 1 ? '' : 's'}`;
+      sel.appendChild(opt);
+    });
+
+    const years = [...new Set(data.map(d => Number(d.year)).filter(y => !isNaN(y) && y > 1900))]
+      .sort((a, b) => b - a);
+    const ysel = document.getElementById('in-year');
+    years.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = String(y);
+      opt.textContent = `${y} or newer`;
+      ysel.appendChild(opt);
+    });
+  }
+
+  // Typing a make narrows the model suggestions to that make's models.
+  function wireModelNarrowing() {
+    const makeIn = document.getElementById('in-make');
+    const listEl = document.getElementById('model-list');
+    makeIn.addEventListener('change', () => {
+      const q = makeIn.value.trim();
+      const pool = q ? ALL_DATA.filter(d => textMatches(q, [d.make_canon, d.make])) : ALL_DATA;
+      const models = [...new Set((pool.length ? pool : ALL_DATA).map(d => d.model_canon).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+      listEl.innerHTML = models.map(m => `<option value="${escapeHTML(m)}">`).join('');
+    });
+  }
+
+  function wireForm() {
+    formEl.addEventListener('submit', e => {
+      e.preventDefault();
+      const c = readCriteria();
+      if (criteriaEmpty(c)) {
+        errorEl.classList.remove('hidden');
+        resultsEl.innerHTML = '';
+        return;
+      }
+      errorEl.classList.add('hidden');
+      const res = search(c);
+      lastCriteria = c;
+      lastResults = res.list;
+      lastUsesDims = res.usesDims;
+      page = 1;
+      renderResults();
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      formEl.reset();
+      errorEl.classList.add('hidden');
+      resultsEl.innerHTML = '';
+      lastResults = [];
+      lastCriteria = null;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  function setUpdatedBadge(data) {
+    const dates = data.map(d => d.date_scraped).filter(Boolean).sort();
+    const latest = dates[dates.length - 1];
+    updatedBadge.innerHTML = `<span class="dot"></span>Last updated ${formatDate(latest)}`;
+  }
+
+  function showLoadError() {
+    updatedBadge.innerHTML = `<span class="dot"></span>Data unavailable`;
+    resultsEl.innerHTML = `
+      <div class="state-msg">
+        <h2>Couldn't load the listings</h2>
+        <p>This page loads its data from <code>data.json</code> sitting next to it. If you opened this file directly
+        from disk, your browser blocks that for security. Serve it locally instead, e.g.:</p>
+        <p><code>python -m http.server</code> &nbsp;then open <code>http://localhost:8000</code></p>
+      </div>`;
+  }
+
+  // Lets other pages hand off a caravan, e.g. compare.html?make=Willerby&model=Winchester&beds=3
+  function applyIncomingParams() {
+    const p = new URLSearchParams(window.location.search);
+    const set = (id, val) => { if (val) document.getElementById(id).value = val; };
+    set('in-make', p.get('make'));
+    set('in-model', p.get('model'));
+    set('in-length', p.get('length'));
+    set('in-width', p.get('width'));
+    const beds = p.get('beds') || p.get('bedrooms');
+    if (beds) {
+      const sel = document.getElementById('in-bedrooms');
+      if ([...sel.options].some(o => o.value === beds)) sel.value = beds;
+    }
+    const year = p.get('year');
+    if (year) {
+      const ysel = document.getElementById('in-year');
+      if ([...ysel.options].some(o => o.value === year)) ysel.value = year;
+    }
+    if (!criteriaEmpty(readCriteria())) {
+      formEl.dispatchEvent(new Event('submit'));
+    }
+  }
+
+  async function init() {
+    try {
+      const res = await fetch('data.json');
+      if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+      let text = await res.text();
+      text = text.replace(/:\s*NaN/g, ': null');
+      ALL_DATA = JSON.parse(text);
+      canonicalise(ALL_DATA);
+      populateInputs(ALL_DATA);
+      wireForm();
+      wireModelNarrowing();
+      setUpdatedBadge(ALL_DATA);
+      applyIncomingParams();
+    } catch (err) {
+      console.error(err);
+      showLoadError();
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

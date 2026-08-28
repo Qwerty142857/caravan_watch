@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --navy-deep: #0C1B29;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  /* ---------- Header (shared across the site) ---------- */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 0 0 34px;
+  }
+
+  /* soft colour wash + fine texture, all in CSS so nothing extra to load */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 16px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(44px, 8vw, 76px);
+    letter-spacing: 0.005em;
+    margin: 0 0 12px;
+    line-height: 0.9;
+  }
+  h1.hero-title .accent { color: var(--mustard); }
+
+  .hero-sub {
+    font-size: 16.5px;
+    color: #CFDAE2;
+    max-width: 52ch;
+    margin: 0 0 18px;
+  }
+
+  .hero-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    background: rgba(232, 169, 61, 0.14);
+    border: 1px solid rgba(232, 169, 61, 0.4);
+    color: var(--mustard);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .hero-updated .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 0 0 26px; }
+    .hero-inner { padding-top: 32px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
+  }
+
+
+
+  /* ---------- Filter bar ---------- */
+  .filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+  }
+
+  .filter-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: end;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .field label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .field input, .field select {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+    min-width: 130px;
+  }
+
+  .field input:focus, .field select:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
+
+  #search { min-width: 220px; }
+  .price-field { flex-direction: row; align-items: center; gap: 6px; }
+  .price-field input { width: 90px; }
+
+  /* ---------- Multi-select filter dropdown ---------- */
+  .multiselect { position: relative; }
+
+  .ms-toggle {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 9px 28px 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--card) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%236B6558"/></svg>') no-repeat right 14px center;
+    color: var(--ink);
+    min-width: 200px;
+    max-width: 300px;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ms-toggle:focus, .ms-toggle.open {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
+
+  .ms-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 20;
+    width: max(280px, 100%);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(22, 40, 58, 0.16);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ms-panel.hidden { display: none; }
+
+  .ms-search {
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 7px 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink);
+    width: 100%;
+  }
+
+  .ms-search:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
+
+  .ms-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .ms-link-btn {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .ms-link-btn:hover { text-decoration: underline; }
+
+  .ms-options {
+    max-height: 320px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ms-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    padding: 3px 4px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .ms-option:hover { background: rgba(31, 111, 110, 0.08); }
+
+  .ms-option input[type="checkbox"] {
+    accent-color: var(--teal);
+    width: 16px;
+    height: 16px;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  .ms-empty {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 8px 4px;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ---------- Make & model combined filter ---------- */
+  #makemodel-ms .ms-panel { width: max(320px, 100%); }
+
+  .mm-make { border-bottom: 1px solid rgba(223, 213, 193, 0.6); }
+  .mm-make:last-child { border-bottom: none; }
+
+  .mm-make-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 0;
+  }
+
+  .mm-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--teal);
+    background: rgba(31, 111, 110, 0.09);
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .mm-caret svg { width: 14px; height: 14px; display: block; }
+  .mm-caret:hover { background: rgba(31, 111, 110, 0.2); }
+  .mm-caret.open { transform: rotate(90deg); background: rgba(31, 111, 110, 0.18); }
+  .mm-caret:disabled { opacity: 0.2; cursor: default; background: none; }
+  .mm-caret:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
+
+  .mm-make-row .ms-option { font-weight: 600; flex: 1 1 auto; }
+
+  .mm-count {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 4px;
+  }
+
+  .mm-models {
+    margin: 0 0 6px 26px;
+    padding-left: 8px;
+    border-left: 2px solid var(--line);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mm-models .ms-option { font-size: 12.5px; }
+
+  .clear-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--teal);
+    border-radius: 6px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+  .clear-btn:hover { background: rgba(31, 111, 110, 0.08); }
+
+  /* ---------- Results ---------- */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+  }
+
+  .park-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: rgba(31, 111, 110, 0.09);
+    border: 1px solid rgba(31, 111, 110, 0.28);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    margin: 4px 0 14px;
+  }
+
+  .park-banner a {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .park-banner a:hover { text-decoration: underline; }
+
+  .results-count {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 18px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 18px;
+  }
+
+  /* ---------- Pagination ---------- */
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .pagination.top { margin-bottom: 6px; }
+  .pagination.bottom {
+    margin-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+
+  .pagination-info {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .page-btn, .page-num-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 11px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .page-btn:hover:not(:disabled), .page-num-btn:hover:not(.active) {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .page-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .page-num-btn {
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .page-num-btn.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+    cursor: default;
+  }
+
+  .page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .page-ellipsis {
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .page-size-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .page-size-field select {
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 6px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .pagination { flex-direction: column; align-items: stretch; }
+    .pagination-controls { justify-content: center; }
+    .page-size-field { justify-content: center; }
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 2px;
+  }
+
+  .card-make {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .card-model {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .price-tag {
+    flex-shrink: 0;
+    background: var(--mustard);
+    color: var(--mustard-dark);
+    font-weight: 700;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    padding: 6px 10px 6px 12px;
+    border-radius: 4px;
+    border-left: 2px dashed rgba(138, 95, 30, 0.5);
+    transform: rotate(-1.5deg);
+    white-space: nowrap;
+  }
+
+  .card-meta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .card-meta li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .card-meta svg {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    color: var(--teal);
+  }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .card-source {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .card-link {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .card-link:hover { text-decoration: underline; }
+
+  /* ---------- Empty / error states ---------- */
+  .state-msg {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .state-msg h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    letter-spacing: 0.01em;
+  }
+  .state-msg p { margin: 0 0 16px; font-size: 14px; }
+  .state-msg code {
+    background: var(--line);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .filter-inner { flex-direction: column; align-items: stretch; }
+    .field input, .field select { min-width: 0; width: 100%; }
+    .ms-toggle { min-width: 0; max-width: none; width: 100%; }
+    .ms-panel { width: 100%; }
+    .price-field { flex-direction: row; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html">Compare</a>
+        <a href="caravans.html" class="active">All listings</a>
+        <a href="map.html">Search by region</a>
+        <a href="parks.html">List of parks</a>
+      </nav>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">All <span class="accent">Listings</span></h1>
+    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
+    <span class="hero-updated" id="updated-badge"><span class="dot"></span>Loading&hellip;</span>
+  </div>
+</header>
+
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="field" style="flex: 1 1 200px;">
+      <label for="search">Search</label>
+      <input id="search" type="text" placeholder="Name, make, model, park&hellip;">
+    </div>
+    <div class="field">
+      <label id="location-label">Park</label>
+      <div class="multiselect" data-key="location">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="location-label">All parks</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search parks&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label id="makemodel-label">Make &amp; model</label>
+      <div class="multiselect" id="makemodel-ms">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="makemodel-label">All makes</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search makes or models&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn mm-expand">Expand all</button>
+            <button type="button" class="ms-link-btn mm-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label id="bedrooms-label">Bedrooms</label>
+      <div class="multiselect" data-key="bedrooms">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="bedrooms-label">Any</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search bedrooms&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="min-price">Price range</label>
+      <div class="price-field">
+        <input id="min-price" type="number" min="0" placeholder="Min">
+        <span>&ndash;</span>
+        <input id="max-price" type="number" min="0" placeholder="Max">
+      </div>
+    </div>
+    <div class="field">
+      <label for="sort">Sort by</label>
+      <select id="sort">
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="name-asc">Name: A&ndash;Z</option>
+        <option value="location-asc">Park: A&ndash;Z</option>
+      </select>
+    </div>
+    <button class="clear-btn" id="clear-btn" type="button">Clear filters</button>
+  </div>
+</div>
+
+<main>
+  <p class="results-count" id="results-count" aria-live="polite"></p>
+
+  <div class="pagination top">
+    <div class="pagination-info"></div>
+    <div class="pagination-controls">
+      <button type="button" class="page-btn" data-action="prev">&lsaquo; Prev</button>
+      <div class="page-numbers"></div>
+      <button type="button" class="page-btn" data-action="next">Next &rsaquo;</button>
+    </div>
+    <div class="page-size-field">
+      <label for="page-size-top">Per page</label>
+      <select id="page-size-top" class="page-size-select">
+        <option value="12">12</option>
+        <option value="24">24</option>
+        <option value="48" selected>48</option>
+        <option value="96">96</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="pagination bottom">
+    <div class="pagination-info"></div>
+    <div class="pagination-controls">
+      <button type="button" class="page-btn" data-action="prev">&lsaquo; Prev</button>
+      <div class="page-numbers"></div>
+      <button type="button" class="page-btn" data-action="next">Next &rsaquo;</button>
+    </div>
+    <div class="page-size-field">
+      <label for="page-size-bottom">Per page</label>
+      <select id="page-size-bottom" class="page-size-select">
+        <option value="12">12</option>
+        <option value="24">24</option>
+        <option value="48" selected>48</option>
+        <option value="96">96</option>
+      </select>
+    </div>
+  </div>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use. Give it a few seconds to load if you don't see anything.</footer>
+
+<script>
+  const ICONS = {
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="10" y1="9" x2="10" y2="12"/><line x1="14" y1="9" x2="14" y2="12"/><line x1="18" y1="9" x2="18" y2="12"/></svg>',
+    bed: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v2"/><path d="M12 12h7a2 2 0 0 1 2 2v4"/><path d="M3 18h18"/><rect x="3" y="9" width="7" height="3.5" rx="1"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
+  };
+
+  // ---- Make & model tidy-up -------------------------------------------------
+  const MM_DROP_WORDS = new Set([
+    // trim / marketing levels
+    'premier','premiere','permier','deluxe','delux','exclusive','elite','plus',
+    'super','gold','platinum','special','edition','limited','ltd','range',
+    // dealer / spec marker codes
+    'lp','hf','h/f','fe','cs','cl','c/l','hm','lw','se','es','dp','wcf','bf',
+    'resi','spec','upgrade','reserved','sold','new','static','fl',
+    'alum','aluminium','canexel','showground'
+  ]);
+  const MM_PITCH_RE   = /^[a-z]{0,3}\d{1,3}[a-z]?$/i;   // P63, BF48, B8, D21, H60a, 23
+  const MM_MKVER_RE   = /^mk\s*\d+$/i;                  // MK2, MK11 - keep
+  const MM_ROMAN_RE   = /^(?:i{1,3}|iv|v|vi{0,3}|ix|x{1,3}v?i{0,3})$/i;
+
+  function mmCleanName(raw) {
+    let s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+    s = s.replace(/\s*[–—-]\s+.*$/, '');   // "Salisbury - Showground"
+    s = s.replace(/\([^)]*\)/g, ' ');                // "(Limited Edition Special)"
+    s = s.replace(/[*!]+/g, ' ');
+    s = s.replace(/\s+/g, ' ').trim();
+    let toks = s.split(' ');
+    if (toks.length > 1 && /^the$/i.test(toks[0])) toks = toks.slice(1);
+    const kept = toks.filter(function (t, i) {
+      if (i === 0) return true;
+      const w = t.toLowerCase().replace(/[.,]/g, '');
+      if (MM_MKVER_RE.test(w) || MM_ROMAN_RE.test(w)) return true;
+      if (/^mk$/i.test(toks[i - 1]) && /^\d+$/.test(w)) return true;   // "Mk 4"
+      if (MM_DROP_WORDS.has(w)) return false;
+      if (/^(19|20)\d{2}$/.test(w)) return false;      // stray year
+      if (MM_PITCH_RE.test(w)) return false;           // pitch / plot code
+      return true;
+    });
+    const out = [];
+    kept.forEach(function (t) {                        // "Bramshaw IV IV"
+      if (!out.length || out[out.length - 1].toLowerCase() !== t.toLowerCase()) out.push(t);
+    });
+    if (out.length > 1 && /^series$/i.test(out[out.length - 1])) out.pop();
+    const res = out.join(' ').replace(/\s+/g, ' ').trim();
+    // stripping shouldn't leave a stub like "SB" out of "SB Special"
+    return res.replace(/[^A-Za-z0-9]/g, '').length < 3 ? toks.join(' ') : res;
+  }
+
+  // grouping key: case-, space- and punctuation-insensitive, plural-insensitive
+  function mmKey(name) {
+    let k = String(name == null ? '' : name).toLowerCase().replace(/[^a-z0-9]+/g, '');
+    if (k.length > 4 && k.charAt(k.length - 1) === 's') k = k.slice(0, -1);
+    return k;
+  }
+
+  function mmPrettier(a, b) {                          // pick the nicer-looking spelling
+    const score = function (s) {
+      return (s === s.toUpperCase() && /[A-Z]{2}/.test(s)) ? 0 : (s === s.toLowerCase() ? 1 : 2);
+    };
+    return score(b) > score(a) ? b : a;
+  }
+  // Fix SHOUTED or lowercased words, but leave short all-caps alone so genuine
+  // initialisms (ABI, BK, LHH, SE) survive.
+  function mmTitle(s) {
+    return String(s).split(' ').map(function (w) {
+      if (w === w.toUpperCase() && /[A-Z]/.test(w) && w.replace(/[^A-Za-z]/g, '').length < 5) return w;
+      if (w !== w.toUpperCase() && w !== w.toLowerCase()) return w;
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    }).join(' ');
+  }
+
+  // Levenshtein, bailing out as soon as it exceeds `max`
+  function mmDist(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    const rows = [];
+    for (let j = 0; j <= b.length; j++) rows[j] = j;
+    let prev2 = null, prev = rows;
+    for (let i = 1; i <= a.length; i++) {
+      const cur = [i];
+      let best = i;
+      for (let j = 1; j <= b.length; j++) {
+        const cost = a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1;
+        let v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        // adjacent transposition ("Blenhiem" -> "Blenheim") counts as one slip
+        if (i > 1 && j > 1 && a.charAt(i - 1) === b.charAt(j - 2) && a.charAt(i - 2) === b.charAt(j - 1)) {
+          v = Math.min(v, prev2[j - 2] + 1);
+        }
+        cur[j] = v;
+        if (v < best) best = v;
+      }
+      if (best > max) return max + 1;
+      prev2 = prev; prev = cur;
+    }
+    return prev[b.length];
+  }
+
+  // Two names that differ only in a version number / roman numeral are different
+  // models (Merlin II vs Merlin III), never a typo.
+  function mmVersionish(a, b) {
+    const strip = function (s) {
+      return s.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ')
+        .filter(function (w) { return !MM_ROMAN_RE.test(w) && !/\d/.test(w); }).join(' ');
+    };
+    return strip(a) === strip(b);
+  }
+
+  // Fold a rare one-character misspelling into a clearly dominant sibling.
+  function mmTypoMap(counts, opts) {
+    const entries = [...counts.entries()].sort(function (a, b) { return b[1] - a[1]; });
+    const map = new Map();
+    entries.forEach(function (pair, i) {
+      const rare = pair[0], rareN = pair[1];
+      if (opts.maxRare && rareN > opts.maxRare) return;
+      for (let j = 0; j < i; j++) {
+        const big = entries[j][0], bigN = entries[j][1];
+        if (bigN < opts.minTarget || bigN < rareN * opts.minRatio) continue;
+        const short = Math.min(big.length, rare.length);
+        if (short < 5) continue;
+        if (mmVersionish(big, rare)) continue;   // "Merlin II" vs "Merlin III"
+        const a = rare.toLowerCase(), b = big.toLowerCase();
+        // a slip is a slip in the middle of a word: two names that start
+        // differently are two models (Expression vs Impression)
+        if (a.charAt(0) !== b.charAt(0)) continue;
+        const d = mmDist(a, b, opts.far ? 2 : 1);
+        const farOk = opts.far && d === 2 && short >= 7 && rareN <= 2 &&
+          a.slice(0, 2) === b.slice(0, 2) && a.slice(-2) === b.slice(-2);
+        if (d <= 1 || farOk) { map.set(rare, big); return; }
+      }
+    });
+    return map;
+  }
+
+  function buildCanonMaps(data) {
+    // ---- makes ----
+    const makeCounts = new Map(), makeByKey = new Map();
+    data.forEach(function (d) {
+      const raw = (d.make || '').trim();
+      const key = mmKey(raw);
+      if (!key) return;
+      const bucket = makeByKey.get(key) || new Map();
+      bucket.set(raw, (bucket.get(raw) || 0) + 1);
+      makeByKey.set(key, bucket);
+      makeCounts.set(key, (makeCounts.get(key) || 0) + 1);
+    });
+    const makeLabel = new Map();
+    makeByKey.forEach(function (bucket, key) {
+      let best = null, bestN = -1;
+      bucket.forEach(function (n, name) {
+        if (n > bestN) { best = name; bestN = n; }
+        else if (n === bestN) best = mmPrettier(best, name);
+      });
+      makeLabel.set(key, mmTitle(best));
+    });
+    const labelCounts = new Map();
+    makeCounts.forEach(function (n, key) {
+      const l = makeLabel.get(key);
+      labelCounts.set(l, (labelCounts.get(l) || 0) + n);
+    });
+    const makeTypos = mmTypoMap(labelCounts, { minRatio: 1, minTarget: 1, maxRare: 2 });
+    const makeFinal = new Map();
+    makeLabel.forEach(function (l, key) { makeFinal.set(key, makeTypos.get(l) || l); });
+
+    // ---- models, scoped per (final) make ----
+    const modelByMake = new Map();
+    data.forEach(function (d) {
+      const mk = makeFinal.get(mmKey(d.make || '')) || 'Unknown';
+      const cleaned = mmCleanName(d.model);
+      const key = mmKey(cleaned);
+      if (!key) return;
+      if (!modelByMake.has(mk)) modelByMake.set(mk, new Map());
+      const byKey = modelByMake.get(mk);
+      const bucket = byKey.get(key) || new Map();
+      bucket.set(cleaned, (bucket.get(cleaned) || 0) + 1);
+      byKey.set(key, bucket);
+    });
+
+    const modelFinal = new Map();
+    modelByMake.forEach(function (byKey, mk) {
+      const labels = new Map(), counts = new Map();
+      byKey.forEach(function (bucket, key) {
+        let best = null, bestN = -1, total = 0;
+        bucket.forEach(function (n, name) {
+          total += n;
+          if (n > bestN) { best = name; bestN = n; }
+          else if (n === bestN) best = mmPrettier(best, name);
+        });
+        const label = mmTitle(best);
+        labels.set(key, label);
+        counts.set(label, (counts.get(label) || 0) + total);
+      });
+      const typos = mmTypoMap(counts, { minRatio: 5, minTarget: 3, maxRare: 0, far: true });
+      labels.forEach(function (label, key) {
+        modelFinal.set(mk + ' ' + key, typos.get(label) || label);
+      });
+    });
+
+    return { makeFinal: makeFinal, modelFinal: modelFinal };
+  }
+
+  function canonicalise(data) {
+    const maps = buildCanonMaps(data);
+    data.forEach(function (d) {
+      const mk = maps.makeFinal.get(mmKey(d.make || '')) || 'Unknown';
+      d.make_canon = mk;
+      const cleaned = mmCleanName(d.model);
+      const key = mmKey(cleaned);
+      d.model_canon = key ? (maps.modelFinal.get(mk + ' ' + key) || cleaned) : '';
+    });
+  }
+
+  const state = {
+    search: '',
+    filters: { location: new Set(), bedrooms: new Set() },
+    // makes: Set of selected makes; models: Map(make -> Set of selected models for that make).
+    // A make selected with no models selected means "all models of that make".
+    makeModel: { makes: new Set(), models: new Map(), expanded: new Set() },
+    minPrice: '', maxPrice: '', sort: 'price-asc',
+    page: 1, pageSize: 48
+  };
+
+  // Any control that narrows/reorders the results should call this before
+  // render() so the user always lands back on page 1 of the new result set.
+  function resetPage() { state.page = 1; }
+
+  const MS_DEFAULT_LABEL = {
+    location: 'All parks', bedrooms: 'Any'
+  };
+
+  const filterOptionsData = {};
+  const msRefs = {};
+
+  let ALL_DATA = [];
+
+  const gridEl = document.getElementById('grid');
+  const countEl = document.getElementById('results-count');
+  const updatedBadge = document.getElementById('updated-badge');
+
+  function escapeHTML(str) {
+    return String(str ?? '').replace(/[&<>"']/g, s => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]
+    ));
+  }
+
+  function formatDate(iso) {
+    if (!iso) return 'unknown date';
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function populateFilters(data) {
+    const locations = [...new Set(data.map(d => d.location).filter(Boolean))].sort();
+    const bedroomVals = [...new Set(data.map(d => d.bedrooms).filter(v => v !== null && v !== undefined))].sort((a, b) => a - b);
+    const hasUnspecified = data.some(d => d.bedrooms === null || d.bedrooms === undefined);
+
+    filterOptionsData.location = locations.map(l => ({ value: l, label: l }));
+    filterOptionsData.bedrooms = bedroomVals.map(b => ({ value: String(b), label: `${b} bed${b == 1 ? '' : 's'}` }));
+    if (hasUnspecified) filterOptionsData.bedrooms.push({ value: 'unspecified', label: 'Not specified' });
+
+    initMultiSelects();
+    buildMakeModels(data);
+    initMakeModel();
+  }
+
+  // ---- Multi-select dropdown controller (shared by park / make / model / bedrooms) ----
+
+  function initMultiSelects() {
+    document.querySelectorAll('.multiselect[data-key]').forEach(root => {
+      const key = root.dataset.key;
+      const toggle = root.querySelector('.ms-toggle');
+      const panel = root.querySelector('.ms-panel');
+      const searchInput = root.querySelector('.ms-search');
+      const optionsEl = root.querySelector('.ms-options');
+      const selectAllBtn = root.querySelector('.ms-select-all');
+      const clearBtn = root.querySelector('.ms-clear');
+
+      msRefs[key] = { toggle, panel, searchInput, optionsEl };
+
+      renderMsOptions(key, '');
+      updateMsToggleLabel(key);
+
+      toggle.addEventListener('click', () => {
+        const isOpen = !panel.classList.contains('hidden');
+        closeAllMs();
+        if (!isOpen) {
+          panel.classList.remove('hidden');
+          toggle.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+          searchInput.value = '';
+          renderMsOptions(key, '');
+          searchInput.focus();
+        }
+      });
+
+      searchInput.addEventListener('click', e => e.stopPropagation());
+      searchInput.addEventListener('input', e => renderMsOptions(key, e.target.value));
+
+      selectAllBtn.addEventListener('click', () => {
+        getFilteredMsValues(key, searchInput.value).forEach(v => state.filters[key].add(v));
+        renderMsOptions(key, searchInput.value);
+        updateMsToggleLabel(key);
+        resetPage();
+        render();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        state.filters[key].clear();
+        renderMsOptions(key, searchInput.value);
+        updateMsToggleLabel(key);
+        resetPage();
+        render();
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.multiselect')) closeAllMs();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAllMs();
+    });
+  }
+
+  function closeAllMs() {
+    const all = Object.values(msRefs);
+    if (mmRefs) all.push(mmRefs);
+    all.forEach(({ panel, toggle }) => {
+      panel.classList.add('hidden');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function getFilteredMsValues(key, query) {
+    const q = query.trim().toLowerCase();
+    return filterOptionsData[key]
+      .filter(opt => !q || opt.label.toLowerCase().includes(q))
+      .map(opt => opt.value);
+  }
+
+  function renderMsOptions(key, query) {
+    const { optionsEl } = msRefs[key];
+    const q = query.trim().toLowerCase();
+    const opts = filterOptionsData[key].filter(opt => !q || opt.label.toLowerCase().includes(q));
+
+    if (opts.length === 0) {
+      optionsEl.innerHTML = `<p class="ms-empty">No matches</p>`;
+      return;
+    }
+
+    optionsEl.innerHTML = opts.map((opt, i) => {
+      const checked = state.filters[key].has(opt.value) ? 'checked' : '';
+      const id = `ms-${key}-${i}`;
+      return `<label class="ms-option" for="${id}">
+        <input type="checkbox" id="${id}" value="${escapeHTML(opt.value)}" ${checked}>
+        ${escapeHTML(opt.label)}
+      </label>`;
+    }).join('');
+
+    optionsEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (cb.checked) state.filters[key].add(cb.value);
+        else state.filters[key].delete(cb.value);
+        updateMsToggleLabel(key);
+        resetPage();
+        render();
+      });
+    });
+  }
+
+  function updateMsToggleLabel(key) {
+    const { toggle } = msRefs[key];
+    const selected = state.filters[key];
+    if (selected.size === 0) {
+      toggle.textContent = MS_DEFAULT_LABEL[key];
+    } else if (selected.size === 1) {
+      const val = [...selected][0];
+      const opt = filterOptionsData[key].find(o => o.value === val);
+      toggle.textContent = opt ? opt.label : val;
+    } else {
+      toggle.textContent = `${selected.size} selected`;
+    }
+  }
+
+  // ---- Combined make + model filter ----------------------------------------
+  // One dropdown: makes at the top level, each expandable to reveal only the
+  // models that actually exist for that make in the data.
+
+  const CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+
+  const MAKE_MODELS = new Map();   // make -> Set(models)
+  let mmRefs = null;
+
+  function makeOf(d) { return d.make_canon || 'Unknown'; }
+
+  function buildMakeModels(data) {
+    MAKE_MODELS.clear();
+    data.forEach(d => {
+      const make = makeOf(d);
+      if (!MAKE_MODELS.has(make)) MAKE_MODELS.set(make, new Set());
+      if (d.model_canon) MAKE_MODELS.get(make).add(d.model_canon);
+    });
+  }
+
+  function clearMakeModel() {
+    state.makeModel.makes.clear();
+    state.makeModel.models.clear();
+    state.makeModel.expanded.clear();
+  }
+
+  function mmVisibleMakes(query) {
+    const q = (query || '').trim().toLowerCase();
+    return [...MAKE_MODELS.keys()].sort((a, b) => a.localeCompare(b)).filter(make => {
+      if (!q || make.toLowerCase().includes(q)) return true;
+      return [...MAKE_MODELS.get(make)].some(m => m.toLowerCase().includes(q));
+    });
+  }
+
+  function initMakeModel() {
+    const root = document.getElementById('makemodel-ms');
+    mmRefs = {
+      root,
+      toggle: root.querySelector('.ms-toggle'),
+      panel: root.querySelector('.ms-panel'),
+      searchInput: root.querySelector('.ms-search'),
+      optionsEl: root.querySelector('.ms-options')
+    };
+    const { toggle, panel, searchInput, optionsEl } = mmRefs;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = !panel.classList.contains('hidden');
+      closeAllMs();
+      if (!isOpen) {
+        panel.classList.remove('hidden');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        renderMM();
+        searchInput.focus();
+      }
+    });
+
+    // Keep clicks inside the panel from reaching the document-level
+    // "click outside closes" handler. Re-rendering the option list detaches the
+    // clicked node, so that handler would otherwise treat it as an outside click.
+    panel.addEventListener('click', e => e.stopPropagation());
+    searchInput.addEventListener('input', () => renderMM());
+
+    root.querySelector('.mm-expand').addEventListener('click', () => {
+      const st = state.makeModel;
+      const visible = mmVisibleMakes(searchInput.value).filter(m => MAKE_MODELS.get(m).size);
+      const allOpen = visible.length > 0 && visible.every(m => st.expanded.has(m));
+      visible.forEach(m => allOpen ? st.expanded.delete(m) : st.expanded.add(m));
+      renderMM();
+    });
+
+    root.querySelector('.mm-clear').addEventListener('click', () => {
+      clearMakeModel();
+      renderMM();
+      updateMMLabel();
+      resetPage();
+      render();
+    });
+
+    optionsEl.addEventListener('click', e => {
+      const caret = e.target.closest('.mm-caret');
+      if (!caret) return;
+      e.preventDefault();
+      const st = state.makeModel;
+      const make = caret.dataset.make;
+      st.expanded.has(make) ? st.expanded.delete(make) : st.expanded.add(make);
+      renderMM();
+    });
+
+    optionsEl.addEventListener('change', e => {
+      const st = state.makeModel;
+      const el = e.target;
+      if (el.classList.contains('mm-make-cb')) {
+        const make = el.dataset.make;
+        if (el.checked) {
+          st.makes.add(make);
+          // reveal that make's models straight away, so it's obvious you can
+          // narrow down further
+          if (MAKE_MODELS.get(make).size) st.expanded.add(make);
+        } else {
+          st.makes.delete(make);
+          st.models.delete(make);
+          st.expanded.delete(make);
+        }
+      } else if (el.classList.contains('mm-model-cb')) {
+        const make = el.dataset.make;
+        const model = el.dataset.model;
+        if (!st.models.has(make)) st.models.set(make, new Set());
+        const set = st.models.get(make);
+        if (el.checked) {
+          set.add(model);
+          st.makes.add(make);
+        } else {
+          set.delete(model);
+          if (!set.size) st.models.delete(make);
+        }
+      } else {
+        return;
+      }
+      renderMM();
+      updateMMLabel();
+      resetPage();
+      render();
+    });
+
+    renderMM();
+    updateMMLabel();
+  }
+
+  function renderMM() {
+    const st = state.makeModel;
+    const q = mmRefs.searchInput.value.trim().toLowerCase();
+    const rows = [];
+
+    mmVisibleMakes(q).forEach(make => {
+      const allModels = [...MAKE_MODELS.get(make)].sort((a, b) => a.localeCompare(b));
+      const makeMatch = !q || make.toLowerCase().includes(q);
+      const shown = makeMatch ? allModels : allModels.filter(m => m.toLowerCase().includes(q));
+      const selModels = st.models.get(make);
+      const open = allModels.length > 0 && (st.expanded.has(make) || (q && !makeMatch));
+      const badge = selModels && selModels.size
+        ? `<span class="mm-count">${selModels.size} model${selModels.size === 1 ? '' : 's'}</span>`
+        : '';
+      const modelHTML = open ? shown.map(model => `
+            <label class="ms-option">
+              <input type="checkbox" class="mm-model-cb" data-make="${escapeHTML(make)}" data-model="${escapeHTML(model)}" ${selModels && selModels.has(model) ? 'checked' : ''}>
+              ${escapeHTML(model)}
+            </label>`).join('') : '';
+
+      rows.push(`<div class="mm-make">
+          <div class="mm-make-row">
+            <button type="button" class="mm-caret${open ? ' open' : ''}" data-make="${escapeHTML(make)}" aria-expanded="${open}" aria-label="Show models for ${escapeHTML(make)}"${allModels.length ? '' : ' disabled'}>${CHEVRON}</button>
+            <label class="ms-option">
+              <input type="checkbox" class="mm-make-cb" data-make="${escapeHTML(make)}" ${st.makes.has(make) ? 'checked' : ''}>
+              ${escapeHTML(make)}
+            </label>
+            ${badge}
+          </div>
+          ${open ? `<div class="mm-models">${modelHTML}</div>` : ''}
+        </div>`);
+    });
+
+    mmRefs.optionsEl.innerHTML = rows.length ? rows.join('') : `<p class="ms-empty">No matches</p>`;
+
+    mmRefs.optionsEl.querySelectorAll('.mm-make-cb').forEach(cb => {
+      const sel = st.models.get(cb.dataset.make);
+      cb.indeterminate = !cb.checked && !!(sel && sel.size);
+    });
+  }
+
+  function updateMMLabel() {
+    const st = state.makeModel;
+    const toggle = mmRefs.toggle;
+    let label;
+    if (!st.makes.size) {
+      label = 'All makes';
+    } else if (st.makes.size === 1) {
+      const make = [...st.makes][0];
+      const set = st.models.get(make);
+      if (!set || !set.size) label = make;
+      else if (set.size === 1) label = `${make} \u00b7 ${[...set][0]}`;
+      else label = `${make} \u00b7 ${set.size} models`;
+    } else {
+      const totalModels = [...st.models.values()].reduce((n, s) => n + s.size, 0);
+      label = totalModels
+        ? `${st.makes.size} makes \u00b7 ${totalModels} model${totalModels === 1 ? '' : 's'}`
+        : `${st.makes.size} makes`;
+    }
+    toggle.textContent = label;
+    toggle.title = label;
+  }
+
+  function applyFilters(data) {
+    return data.filter(d => {
+      if (state.search) {
+        const hay = `${d.name} ${d.make} ${d.model} ${d.make_canon} ${d.model_canon} ${d.location}`.toLowerCase();
+        if (!hay.includes(state.search.toLowerCase())) return false;
+      }
+      if (state.filters.location.size && !state.filters.location.has(d.location)) return false;
+      const mm = state.makeModel;
+      if (mm.makes.size) {
+        const mk = makeOf(d);
+        if (!mm.makes.has(mk)) return false;
+        const chosenModels = mm.models.get(mk);
+        if (chosenModels && chosenModels.size && !chosenModels.has(d.model_canon)) return false;
+      }
+      if (state.filters.bedrooms.size) {
+        const bedKey = (d.bedrooms === null || d.bedrooms === undefined) ? 'unspecified' : String(d.bedrooms);
+        if (!state.filters.bedrooms.has(bedKey)) return false;
+      }
+      if (state.minPrice !== '' && d.price_number < Number(state.minPrice)) return false;
+      if (state.maxPrice !== '' && d.price_number > Number(state.maxPrice)) return false;
+      return true;
+    });
+  }
+
+  function applySort(list) {
+    const arr = [...list];
+    switch (state.sort) {
+      case 'price-asc': arr.sort((a, b) => a.price_number - b.price_number); break;
+      case 'price-desc': arr.sort((a, b) => b.price_number - a.price_number); break;
+      case 'name-asc': arr.sort((a, b) => a.name.localeCompare(b.name)); break;
+      case 'location-asc': arr.sort((a, b) => a.location.localeCompare(b.location)); break;
+    }
+    return arr;
+  }
+
+  function cardHTML(d) {
+    const dims = d.dimensions ? escapeHTML(d.dimensions) : 'Dimensions not listed';
+    const beds = (d.bedrooms !== null && d.bedrooms !== undefined) ? `${d.bedrooms} bedroom${d.bedrooms == 1 ? '' : 's'}` : 'Bedrooms not specified';
+    const yearVal = (d.year !== null && d.year !== undefined && !isNaN(d.year)) ? String(Math.round(d.year)) : null;
+    const yearLi = yearVal ? `<li>${ICONS.calendar} ${yearVal}</li>` : '';
+    return `
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="card-name">${escapeHTML(d.name)}</h3>
+            <p class="card-make">${escapeHTML(d.make)} &middot; ${escapeHTML(d.model)}${yearVal ? ` &middot; ${yearVal}` : ''}</p>
+          </div>
+          <div class="price-tag">${escapeHTML(d.price_display)}</div>
+        </div>
+        <ul class="card-meta">
+          <li>${ICONS.pin} ${escapeHTML(d.location)}</li>
+          ${yearLi}
+          <li>${ICONS.ruler} ${dims}</li>
+          <li>${ICONS.bed} ${beds}</li>
+        </ul>
+        <div class="card-footer">
+          <span class="card-source">Seen on ${escapeHTML(d.source_site)} &middot; ${formatDate(d.date_scraped)}</span>
+          <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">View listing &rarr;</a>
+        </div>
+      </article>
+    `;
+  }
+
+  function render() {
+    const filtered = applySort(applyFilters(ALL_DATA));
+    countEl.textContent = `Showing ${filtered.length} of ${ALL_DATA.length} caravans`;
+
+    if (filtered.length === 0) {
+      gridEl.innerHTML = `
+        <div class="state-msg" style="grid-column: 1 / -1;">
+          <h2>No matches</h2>
+          <p>No caravans fit those filters. Try widening your search.</p>
+          <button class="clear-btn" onclick="document.getElementById('clear-btn').click()">Clear filters</button>
+        </div>`;
+      renderPagination(0, 1);
+      return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
+    if (state.page > totalPages) state.page = totalPages;
+    if (state.page < 1) state.page = 1;
+
+    const start = (state.page - 1) * state.pageSize;
+    const pageItems = filtered.slice(start, start + state.pageSize);
+
+    gridEl.innerHTML = pageItems.map(cardHTML).join('');
+    renderPagination(filtered.length, totalPages);
+  }
+
+  // ---- Pagination bars (identical controls shown above and below the grid) ----
+
+  function buildPageNumbers(current, total) {
+    const keep = new Set([1, total, current, current - 1, current + 1]);
+    const sorted = [...keep].filter(p => p >= 1 && p <= total).sort((a, b) => a - b);
+    const out = [];
+    let prev = null;
+    sorted.forEach(p => {
+      if (prev !== null && p - prev > 1) out.push('...');
+      out.push(p);
+      prev = p;
+    });
+    return out;
+  }
+
+  function renderPagination(totalItems, totalPages) {
+    document.querySelectorAll('.pagination').forEach(bar => {
+      const info = bar.querySelector('.pagination-info');
+      const numbers = bar.querySelector('.page-numbers');
+      const prevBtn = bar.querySelector('[data-action="prev"]');
+      const nextBtn = bar.querySelector('[data-action="next"]');
+      const sizeSelect = bar.querySelector('.page-size-select');
+
+      if (sizeSelect) sizeSelect.value = String(state.pageSize);
+
+      if (totalItems === 0) {
+        info.textContent = '';
+        numbers.innerHTML = '';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      const start = (state.page - 1) * state.pageSize + 1;
+      const end = Math.min(state.page * state.pageSize, totalItems);
+      info.textContent = `Page ${state.page} of ${totalPages} — showing ${start}–${end} of ${totalItems}`;
+
+      prevBtn.disabled = state.page <= 1;
+      nextBtn.disabled = state.page >= totalPages;
+
+      numbers.innerHTML = buildPageNumbers(state.page, totalPages).map(entry => {
+        if (entry === '...') return `<span class="page-ellipsis">&hellip;</span>`;
+        return `<button type="button" class="page-num-btn${entry === state.page ? ' active' : ''}" data-page="${entry}"${entry === state.page ? ' aria-current="page"' : ''}>${entry}</button>`;
+      }).join('');
+    });
+  }
+
+  function scrollToResultsTop() {
+    document.querySelector('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function wirePagination() {
+    document.querySelectorAll('.pagination').forEach(bar => {
+      const prevBtn = bar.querySelector('[data-action="prev"]');
+      const nextBtn = bar.querySelector('[data-action="next"]');
+      const numbers = bar.querySelector('.page-numbers');
+      const sizeSelect = bar.querySelector('.page-size-select');
+
+      prevBtn.addEventListener('click', () => {
+        if (state.page > 1) { state.page -= 1; render(); scrollToResultsTop(); }
+      });
+      nextBtn.addEventListener('click', () => {
+        state.page += 1; render(); scrollToResultsTop();
+      });
+      numbers.addEventListener('click', e => {
+        const btn = e.target.closest('.page-num-btn');
+        if (!btn) return;
+        state.page = Number(btn.dataset.page);
+        render();
+        scrollToResultsTop();
+      });
+      if (sizeSelect) {
+        sizeSelect.addEventListener('change', e => {
+          state.pageSize = Number(e.target.value);
+          resetPage();
+          render();
+        });
+      }
+    });
+  }
+
+  function wireControls() {
+    document.getElementById('search').addEventListener('input', e => { state.search = e.target.value; resetPage(); render(); });
+    document.getElementById('min-price').addEventListener('input', e => { state.minPrice = e.target.value; resetPage(); render(); });
+    document.getElementById('max-price').addEventListener('input', e => { state.maxPrice = e.target.value; resetPage(); render(); });
+    document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; resetPage(); render(); });
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      state.search = '';
+      Object.keys(state.filters).forEach(k => state.filters[k].clear());
+      clearMakeModel();
+      state.minPrice = ''; state.maxPrice = ''; state.sort = 'price-asc';
+      resetPage();
+      document.getElementById('search').value = '';
+      document.getElementById('min-price').value = '';
+      document.getElementById('max-price').value = '';
+      document.getElementById('sort').value = 'price-asc';
+      Object.keys(state.filters).forEach(k => {
+        updateMsToggleLabel(k);
+        renderMsOptions(k, msRefs[k].searchInput.value);
+      });
+      if (mmRefs) {
+        mmRefs.searchInput.value = '';
+        renderMM();
+        updateMMLabel();
+      }
+      closeAllMs();
+      const banner = document.querySelector('.park-banner');
+      if (banner) banner.remove();
+      render();
+    });
+    wirePagination();
+  }
+
+  function setUpdatedBadge(data) {
+    const dates = data.map(d => d.date_scraped).filter(Boolean).sort();
+    const latest = dates[dates.length - 1];
+    updatedBadge.innerHTML = `<span class="dot"></span>Last updated ${formatDate(latest)}`;
+  }
+
+  function showLoadError() {
+    updatedBadge.innerHTML = `<span class="dot"></span>Data unavailable`;
+    countEl.textContent = '';
+    gridEl.innerHTML = `
+      <div class="state-msg" style="grid-column: 1 / -1;">
+        <h2>Couldn't load the listings</h2>
+        <p>This page loads its data from <code>data.json</code> sitting next to it. If you opened this file directly<br>
+        from disk, your browser blocks that for security. Serve it locally instead, e.g.:</p>
+        <p><code>python -m http.server</code> &nbsp;then open <code>http://localhost:8000</code></p>
+        <p>Once deployed to GitHub Pages, Netlify, or similar, this will load automatically.</p>
+      </div>`;
+  }
+
+  // Picks up a region name passed in from map.html (index.html?search=Wales)
+  // and drops it straight into the search box, as if the user had typed it.
+  function applyIncomingSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const incoming = params.get('search');
+    if (!incoming) return;
+    state.search = incoming;
+    document.getElementById('search').value = incoming;
+  }
+
+  // ---- Deep link from map.html: index.html?park=Abbey%20Farm%20Holiday%20Park ----
+  // The park list and the listings data spell park names slightly differently
+  // ("Aberconwy Resort & Spa" vs "Aberconwy Resort and Spa, North Wales, Conwy"),
+  // so match on a normalised form of the bit before the first comma.
+
+  function normPark(str) {
+    return String(str ?? '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .split(' ')
+      .filter(w => w && w !== 'and')
+      .join(' ');
+  }
+
+  function locationsForPark(parkName) {
+    const target = normPark(parkName);
+    if (!target) return [];
+    const locations = filterOptionsData.location.map(o => o.value);
+    const pairs = locations.map(loc => ({ loc, key: normPark(loc.split(',')[0]) }));
+
+    const exact = pairs.filter(p => p.key === target);
+    if (exact.length) return exact.map(p => p.loc);
+
+    // one name is a leading extension of the other, e.g.
+    // "Wood Farm Country & Leisure Park" <-> "Wood Farm"
+    const partial = pairs.filter(p =>
+      p.key.startsWith(target + ' ') || target.startsWith(p.key + ' ')
+    );
+    return partial.map(p => p.loc);
+  }
+
+  function applyIncomingPark() {
+    const params = new URLSearchParams(window.location.search);
+    const park = params.get('park');
+    if (!park) return;
+
+    const matches = locationsForPark(park);
+    if (matches.length) {
+      matches.forEach(loc => state.filters.location.add(loc));
+      updateMsToggleLabel('location');
+      renderMsOptions('location', '');
+    } else {
+      // no park in the data matched — fall back to a plain text search so the
+      // user still lands somewhere sensible rather than on an empty grid
+      state.search = park;
+      document.getElementById('search').value = park;
+    }
+    showParkBanner(park, matches.length > 0);
+  }
+
+  function showParkBanner(park, matched) {
+    const main = document.querySelector('main');
+    const banner = document.createElement('div');
+    banner.className = 'park-banner';
+    banner.innerHTML = matched
+      ? `<span>Showing listings at <strong>${escapeHTML(park)}</strong></span>`
+      : `<span>No park exactly matched <strong>${escapeHTML(park)}</strong> &mdash; searching for it instead</span>`;
+    const back = document.createElement('a');
+    back.href = 'map.html';
+    back.textContent = '← Back to map';
+    banner.appendChild(back);
+    main.insertBefore(banner, main.firstChild);
+  }
+
+  async function init() {
+    try {
+      const res = await fetch('data.json');
+      if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+      let text = await res.text();
+      // defensive: tolerate bare NaN tokens if the export script hasn't been fixed to emit strict JSON yet
+      text = text.replace(/:\s*NaN/g, ': null');
+      ALL_DATA = JSON.parse(text);
+      canonicalise(ALL_DATA);
+      populateFilters(ALL_DATA);
+      wireControls();
+      applyIncomingSearch();
+      applyIncomingPark();
+      setUpdatedBadge(ALL_DATA);
+      render();
+    } catch (err) {
+      console.error(err);
+      showLoadError();
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Park information &middot; Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  header.hero {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 44px 24px 0;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px);
+    letter-spacing: 0.01em;
+    margin: 0 0 10px;
+    line-height: 0.95;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #D8DFE3;
+    max-width: 46ch;
+    margin: 0 0 18px;
+  }
+
+  nav.site-nav {
+    display: flex;
+    gap: 18px;
+    padding: 0 0 18px;
+    flex-wrap: wrap;
+  }
+
+  nav.site-nav a {
+    color: #D8DFE3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+
+  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.site-nav a:hover { color: var(--mustard); }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  h2.page-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    line-height: 0.95;
+  }
+
+  .page-intro {
+    color: var(--muted);
+    font-size: 14.5px;
+    max-width: 62ch;
+    margin: 0 0 26px;
+  }
+
+  .page-intro strong { color: var(--ink); }
+  .park-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 18px;
+  }
+  .park-back:hover { text-decoration: underline; }
+
+  .park-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    align-items: start;
+    margin-top: 28px;
+  }
+
+  .park-panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px 24px;
+  }
+
+  .park-panel h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  .park-panel .panel-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+
+  .park-row {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .park-row:first-of-type { border-top: 0; }
+  .park-row .k {
+    flex: 0 0 110px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .park-row .v { flex: 1 1 auto; word-break: break-word; }
+  .park-row .v a { font-weight: 600; }
+  .park-row .v .none { color: var(--muted); }
+
+  .fee-figure {
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.1;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .fee-note {
+    font-size: 12.5px;
+    color: var(--mustard-dark);
+    background: rgba(232, 169, 61, 0.14);
+    border-left: 3px solid var(--mustard);
+    padding: 9px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 18px 0 0;
+  }
+
+  .park-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+  }
+  .park-btn {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    line-height: 1;
+    border: 1px solid var(--ink);
+  }
+  .park-btn:hover { background: #234e78; color: var(--cream); }
+  .park-btn.ghost { color: var(--ink); background: transparent; }
+  .park-btn.ghost:hover { color: var(--cream); background: var(--ink); }
+
+  .park-error {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Static Caravan Watch</h1>
+    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
+    <nav class="site-nav">
+      <a href="index.html">All listings</a>
+      <a href="map.html">Search by region</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="parks.html">list of parks</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <a class="park-back" href="map.html" id="back-link">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l-5 6 5 6"/></svg>
+    Back to the map
+  </a>
+
+  <p class="page-eyebrow">Park information</p>
+  <h2 class="page-title" id="park-title">Loading&hellip;</h2>
+  <p class="page-intro" id="park-strap">&nbsp;</p>
+
+  <div id="park-body" style="display:none;">
+    <div class="park-sections">
+
+      <section class="park-panel">
+        <h3>Contact &amp; location</h3>
+        <p class="panel-sub">How to get in touch with the park</p>
+        <div id="contact-rows"></div>
+      </section>
+
+      <section class="park-panel">
+        <h3>park information</h3>
+        <p class="panel-sub">Average / starting fee and park size</p>
+        <div id="fee-body"></div>
+      </section>
+
+    </div>
+
+    <div class="park-actions">
+      <a class="park-btn" id="listings-btn" href="index.html">View caravans at this park</a>
+      <a class="park-btn ghost" id="website-btn" href="#" target="_blank" rel="noopener">Visit park website</a>
+    </div>
+  </div>
+
+  <div class="park-error" id="park-error" style="display:none;"></div>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use.</footer>
+
+<script>
+const PARKS_JSON_PATH = 'parks.json';
+const params = new URLSearchParams(window.location.search);
+const wantName = (params.get('park') || '').trim();
+const wantPc = (params.get('pc') || '').trim().toUpperCase();
+
+const titleEl = document.getElementById('park-title');
+const strapEl = document.getElementById('park-strap');
+const bodyEl = document.getElementById('park-body');
+const errEl = document.getElementById('park-error');
+const contactRows = document.getElementById('contact-rows');
+const feeBody = document.getElementById('fee-body');
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
+function row(k, v) {
+  return '<div class="park-row"><span class="k">' + k + '</span><span class="v">' + v + '</span></div>';
+}
+
+function none(text) { return '<span class="none">' + (text || 'Not listed') + '</span>'; }
+
+function telHref(phone) { return 'tel:' + String(phone).replace(/[^0-9+]/g, ''); }
+
+function prettyHost(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); }
+  catch (e) { return url; }
+}
+
+function formatFee(amount) {
+  const dp = Number.isInteger(amount) ? 0 : 2;
+  return '\u00A3' + Number(amount).toLocaleString('en-GB', {
+    minimumFractionDigits: dp, maximumFractionDigits: 2
+  });
+}
+
+function showError(msg) {
+  titleEl.textContent = 'Park not found';
+  strapEl.textContent = '';
+  errEl.style.display = 'block';
+  errEl.innerHTML = msg;
+}
+
+if (!wantName) {
+  showError('No park was specified. Head <a href="map.html">back to the region map</a> and pick a pin.');
+} else {
+  fetch(PARKS_JSON_PATH)
+    .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+    .then(parks => {
+      const lname = wantName.toLowerCase();
+      let p = parks.find(x => (x.park_name || '').toLowerCase() === lname &&
+                              (!wantPc || (x.postcode || '').toUpperCase() === wantPc));
+      if (!p) p = parks.find(x => (x.park_name || '').toLowerCase() === lname);
+      if (!p) {
+        showError('We couldn\'t find <strong>' + escapeHtml(wantName) + '</strong> in the parks data. ' +
+                  '<a href="map.html">Back to the region map</a>.');
+        return;
+      }
+      render(p);
+    })
+    .catch(err => {
+      console.error(err);
+      showError("Couldn't load parks.json \u2014 this page needs to be served from a web server " +
+                "(not opened as a local file) with parks.json in the same folder.");
+    });
+}
+
+function render(p) {
+  document.title = p.park_name + ' \u00b7 Static Caravan Watch';
+  titleEl.textContent = p.park_name;
+  strapEl.textContent = p.postcode ? 'Holiday park in ' + p.postcode : 'Holiday park';
+
+  // ---- contact & location ----
+  let c = '';
+  c += row('Address', p.postcode
+    ? escapeHtml(p.postcode) + ' &middot; <a href="https://www.google.com/maps/search/?api=1&query=' +
+      encodeURIComponent(p.park_name + ' ' + p.postcode) + '" target="_blank" rel="noopener">Open in Maps</a>'
+    : none());
+  c += row('Phone', p.phone_number
+    ? '<a href="' + telHref(p.phone_number) + '">' + escapeHtml(p.phone_number) + '</a>'
+    : none('No phone number on file'));
+  c += row('Website', p.website
+    ? '<a href="' + encodeURI(p.website) + '" target="_blank" rel="noopener">' +
+      escapeHtml(prettyHost(p.website)) + ' \u2197</a>'
+    : none('No website on file'));
+  contactRows.innerHTML = c;
+
+  // ---- pitch fees ----
+  let f = '';
+  f += row('Price', (typeof p.average_pitch_fee === 'number')
+    ? '<span class="fee-figure">' + formatFee(p.average_pitch_fee) + '</span>'
+    : none('Not recorded'));
+  f += row('Basis', (typeof p.average_pitch_fee === 'number')
+    ? escapeHtml(p.pitch_fee_unit || 'Not stated')
+    : none('\u2014'));
+  f += row('Pitches', (typeof p.number_of_pitches === 'number')
+    ? p.number_of_pitches.toLocaleString('en-GB') + ' pitches'
+    : none('Not published'));
+  if (typeof p.average_pitch_fee === 'number' && typeof p.number_of_pitches === 'number' &&
+      p.pitch_fee_unit && /per night|per week|per year/i.test(p.pitch_fee_unit)) {
+    // nothing extra
+  }
+  if (p.pitch_fee_unit && /purchase price/i.test(p.pitch_fee_unit)) {
+    f += '<p class="fee-note">Heads up: this figure is a one-off holiday-home purchase price, not a recurring pitch fee.</p>';
+  } else if (p.pitch_fee_unit && /low confidence/i.test(p.pitch_fee_unit)) {
+    f += '<p class="fee-note">This figure came from a third-party listing rather than the park\'s own site \u2014 treat it as indicative.</p>';
+  }
+  feeBody.innerHTML = f;
+
+  // ---- actions ----
+  const listings = document.getElementById('listings-btn');
+  listings.href = 'index.html?park=' + encodeURIComponent(p.park_name);
+  const site = document.getElementById('website-btn');
+  if (p.website) { site.href = encodeURI(p.website); }
+  else { site.style.display = 'none'; }
+
+  bodyEl.style.display = 'block';
+}
+
+// send "back" to the map, keeping the browser's own history if we came from there
+document.getElementById('back-link').addEventListener('click', (e) => {
+  if (document.referrer && document.referrer.indexOf('map.html') !== -1) {
+    e.preventDefault();
+    history.back();
+  }
+});
+</script>
+
+</body>
+</html>
