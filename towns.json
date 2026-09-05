@@ -1,0 +1,6707 @@
+[
+  {
+    "name": "Aberdeen",
+    "county": "",
+    "region": "",
+    "latitude": 57.1497,
+    "longitude": -2.0943,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Aberdeenshire",
+    "county": "Aberdeenshire",
+    "region": "Scotland",
+    "latitude": 57.20044,
+    "longitude": -2.40986,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Abergele",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.29372,
+    "longitude": -3.58106,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Abermule with Llandyssil",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.54403,
+    "longitude": -3.23743,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aberporth",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.13194,
+    "longitude": -4.53664,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aberystwyth",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.415,
+    "longitude": -4.083,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Acaster Malbis",
+    "county": "York",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.9034,
+    "longitude": -1.10356,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Adderstone with Lucker",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.58095,
+    "longitude": -1.75344,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Addlethorpe",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.18692,
+    "longitude": 0.32344,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Adlington",
+    "county": "Cheshire East",
+    "region": "North West",
+    "latitude": 53.32565,
+    "longitude": -2.09979,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aldbrough",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.83487,
+    "longitude": -0.09782,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aldeburgh",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.15955,
+    "longitude": 1.59757,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aldringham cum Thorpe",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.20303,
+    "longitude": 1.61844,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aldwick",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.78742,
+    "longitude": -0.71587,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Allerton Mauleverer with Hopperton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.01702,
+    "longitude": -1.37016,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Allhallows",
+    "county": "Medway",
+    "region": "South East",
+    "latitude": 51.47467,
+    "longitude": 0.64968,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Allonby",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.77218,
+    "longitude": -3.42989,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Allostock",
+    "county": "Cheshire West and Chester",
+    "region": "North West",
+    "latitude": 53.23521,
+    "longitude": -2.38898,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Alnwick",
+    "county": "",
+    "region": "",
+    "latitude": 55.413,
+    "longitude": -1.706,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Amroth",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.73434,
+    "longitude": -4.64965,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ancroft",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.68649,
+    "longitude": -1.93465,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Angus",
+    "county": "Angus",
+    "region": "Scotland",
+    "latitude": 56.47987,
+    "longitude": -2.81332,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ards and North Down",
+    "county": "Ards and North Down",
+    "region": "Scotland",
+    "latitude": 54.56808,
+    "longitude": -5.48569,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Argyll and Bute",
+    "county": "Argyll and Bute",
+    "region": "Scotland",
+    "latitude": 55.76337,
+    "longitude": -5.24043,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Arne",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.67931,
+    "longitude": -2.09827,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Arnside",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.1867,
+    "longitude": -2.85027,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Arthuret",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.99194,
+    "longitude": -2.95636,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Asby",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.48171,
+    "longitude": -2.46747,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Asenby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.17488,
+    "longitude": -1.41051,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ashford",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.09327,
+    "longitude": -4.09983,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Astley",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.75706,
+    "longitude": -2.71604,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Atwick",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.94138,
+    "longitude": -0.18348,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aveton Gifford",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.34645,
+    "longitude": -3.84721,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Aylmerton",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.92515,
+    "longitude": 1.24669,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ayr",
+    "county": "",
+    "region": "",
+    "latitude": 55.4586,
+    "longitude": -4.6292,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bacton",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.85622,
+    "longitude": 1.4714,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Baildon",
+    "county": "Bradford",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.85374,
+    "longitude": -1.79263,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bakewell",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 53.22003,
+    "longitude": -1.70001,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Balk",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.22098,
+    "longitude": -1.27214,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bangor, Gwynedd",
+    "county": "",
+    "region": "",
+    "latitude": 53.227,
+    "longitude": -4.129,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Banwy",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.68823,
+    "longitude": -3.47953,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Barforth",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.53366,
+    "longitude": -1.76912,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Barmouth",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.722,
+    "longitude": -4.055,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Barmston",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.01715,
+    "longitude": -0.21582,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Barnsley",
+    "county": "",
+    "region": "",
+    "latitude": 53.5526,
+    "longitude": -1.4797,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Barnstaple",
+    "county": "",
+    "region": "",
+    "latitude": 51.08,
+    "longitude": -4.06,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Barrow-in-Furness",
+    "county": "",
+    "region": "",
+    "latitude": 54.111,
+    "longitude": -3.228,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Barton and Pooley Bridge",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.59838,
+    "longitude": -2.82826,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Basingstoke",
+    "county": "",
+    "region": "",
+    "latitude": 51.2665,
+    "longitude": -1.087,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bassenthwaite",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.67134,
+    "longitude": -3.19017,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bath",
+    "county": "",
+    "region": "",
+    "latitude": 51.3811,
+    "longitude": -2.359,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bausley with Criggion",
+    "county": "Powys",
+    "region": "Central England",
+    "latitude": 52.73066,
+    "longitude": -2.98427,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bedford",
+    "county": "",
+    "region": "",
+    "latitude": 52.136,
+    "longitude": -0.467,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Beeston Regis",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.9414,
+    "longitude": 1.23329,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Beetham",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.19331,
+    "longitude": -2.76553,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Belfast",
+    "county": "",
+    "region": "",
+    "latitude": 54.5973,
+    "longitude": -5.9301,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Belford",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.5997,
+    "longitude": -1.7814,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bellingham",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.14511,
+    "longitude": -2.24731,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Belton with Browston",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.56401,
+    "longitude": 1.65213,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bembridge",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.67131,
+    "longitude": -1.09767,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bempton",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.13945,
+    "longitude": -0.17405,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Berriew",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.57554,
+    "longitude": -3.19276,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Berrow",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.27845,
+    "longitude": -3.01256,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Berrynarbor",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.1645,
+    "longitude": -4.06113,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Berwick-upon-Tweed",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.771,
+    "longitude": -2.006,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Betws-y-Coed",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.09312,
+    "longitude": -3.80012,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bewaldeth and Snittlegarth",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.70775,
+    "longitude": -3.2442,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bewdley",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.38013,
+    "longitude": -2.31542,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bexhill-on-Sea",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.84563,
+    "longitude": 0.42978,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bicton",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.71847,
+    "longitude": -2.80653,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Billington and Langho",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.82224,
+    "longitude": -2.43179,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Birchington",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.3675,
+    "longitude": 1.3327,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Birmingham",
+    "county": "",
+    "region": "",
+    "latitude": 52.4862,
+    "longitude": -1.8904,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Birstwith",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.02999,
+    "longitude": -1.65054,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Blackpool",
+    "county": "Blackpool",
+    "region": "North West",
+    "latitude": 53.8175,
+    "longitude": -3.0357,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Blakeney",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.95492,
+    "longitude": 1.02357,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bleadon",
+    "county": "North Somerset",
+    "region": "South West",
+    "latitude": 51.30882,
+    "longitude": -2.96053,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Blindcrake",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.72031,
+    "longitude": -3.3064,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Blythburgh",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.29064,
+    "longitude": 1.54966,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bodham",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.92081,
+    "longitude": 1.17353,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bodmin",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.46035,
+    "longitude": -4.73932,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bolton",
+    "county": "",
+    "region": "",
+    "latitude": 53.578,
+    "longitude": -2.429,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bolton-le-Sands",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.11106,
+    "longitude": -2.79469,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Borth",
+    "county": "Ceredigion",
+    "region": "North Wales",
+    "latitude": 52.49178,
+    "longitude": -4.04666,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bothel and Threapland",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.7227,
+    "longitude": -3.26223,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bournemouth",
+    "county": "",
+    "region": "",
+    "latitude": 50.7192,
+    "longitude": -1.8808,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bournemouth, Christchurch and Poole",
+    "county": "Bournemouth, Christchurch and Poole",
+    "region": "South West",
+    "latitude": 50.74106,
+    "longitude": -2.01551,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bowness",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.93869,
+    "longitude": -3.18468,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bradford",
+    "county": "",
+    "region": "",
+    "latitude": 53.796,
+    "longitude": -1.7594,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bradwell-on-Sea",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.73046,
+    "longitude": 0.91986,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Brandesburton",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.91366,
+    "longitude": -0.31659,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Branscombe",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.69982,
+    "longitude": -3.18117,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Breage",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.10638,
+    "longitude": -5.38854,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Brean",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.29832,
+    "longitude": -3.00876,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Brecon",
+    "county": "",
+    "region": "",
+    "latitude": 51.947,
+    "longitude": -3.39,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bridgerule",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.78446,
+    "longitude": -4.46388,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bridlington",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.083,
+    "longitude": -0.19,
+    "park_count": 4,
+    "source": "reference"
+  },
+  {
+    "name": "Brighton",
+    "county": "",
+    "region": "",
+    "latitude": 50.8225,
+    "longitude": -0.1372,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bristol",
+    "county": "",
+    "region": "",
+    "latitude": 51.4545,
+    "longitude": -2.5879,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Brithdir and Llanfachreth",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.75743,
+    "longitude": -3.8033,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Brixham",
+    "county": "Torbay",
+    "region": "South West",
+    "latitude": 50.38878,
+    "longitude": -3.5045,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bromyard and Winslow",
+    "county": "Herefordshire, County of",
+    "region": "Central England",
+    "latitude": 52.20242,
+    "longitude": -2.51766,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Brough",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.52654,
+    "longitude": -2.29539,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Broughton East",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.22853,
+    "longitude": -2.94157,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bryn-crug",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.60614,
+    "longitude": -4.05287,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Bude",
+    "county": "",
+    "region": "",
+    "latitude": 50.827,
+    "longitude": -4.545,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Bude-Stratton",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.8432,
+    "longitude": -4.54734,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burgh Castle",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.57974,
+    "longitude": 1.66716,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burgh St. Peter",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.47962,
+    "longitude": 1.65919,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burmarsh",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.04008,
+    "longitude": 1.00232,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burnham-on-Sea and Highbridge",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.22854,
+    "longitude": -2.99744,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burniston",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.32096,
+    "longitude": -0.44145,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burton Bradstock",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.70611,
+    "longitude": -2.71308,
+    "park_count": 7,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burton Constable",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.80237,
+    "longitude": -0.19941,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Burton Fleming",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.1369,
+    "longitude": -0.3439,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cabus",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.93523,
+    "longitude": -2.77435,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cadfarch",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.59308,
+    "longitude": -3.80604,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Caernarfon",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 53.14,
+    "longitude": -4.275,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Caersws",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.50923,
+    "longitude": -3.41205,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Caister-on-Sea",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.65374,
+    "longitude": 1.72844,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Calbourne, Newtown and Porchfield",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.735,
+    "longitude": -1.36055,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Calstock",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.5162,
+    "longitude": -4.2544,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Camber",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.93208,
+    "longitude": 0.80579,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cambridge",
+    "county": "",
+    "region": "",
+    "latitude": 52.2053,
+    "longitude": 0.1218,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Camelford",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.61205,
+    "longitude": -4.69509,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Canewdon",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.61709,
+    "longitude": 0.77671,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Canterbury",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.28,
+    "longitude": 1.078,
+    "park_count": 7,
+    "source": "reference"
+  },
+  {
+    "name": "Capel-le-Ferne",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.10894,
+    "longitude": 1.22201,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cardiff",
+    "county": "",
+    "region": "",
+    "latitude": 51.4816,
+    "longitude": -3.1791,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Cardigan",
+    "county": "",
+    "region": "",
+    "latitude": 52.082,
+    "longitude": -4.658,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Carhampton",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.18204,
+    "longitude": -3.39684,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Carlisle",
+    "county": "",
+    "region": "",
+    "latitude": 54.892,
+    "longitude": -2.932,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Carn Brea",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.20092,
+    "longitude": -5.24219,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Carnforth",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.13085,
+    "longitude": -2.76585,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cartmel Fell",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.30044,
+    "longitude": -2.94724,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Casterton",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.19734,
+    "longitude": -2.5827,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Castle Eden",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.73996,
+    "longitude": -1.36787,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Castlemorton",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.03995,
+    "longitude": -2.31095,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Causeway Coast and Glens",
+    "county": "Causeway Coast and Glens",
+    "region": "Scotland",
+    "latitude": 55.16708,
+    "longitude": -6.40929,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cawood",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.83904,
+    "longitude": -1.13969,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cayton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.23911,
+    "longitude": -0.36978,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cefnmeiriadog",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.24427,
+    "longitude": -3.44779,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cenarth",
+    "county": "Carmarthenshire",
+    "region": "South Wales",
+    "latitude": 52.02204,
+    "longitude": -4.54091,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chapel St. Leonards",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.21717,
+    "longitude": 0.33753,
+    "park_count": 7,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Charmouth",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.7421,
+    "longitude": -2.9127,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cheddar",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.28757,
+    "longitude": -2.79187,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chelmarsh",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.47984,
+    "longitude": -2.41106,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chelmsford",
+    "county": "",
+    "region": "",
+    "latitude": 51.736,
+    "longitude": 0.479,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Cheltenham",
+    "county": "",
+    "region": "",
+    "latitude": 51.9,
+    "longitude": -2.08,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Cheriton Bishop",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.72578,
+    "longitude": -3.73109,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chester",
+    "county": "",
+    "region": "",
+    "latitude": 53.19,
+    "longitude": -2.89,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Chesterfield",
+    "county": "",
+    "region": "",
+    "latitude": 53.235,
+    "longitude": -1.421,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Chichester",
+    "county": "",
+    "region": "",
+    "latitude": 50.8365,
+    "longitude": -0.7792,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Chickerell",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.60357,
+    "longitude": -2.49226,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chideock",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.72451,
+    "longitude": -2.82084,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chirbury with Brompton",
+    "county": "Shropshire",
+    "region": "North Wales",
+    "latitude": 52.57808,
+    "longitude": -3.08455,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Christchurch",
+    "county": "Bournemouth, Christchurch and Poole",
+    "region": "South West",
+    "latitude": 50.73484,
+    "longitude": -1.76163,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Chudleigh",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.61911,
+    "longitude": -3.58234,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Churchstoke",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.52923,
+    "longitude": -3.10386,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Clacton-on-Sea",
+    "county": "",
+    "region": "",
+    "latitude": 51.79,
+    "longitude": 1.15,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Claxton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.034,
+    "longitude": -0.94166,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cleobury Mortimer",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.37002,
+    "longitude": -2.41073,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cliffe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.79578,
+    "longitude": -0.99531,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Clungunford",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.39141,
+    "longitude": -2.9119,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cockerham",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.95879,
+    "longitude": -2.85391,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Colan",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.40409,
+    "longitude": -4.98136,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Colchester",
+    "county": "",
+    "region": "",
+    "latitude": 51.889,
+    "longitude": 0.904,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Colton",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.26054,
+    "longitude": -3.02357,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Colwyn Bay",
+    "county": "",
+    "region": "",
+    "latitude": 53.296,
+    "longitude": -3.728,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Combe Martin",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.20512,
+    "longitude": -4.04052,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Coneysthorpe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.13282,
+    "longitude": -0.91197,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Conwy",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.28862,
+    "longitude": -3.8461,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Corton",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.52009,
+    "longitude": 1.74327,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cosgrove",
+    "county": "West Northamptonshire",
+    "region": "Central England",
+    "latitude": 52.07445,
+    "longitude": -0.84059,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Coventry",
+    "county": "",
+    "region": "",
+    "latitude": 52.4068,
+    "longitude": -1.5197,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Crakehall",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.31066,
+    "longitude": -1.63151,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Crantock",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.40068,
+    "longitude": -5.10016,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Crawley",
+    "county": "",
+    "region": "",
+    "latitude": 51.109,
+    "longitude": -0.187,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Cresswell",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.23349,
+    "longitude": -1.54392,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Crewe",
+    "county": "",
+    "region": "",
+    "latitude": 53.099,
+    "longitude": -2.442,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Criccieth",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.92717,
+    "longitude": -4.21826,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Croft",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.13519,
+    "longitude": 0.29684,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Cromer",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.92127,
+    "longitude": 1.2771,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Crowhurst",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.89219,
+    "longitude": 0.51914,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Crowle and Ealand",
+    "county": "North Lincolnshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.593,
+    "longitude": -0.82112,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dacre",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.63021,
+    "longitude": -2.83665,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dalwood",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.7843,
+    "longitude": -3.0705,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Darlington",
+    "county": "",
+    "region": "",
+    "latitude": 54.523,
+    "longitude": -1.559,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dawlish",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.59838,
+    "longitude": -3.45433,
+    "park_count": 7,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Delamere and Oakmere",
+    "county": "Cheshire West and Chester",
+    "region": "North West",
+    "latitude": 53.21857,
+    "longitude": -2.64069,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Denwick",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.40259,
+    "longitude": -1.68283,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Derby",
+    "county": "",
+    "region": "",
+    "latitude": 52.9225,
+    "longitude": -1.4746,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dinas Cross",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 52.01076,
+    "longitude": -4.90998,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dolbenmaen",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.96504,
+    "longitude": -4.10191,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Doncaster",
+    "county": "",
+    "region": "",
+    "latitude": 53.5228,
+    "longitude": -1.1285,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dover",
+    "county": "",
+    "region": "",
+    "latitude": 51.1279,
+    "longitude": 1.3134,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Drewsteignton",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.71737,
+    "longitude": -3.86361,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Duhonw",
+    "county": "Powys",
+    "region": "South Wales",
+    "latitude": 52.14029,
+    "longitude": -3.43053,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dumfries",
+    "county": "",
+    "region": "",
+    "latitude": 55.07,
+    "longitude": -3.603,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dumfries and Galloway",
+    "county": "Dumfries and Galloway",
+    "region": "Scotland",
+    "latitude": 54.96647,
+    "longitude": -3.90933,
+    "park_count": 11,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dundee",
+    "county": "",
+    "region": "",
+    "latitude": 56.462,
+    "longitude": -2.9707,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dunwich",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.26165,
+    "longitude": 1.62756,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Durham",
+    "county": "",
+    "region": "",
+    "latitude": 54.777,
+    "longitude": -1.575,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Dyffryn Ardudwy",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.77146,
+    "longitude": -4.10149,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dyffryn Arth",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.25765,
+    "longitude": -4.13824,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dymchurch",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.04389,
+    "longitude": 1.02709,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Dyserth",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.31187,
+    "longitude": -3.40394,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Eardisland",
+    "county": "Herefordshire, County of",
+    "region": "Central England",
+    "latitude": 52.22819,
+    "longitude": -2.85138,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Easby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.39701,
+    "longitude": -1.69484,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Easington",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.62218,
+    "longitude": 0.12857,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Ayrshire",
+    "county": "East Ayrshire",
+    "region": "Scotland",
+    "latitude": 55.51387,
+    "longitude": -4.0673,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Huntspill",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.2063,
+    "longitude": -2.941,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Lothian",
+    "county": "East Lothian",
+    "region": "Scotland",
+    "latitude": 55.97149,
+    "longitude": -2.49175,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Mersea",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.78981,
+    "longitude": 0.98164,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Williamston",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.72109,
+    "longitude": -4.73898,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "East Wittering",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.76738,
+    "longitude": -0.85666,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Eastbourne",
+    "county": "",
+    "region": "",
+    "latitude": 50.7687,
+    "longitude": 0.284,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Eastchurch",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.41435,
+    "longitude": 0.86401,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Eastham",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.30671,
+    "longitude": -2.47672,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Edinburgh",
+    "county": "",
+    "region": "",
+    "latitude": 55.9533,
+    "longitude": -3.1883,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Edmondbyers",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.84609,
+    "longitude": -1.97542,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Efenechtyd",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.10703,
+    "longitude": -3.36007,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Evenwood and Barony",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.64791,
+    "longitude": -1.7664,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Exeter",
+    "county": "",
+    "region": "",
+    "latitude": 50.7184,
+    "longitude": -3.5339,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Exmouth",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.61494,
+    "longitude": -3.36663,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Falmouth",
+    "county": "",
+    "region": "",
+    "latitude": 50.153,
+    "longitude": -5.07,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Fareham",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.83299,
+    "longitude": -1.2836,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Felixstowe",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 51.95324,
+    "longitude": 1.33197,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fenny Bentley",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 53.05339,
+    "longitude": -1.7417,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ferring",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.81629,
+    "longitude": -0.45064,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fife",
+    "county": "Fife",
+    "region": "Scotland",
+    "latitude": 56.31334,
+    "longitude": -2.86237,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Filey",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.18914,
+    "longitude": -0.28258,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fishguard and Goodwick",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.98998,
+    "longitude": -4.9788,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fiskerton",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.22958,
+    "longitude": -0.36522,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fleetwood",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.89956,
+    "longitude": -3.02223,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Folkestone",
+    "county": "",
+    "region": "",
+    "latitude": 51.08,
+    "longitude": 1.17,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Folkton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.20053,
+    "longitude": -0.42097,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Follifoot",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.97301,
+    "longitude": -1.49707,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fort William",
+    "county": "",
+    "region": "",
+    "latitude": 56.819,
+    "longitude": -5.105,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Fradley",
+    "county": "Staffordshire",
+    "region": "Central England",
+    "latitude": 52.72384,
+    "longitude": -1.79338,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Frinton and Walton",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.85708,
+    "longitude": 1.27433,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fritton and St. Olaves",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.55419,
+    "longitude": 1.65025,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Frodsham",
+    "county": "Cheshire West and Chester",
+    "region": "North West",
+    "latitude": 53.26703,
+    "longitude": -2.73525,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Fylingdales",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.39343,
+    "longitude": -0.56754,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Gayton",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.74495,
+    "longitude": 0.55112,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Georgeham",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.13373,
+    "longitude": -4.22993,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Germoe",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.1247,
+    "longitude": -5.36988,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Gisburn",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.93921,
+    "longitude": -2.27128,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Glantwymyn",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.66367,
+    "longitude": -3.69109,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Glasgow",
+    "county": "",
+    "region": "",
+    "latitude": 55.8642,
+    "longitude": -4.2518,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Gloucester",
+    "county": "",
+    "region": "",
+    "latitude": 51.8642,
+    "longitude": -2.238,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Godshill",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.93148,
+    "longitude": -1.75949,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Grade-Ruan",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.02159,
+    "longitude": -5.20424,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Grampound with Creed",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.30955,
+    "longitude": -4.86013,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Great Bentley",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.82291,
+    "longitude": 1.06748,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Great Comberton",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.08853,
+    "longitude": -2.0679,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Great Salkeld",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.72436,
+    "longitude": -2.69726,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Great Yarmouth",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.6083,
+    "longitude": 1.73,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Greystoke",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.68926,
+    "longitude": -2.90469,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Grimsby",
+    "county": "",
+    "region": "",
+    "latitude": 53.5675,
+    "longitude": -0.08,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Gristhorpe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.22228,
+    "longitude": -0.33394,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Guarlford",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.11241,
+    "longitude": -2.24668,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Guestling",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.89507,
+    "longitude": 0.59868,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Guildford",
+    "county": "",
+    "region": "",
+    "latitude": 51.236,
+    "longitude": -0.57,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Guilsfield",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.68259,
+    "longitude": -3.21723,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Guisborough",
+    "county": "Redcar and Cleveland",
+    "region": "North East",
+    "latitude": 54.55434,
+    "longitude": -1.03203,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Gulworthy",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.54823,
+    "longitude": -4.2165,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Gwinear-Gwithian",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.19571,
+    "longitude": -5.37181,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Habton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.17205,
+    "longitude": -0.78434,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hainford",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.73052,
+    "longitude": 1.31376,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Harlech",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.86236,
+    "longitude": -4.11489,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Harrogate",
+    "county": "",
+    "region": "",
+    "latitude": 53.992,
+    "longitude": -1.541,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Hartington Nether Quarter",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 53.13179,
+    "longitude": -1.7545,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hartlebury",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.32762,
+    "longitude": -2.26033,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hartlepool",
+    "county": "",
+    "region": "",
+    "latitude": 54.69,
+    "longitude": -1.212,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Harwich",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.9237,
+    "longitude": 1.2594,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hastings",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.8552,
+    "longitude": 0.5729,
+    "park_count": 5,
+    "source": "reference"
+  },
+  {
+    "name": "Havant",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.78772,
+    "longitude": -0.95364,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Havenstreet and Ashey",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.71037,
+    "longitude": -1.17589,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Haverfordwest",
+    "county": "",
+    "region": "",
+    "latitude": 51.801,
+    "longitude": -4.97,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Hawkchurch",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.78419,
+    "longitude": -2.92976,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hawsker-cum-Stainsacre",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.45092,
+    "longitude": -0.57551,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hayle",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.20699,
+    "longitude": -5.40932,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hayscastle",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.86972,
+    "longitude": -5.07109,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Heacham",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.90342,
+    "longitude": 0.48355,
+    "park_count": 11,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hennock",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.59844,
+    "longitude": -3.62719,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Henryd",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.2664,
+    "longitude": -3.85969,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hereford",
+    "county": "",
+    "region": "",
+    "latitude": 52.056,
+    "longitude": -2.716,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Hexham",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 54.96033,
+    "longitude": -2.11743,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Heybridge",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.73528,
+    "longitude": 0.72438,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "High and Low Bishopside",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.08865,
+    "longitude": -1.71553,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Highland",
+    "county": "Highland",
+    "region": "Scotland",
+    "latitude": 57.41985,
+    "longitude": -4.14368,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hill and Moor",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.11801,
+    "longitude": -2.02732,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Holland Fen with Brothertoft",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 52.97609,
+    "longitude": -0.1157,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hollesley",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.04434,
+    "longitude": 1.40765,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hollym",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.71722,
+    "longitude": 0.04007,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Holme next the Sea",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.96097,
+    "longitude": 0.53783,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Holme St Cuthbert",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.80722,
+    "longitude": -3.38627,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Holt",
+    "county": "Dorset",
+    "region": "Central England",
+    "latitude": 51.53983,
+    "longitude": -2.14975,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Honeybourne",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.09894,
+    "longitude": -1.83834,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hopton-on-Sea",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.5413,
+    "longitude": 1.7319,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hornsea",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.9178,
+    "longitude": -0.16569,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Horsey",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.76295,
+    "longitude": 1.64394,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Huddersfield",
+    "county": "",
+    "region": "",
+    "latitude": 53.6458,
+    "longitude": -1.785,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Hudswell",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.40699,
+    "longitude": -1.79526,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Humberston",
+    "county": "North East Lincolnshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.53633,
+    "longitude": -0.00641,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hunmanby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.1824,
+    "longitude": -0.31352,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hunstanton",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.93059,
+    "longitude": 0.48418,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hurworth",
+    "county": "Darlington",
+    "region": "North East",
+    "latitude": 54.48435,
+    "longitude": -1.50947,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hutton Bonville",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.39686,
+    "longitude": -1.46825,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hutton-Sessay",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.17888,
+    "longitude": -1.27327,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Hythe",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.05042,
+    "longitude": 1.03578,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Icklesham",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.92678,
+    "longitude": 0.73118,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ilfracombe",
+    "county": "",
+    "region": "",
+    "latitude": 51.208,
+    "longitude": -4.12,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Ingleton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.14269,
+    "longitude": -2.47181,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ingoldmells",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.1919,
+    "longitude": 0.34459,
+    "park_count": 11,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Inverness",
+    "county": "",
+    "region": "",
+    "latitude": 57.4778,
+    "longitude": -4.2247,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Ipswich",
+    "county": "",
+    "region": "",
+    "latitude": 52.0567,
+    "longitude": 1.1482,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Kearby with Netherby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.91613,
+    "longitude": -1.49433,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kelsale cum Carlton",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.23764,
+    "longitude": 1.46784,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kempsey",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.1414,
+    "longitude": -2.22338,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kendal",
+    "county": "",
+    "region": "",
+    "latitude": 54.328,
+    "longitude": -2.745,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Kessingland",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.40948,
+    "longitude": 1.72639,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Keswick",
+    "county": "",
+    "region": "",
+    "latitude": 54.601,
+    "longitude": -3.134,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Kettering",
+    "county": "",
+    "region": "",
+    "latitude": 52.398,
+    "longitude": -0.725,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Kewstoke",
+    "county": "North Somerset",
+    "region": "South West",
+    "latitude": 51.37166,
+    "longitude": -2.96107,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kielder",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.24169,
+    "longitude": -2.58848,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kilkhampton",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.86937,
+    "longitude": -4.5213,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kingston upon Hull",
+    "county": "",
+    "region": "",
+    "latitude": 53.7676,
+    "longitude": -0.3274,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Kinmel Bay and Towyn",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.30209,
+    "longitude": -3.54558,
+    "park_count": 14,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Kirby Misperton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.2059,
+    "longitude": -0.80802,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Knaresborough",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.99983,
+    "longitude": -1.45736,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Knighton on Teme",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.33736,
+    "longitude": -2.5455,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lakes",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.4203,
+    "longitude": -2.9033,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lamesley",
+    "county": "Gateshead",
+    "region": "North East",
+    "latitude": 54.88384,
+    "longitude": -1.64191,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lampeter",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.11989,
+    "longitude": -4.08392,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lampeter Velfrey",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.77546,
+    "longitude": -4.70347,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lancaster",
+    "county": "",
+    "region": "",
+    "latitude": 54.047,
+    "longitude": -2.801,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Lancing",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.82283,
+    "longitude": -0.30944,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Landford",
+    "county": "Wiltshire",
+    "region": "South East",
+    "latitude": 50.96895,
+    "longitude": -1.61928,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Langcliffe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.08157,
+    "longitude": -2.28088,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Langdon",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.16951,
+    "longitude": 1.34805,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Langthorpe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.09971,
+    "longitude": -1.40735,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lanlivery",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.40219,
+    "longitude": -4.70001,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lanteglos",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.34422,
+    "longitude": -4.62457,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Leeds",
+    "county": "",
+    "region": "",
+    "latitude": 53.8008,
+    "longitude": -1.5491,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Leicester",
+    "county": "",
+    "region": "",
+    "latitude": 52.6369,
+    "longitude": -1.1398,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Leiston",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.21954,
+    "longitude": 1.56362,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Leyburn",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.31127,
+    "longitude": -1.83428,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Leysdown",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.39636,
+    "longitude": 0.9225,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lincoln",
+    "county": "",
+    "region": "",
+    "latitude": 53.2307,
+    "longitude": -0.5406,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Little Eccleston-with-Larbreck",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.85843,
+    "longitude": -2.88186,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Little Torrington",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.92612,
+    "longitude": -4.15694,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Liverpool",
+    "county": "",
+    "region": "",
+    "latitude": 53.4084,
+    "longitude": -2.9916,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Llanarmon-yn-Ial",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.09583,
+    "longitude": -3.18465,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanarth",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.17838,
+    "longitude": -4.27354,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanasa",
+    "county": "Flintshire",
+    "region": "North Wales",
+    "latitude": 53.3476,
+    "longitude": -3.33533,
+    "park_count": 7,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanbedrog",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.86294,
+    "longitude": -4.47488,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanddeiniolen",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 53.14644,
+    "longitude": -4.1528,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llandderfel",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.94315,
+    "longitude": -3.48219,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanddoged and Maenan",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.17526,
+    "longitude": -3.81241,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanddulas and Rhyd-y-Foel",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.29283,
+    "longitude": -3.63227,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llandinam",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.49695,
+    "longitude": -3.42767,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llandrillo",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 52.92514,
+    "longitude": -3.44249,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llandudno",
+    "county": "",
+    "region": "",
+    "latitude": 53.324,
+    "longitude": -3.827,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Llandwrog",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 53.08678,
+    "longitude": -4.33618,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llaneilian",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.41121,
+    "longitude": -4.29592,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanengan",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.83691,
+    "longitude": -4.50877,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llaneugrad",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.3372,
+    "longitude": -4.25661,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfaethlu",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.33222,
+    "longitude": -4.57448,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfair",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.83521,
+    "longitude": -4.1249,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfair Caereinion",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.65176,
+    "longitude": -3.3558,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfair Talhaiarn",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.24596,
+    "longitude": -3.57329,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfair-Mathafarn-Eithaf",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.31579,
+    "longitude": -4.23382,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfarian",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.37344,
+    "longitude": -4.1086,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanfihangel",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.73473,
+    "longitude": -3.4308,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangelynnin",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.66113,
+    "longitude": -4.09546,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangennith, Llanmadoc and Cheriton",
+    "county": "Swansea",
+    "region": "South Wales",
+    "latitude": 51.61542,
+    "longitude": -4.26551,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangollen",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 52.97172,
+    "longitude": -3.11693,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangynfelyn",
+    "county": "Ceredigion",
+    "region": "North Wales",
+    "latitude": 52.5102,
+    "longitude": -3.99633,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangyniew",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.68784,
+    "longitude": -3.31479,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llangynog",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.82466,
+    "longitude": -3.40643,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanidloes Without",
+    "county": "Powys",
+    "region": "South Wales",
+    "latitude": 52.45868,
+    "longitude": -3.5597,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanllwchaiarn",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.18966,
+    "longitude": -4.35638,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llannor",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.89728,
+    "longitude": -4.37762,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanrhidian Lower",
+    "county": "Swansea",
+    "region": "South Wales",
+    "latitude": 51.61522,
+    "longitude": -4.1588,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanrhystyd",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.30661,
+    "longitude": -4.15744,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanrug",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 53.14708,
+    "longitude": -4.20973,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llansantffraed",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.27297,
+    "longitude": -4.18002,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llansantffraid",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.78121,
+    "longitude": -3.1367,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llansteffan",
+    "county": "Carmarthenshire",
+    "region": "South Wales",
+    "latitude": 51.77084,
+    "longitude": -4.38982,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llantwit Major",
+    "county": "Vale of Glamorgan",
+    "region": "South Wales",
+    "latitude": 51.40412,
+    "longitude": -3.48178,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanuwchllyn",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.85057,
+    "longitude": -3.69471,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanycil",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.90417,
+    "longitude": -3.62682,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llanystumdwy",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.92043,
+    "longitude": -4.28624,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Llawhaden",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.82807,
+    "longitude": -4.74289,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "London",
+    "county": "",
+    "region": "",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Londonderry",
+    "county": "",
+    "region": "",
+    "latitude": 54.9966,
+    "longitude": -7.3086,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Long Sutton",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 52.77243,
+    "longitude": 0.13304,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Longframlington",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.29988,
+    "longitude": -1.80371,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Longridge",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.83499,
+    "longitude": -2.59121,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Looe",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.37144,
+    "longitude": -4.44503,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lower Allithwaite",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.19386,
+    "longitude": -2.95286,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lower Holker",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.1698,
+    "longitude": -2.96663,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lowestoft",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.475,
+    "longitude": 1.75,
+    "park_count": 5,
+    "source": "reference"
+  },
+  {
+    "name": "Lowick",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.65227,
+    "longitude": -1.99801,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ludgvan",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.1741,
+    "longitude": -5.46416,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Luton",
+    "county": "",
+    "region": "",
+    "latitude": 51.8787,
+    "longitude": -0.42,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Lutton",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 52.79958,
+    "longitude": 0.13009,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Luxulyan",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.37952,
+    "longitude": -4.75163,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lydbury North",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.5034,
+    "longitude": -2.94637,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lydd",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 50.95943,
+    "longitude": 0.96316,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lyme Regis",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.73516,
+    "longitude": -2.93222,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lyminster and Crossbush",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.83061,
+    "longitude": -0.54539,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Lynton and Lynmouth",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.21877,
+    "longitude": -3.82778,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mablethorpe and Sutton",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.33364,
+    "longitude": 0.25505,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Maidstone",
+    "county": "",
+    "region": "",
+    "latitude": 51.272,
+    "longitude": 0.529,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Malborough",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.25274,
+    "longitude": -3.80068,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Manafon",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.61053,
+    "longitude": -3.35261,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Manchester",
+    "county": "",
+    "region": "",
+    "latitude": 53.4808,
+    "longitude": -2.2426,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Manorbier",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.64957,
+    "longitude": -4.79867,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mansfield",
+    "county": "Nottinghamshire",
+    "region": "Central England",
+    "latitude": 53.1585,
+    "longitude": -1.17725,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Manston",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.35983,
+    "longitude": 1.3529,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mappleton",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.86827,
+    "longitude": -0.13282,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Margate",
+    "county": "",
+    "region": "",
+    "latitude": 51.385,
+    "longitude": 1.386,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Mark",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.22386,
+    "longitude": -2.91336,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Martletwy",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.76472,
+    "longitude": -4.86823,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Marwood",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.58117,
+    "longitude": -1.9451,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Matterdale",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.59696,
+    "longitude": -2.87886,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mawgan-in-Pydar",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.46182,
+    "longitude": -5.01399,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Medlar-with-Wesham",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.79177,
+    "longitude": -2.87114,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Meifod",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.71751,
+    "longitude": -3.20062,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mickleton",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.61311,
+    "longitude": -2.04782,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mid and East Antrim",
+    "county": "Mid and East Antrim",
+    "region": "Scotland",
+    "latitude": 54.99228,
+    "longitude": -6.00178,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Middlesbrough",
+    "county": "",
+    "region": "",
+    "latitude": 54.5742,
+    "longitude": -1.2349,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Middleton",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.02371,
+    "longitude": -2.90594,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Milford-on-sea",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.7352,
+    "longitude": -1.61734,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Millom",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.19779,
+    "longitude": -3.28347,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Milton Keynes",
+    "county": "",
+    "region": "",
+    "latitude": 52.0406,
+    "longitude": -0.7594,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Minehead",
+    "county": "",
+    "region": "",
+    "latitude": 51.205,
+    "longitude": -3.475,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Minster-on-Sea",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.41948,
+    "longitude": 0.83188,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Moelfre",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.35719,
+    "longitude": -4.26867,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Monk Hesleden",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.73309,
+    "longitude": -1.25924,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Moray",
+    "county": "Moray",
+    "region": "Scotland",
+    "latitude": 57.71357,
+    "longitude": -3.37484,
+    "park_count": 7,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Morecambe",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.07,
+    "longitude": -2.86,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Morland",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.59878,
+    "longitude": -2.60666,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mortehoe",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.17129,
+    "longitude": -4.17466,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mullion",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.01545,
+    "longitude": -5.25283,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mumby",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.23099,
+    "longitude": 0.2736,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Mynachlog-Ddu",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.93243,
+    "longitude": -4.69801,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Nacton",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.01916,
+    "longitude": 1.19279,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Narberth",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.79077,
+    "longitude": -4.73982,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Nateby",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.90498,
+    "longitude": -2.78856,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Natland",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.28856,
+    "longitude": -2.73807,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Nefyn",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.94035,
+    "longitude": -4.51291,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Nether Kellet",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.11052,
+    "longitude": -2.74554,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Nether Wyresdale",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.94912,
+    "longitude": -2.73935,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "New Milton",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.75652,
+    "longitude": -1.66879,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "New Quay",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.20656,
+    "longitude": -4.34581,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "New Radnor",
+    "county": "Powys",
+    "region": "South Wales",
+    "latitude": 52.23668,
+    "longitude": -3.14946,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "New Romney",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 50.98918,
+    "longitude": 0.96006,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Newbiggin by the Sea",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.17646,
+    "longitude": -1.5146,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Newcastle upon Tyne",
+    "county": "",
+    "region": "",
+    "latitude": 54.9783,
+    "longitude": -1.6178,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Newport",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.5842,
+    "longitude": -2.9977,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Newquay",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.4155,
+    "longitude": -5.0737,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Newry, Mourne and Down",
+    "county": "Newry, Mourne and Down",
+    "region": "Scotland",
+    "latitude": 54.03488,
+    "longitude": -6.06783,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Newton on Derwent",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.93738,
+    "longitude": -0.89645,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North and Middle Littleton",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.12195,
+    "longitude": -1.90556,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Ayrshire",
+    "county": "North Ayrshire",
+    "region": "Scotland",
+    "latitude": 55.64758,
+    "longitude": -4.69114,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Bradley",
+    "county": "Wiltshire",
+    "region": "South West",
+    "latitude": 51.27084,
+    "longitude": -2.23171,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Cowton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.44197,
+    "longitude": -1.55133,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Meols",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.66971,
+    "longitude": -2.91548,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Mundham",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.82362,
+    "longitude": -0.75066,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Sunderland",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.58222,
+    "longitude": -1.65582,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Tawton",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.80378,
+    "longitude": -3.85836,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "North Tyneside",
+    "county": "North Tyneside",
+    "region": "North East",
+    "latitude": 55.06448,
+    "longitude": -1.46142,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Northallerton",
+    "county": "",
+    "region": "",
+    "latitude": 54.339,
+    "longitude": -1.44,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Northam",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 51.04338,
+    "longitude": -4.22554,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Northampton",
+    "county": "West Northamptonshire",
+    "region": "Central England",
+    "latitude": 52.2405,
+    "longitude": -0.9027,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Northmoor",
+    "county": "Oxfordshire",
+    "region": "South East",
+    "latitude": 51.73483,
+    "longitude": -1.37395,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Norwich",
+    "county": "",
+    "region": "",
+    "latitude": 52.6309,
+    "longitude": 1.2974,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Nottingham",
+    "county": "",
+    "region": "",
+    "latitude": 52.9548,
+    "longitude": -1.1581,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Nunnykirk",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.24653,
+    "longitude": -1.80267,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Oban",
+    "county": "",
+    "region": "",
+    "latitude": 56.415,
+    "longitude": -5.471,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Offcote and Underwood",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 53.02739,
+    "longitude": -1.7352,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Oldham",
+    "county": "",
+    "region": "",
+    "latitude": 53.541,
+    "longitude": -2.118,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Ombersley",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.30759,
+    "longitude": -2.26906,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ord",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.75727,
+    "longitude": -2.03273,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ormesby St. Margaret with Scratby",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.67508,
+    "longitude": 1.71782,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ormside",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.54893,
+    "longitude": -2.46421,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Osmotherley",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.37609,
+    "longitude": -1.29339,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Oswaldkirk",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.21413,
+    "longitude": -1.06016,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Otterham",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.68741,
+    "longitude": -4.5965,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Otterton",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.66029,
+    "longitude": -3.27963,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Oulton Broad",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.47012,
+    "longitude": 1.70736,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Out Rawcliffe",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.86904,
+    "longitude": -2.88999,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Over Kellet",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.13759,
+    "longitude": -2.70392,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ovingham",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 54.9732,
+    "longitude": -1.85056,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ovington",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.53246,
+    "longitude": -1.78672,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Owermoigne",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.68299,
+    "longitude": -2.32304,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Oxford",
+    "county": "",
+    "region": "",
+    "latitude": 51.752,
+    "longitude": -1.2577,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Padstow",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.52472,
+    "longitude": -4.94972,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pagham",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.77024,
+    "longitude": -0.74495,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Paignton",
+    "county": "",
+    "region": "",
+    "latitude": 50.435,
+    "longitude": -3.565,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Pancrasweek",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.86418,
+    "longitude": -4.38269,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Paythorne",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.96305,
+    "longitude": -2.26702,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Peacehaven",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.78769,
+    "longitude": 0.02702,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pelynt",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.35636,
+    "longitude": -4.49896,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pembroke",
+    "county": "",
+    "region": "",
+    "latitude": 51.674,
+    "longitude": -4.917,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Pen-y-Bont-Fawr",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.80642,
+    "longitude": -3.36414,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penally",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.66054,
+    "longitude": -4.73973,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penbryn",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.11164,
+    "longitude": -4.45223,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pendine",
+    "county": "Carmarthenshire",
+    "region": "South Wales",
+    "latitude": 51.74817,
+    "longitude": -4.55955,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penmaenmawr",
+    "county": "Conwy",
+    "region": "North Wales",
+    "latitude": 53.27599,
+    "longitude": -3.89756,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penrhyndeudraeth",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.93265,
+    "longitude": -4.08106,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penrice",
+    "county": "Swansea",
+    "region": "South Wales",
+    "latitude": 51.55275,
+    "longitude": -4.18643,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pentraeth",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.2907,
+    "longitude": -4.22403,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Penzance",
+    "county": "",
+    "region": "",
+    "latitude": 50.1186,
+    "longitude": -5.537,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Perranzabuloe",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.34777,
+    "longitude": -5.11841,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Perth",
+    "county": "",
+    "region": "",
+    "latitude": 56.395,
+    "longitude": -3.43,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Perth and Kinross",
+    "county": "Perth and Kinross",
+    "region": "Scotland",
+    "latitude": 56.57226,
+    "longitude": -3.53893,
+    "park_count": 10,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Peterborough",
+    "county": "",
+    "region": "",
+    "latitude": 52.5695,
+    "longitude": -0.2405,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Peterchurch",
+    "county": "Herefordshire, County of",
+    "region": "Central England",
+    "latitude": 52.03526,
+    "longitude": -2.94639,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Petersfield",
+    "county": "Hampshire",
+    "region": "South East",
+    "latitude": 50.99489,
+    "longitude": -0.93797,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pevensey",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.80467,
+    "longitude": 0.34197,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pickering",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.22199,
+    "longitude": -0.77054,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pitlochry",
+    "county": "",
+    "region": "",
+    "latitude": 56.703,
+    "longitude": -3.73,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Plymouth",
+    "county": "",
+    "region": "",
+    "latitude": 50.3755,
+    "longitude": -4.1427,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Pocklington",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.91247,
+    "longitude": -0.77079,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Polperro",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.34216,
+    "longitude": -4.5107,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Poole",
+    "county": "",
+    "region": "",
+    "latitude": 50.715,
+    "longitude": -1.9872,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Porthcawl",
+    "county": "Bridgend",
+    "region": "South Wales",
+    "latitude": 51.48176,
+    "longitude": -3.68192,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Porthmadog",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.925,
+    "longitude": -4.13,
+    "park_count": 6,
+    "source": "reference"
+  },
+  {
+    "name": "Portland",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.53805,
+    "longitude": -2.43121,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Portsmouth",
+    "county": "",
+    "region": "",
+    "latitude": 50.8198,
+    "longitude": -1.088,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Poundstock",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.77966,
+    "longitude": -4.56113,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Preesall",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.92854,
+    "longitude": -2.97104,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Prestatyn",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.33783,
+    "longitude": -3.4175,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Presteigne",
+    "county": "Powys",
+    "region": "South Wales",
+    "latitude": 52.28261,
+    "longitude": -3.03192,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Preston",
+    "county": "",
+    "region": "",
+    "latitude": 53.7632,
+    "longitude": -2.7031,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Preston Patrick",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.26211,
+    "longitude": -2.70164,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Preston Richard",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.26283,
+    "longitude": -2.70225,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Pwllheli",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.88236,
+    "longitude": -4.404,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Quernmore",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.07253,
+    "longitude": -2.7352,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ramsgate",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.335,
+    "longitude": 1.42,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Ratby",
+    "county": "Leicestershire",
+    "region": "Central England",
+    "latitude": 52.66198,
+    "longitude": -1.27018,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ravensworth",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.47456,
+    "longitude": -1.77301,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Reading",
+    "county": "",
+    "region": "",
+    "latitude": 51.4543,
+    "longitude": -0.9781,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Redcar and Cleveland",
+    "county": "Redcar and Cleveland",
+    "region": "North East",
+    "latitude": 54.61937,
+    "longitude": -1.08597,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Reighton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.16563,
+    "longitude": -0.25453,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rhoose",
+    "county": "Vale of Glamorgan",
+    "region": "South Wales",
+    "latitude": 51.38634,
+    "longitude": -3.32744,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rhuddlan",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.28583,
+    "longitude": -3.45773,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rhyl",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.321,
+    "longitude": -3.49,
+    "park_count": 5,
+    "source": "reference"
+  },
+  {
+    "name": "Richard's Castle (Shropshire)",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.34105,
+    "longitude": -2.71452,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Richmond",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.40421,
+    "longitude": -1.75576,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rimington",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.91844,
+    "longitude": -2.26145,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ringmore",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.28948,
+    "longitude": -3.89881,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ripon",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.138,
+    "longitude": -1.523,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Rochdale",
+    "county": "",
+    "region": "",
+    "latitude": 53.614,
+    "longitude": -2.156,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Rochester",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.30815,
+    "longitude": -2.3494,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rookley",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.65328,
+    "longitude": -1.27701,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Roos",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.76519,
+    "longitude": -0.01635,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rosedale East Side",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.3533,
+    "longitude": -0.88786,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Rotherham",
+    "county": "",
+    "region": "",
+    "latitude": 53.4302,
+    "longitude": -1.3568,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Routh",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.86851,
+    "longitude": -0.34654,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Runton",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.9355,
+    "longitude": 1.27336,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ryde",
+    "county": "",
+    "region": "",
+    "latitude": 50.729,
+    "longitude": -1.16,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Saddleworth",
+    "county": "Oldham",
+    "region": "North West",
+    "latitude": 53.59936,
+    "longitude": -2.03654,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Salford",
+    "county": "",
+    "region": "",
+    "latitude": 53.487,
+    "longitude": -2.29,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Salford Priors",
+    "county": "Warwickshire",
+    "region": "Central England",
+    "latitude": 52.14651,
+    "longitude": -1.89044,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Salisbury",
+    "county": "",
+    "region": "",
+    "latitude": 51.0688,
+    "longitude": -1.7945,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Saltash",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.4264,
+    "longitude": -4.27471,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Santon Downham",
+    "county": "Suffolk",
+    "region": "General East",
+    "latitude": 52.44274,
+    "longitude": 0.68151,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Saundersfoot",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.70956,
+    "longitude": -4.70073,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Scarborough",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.283,
+    "longitude": -0.399,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Scarisbrick",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.58876,
+    "longitude": -2.90465,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Scottish Borders",
+    "county": "Scottish Borders",
+    "region": "Scotland",
+    "latitude": 55.74595,
+    "longitude": -2.4238,
+    "park_count": 10,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Scotton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.03623,
+    "longitude": -1.48976,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sea Palling",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.78794,
+    "longitude": 1.60072,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sealand",
+    "county": "Flintshire",
+    "region": "North Wales",
+    "latitude": 53.19273,
+    "longitude": -2.93744,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sefton",
+    "county": "Sefton",
+    "region": "North West",
+    "latitude": 53.58855,
+    "longitude": -3.04433,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Selsey",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.7382,
+    "longitude": -0.7979,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sennen",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.07142,
+    "longitude": -5.69471,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Shaldon",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.53502,
+    "longitude": -3.50317,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Shanklin",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.63,
+    "longitude": -1.18,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Shardlow and Great Wilne",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 52.86719,
+    "longitude": -1.34629,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sheffield",
+    "county": "",
+    "region": "",
+    "latitude": 53.3811,
+    "longitude": -1.4701,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Shobdon",
+    "county": "Herefordshire, County of",
+    "region": "Central England",
+    "latitude": 52.25284,
+    "longitude": -2.89067,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Shrawley",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.28164,
+    "longitude": -2.28722,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Shrewsbury",
+    "county": "",
+    "region": "",
+    "latitude": 52.707,
+    "longitude": -2.754,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Sidmouth",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.69153,
+    "longitude": -3.19339,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Silloth-on-Solway",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.87102,
+    "longitude": -3.38097,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Silsden",
+    "county": "Bradford",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.92443,
+    "longitude": -1.91169,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Silverdale",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.17536,
+    "longitude": -2.8346,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Singleton",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.85283,
+    "longitude": -2.92861,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Skegness",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.1435,
+    "longitude": 0.335,
+    "park_count": 6,
+    "source": "reference"
+  },
+  {
+    "name": "Skidbrooke with Saltfleet Haven",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.42438,
+    "longitude": 0.18736,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Skipsea",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.9746,
+    "longitude": -0.20514,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Skipton",
+    "county": "",
+    "region": "",
+    "latitude": 53.961,
+    "longitude": -2.016,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Slough",
+    "county": "",
+    "region": "",
+    "latitude": 51.51,
+    "longitude": -0.595,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Slyne-with-Hest",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.08481,
+    "longitude": -2.79547,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Snettisham",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.87057,
+    "longitude": 0.45054,
+    "park_count": 13,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Ayrshire",
+    "county": "South Ayrshire",
+    "region": "Scotland",
+    "latitude": 55.39291,
+    "longitude": -4.70671,
+    "park_count": 9,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Cerney",
+    "county": "Gloucestershire",
+    "region": "South West",
+    "latitude": 51.66235,
+    "longitude": -1.92351,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Heighton",
+    "county": "East Sussex",
+    "region": "South East",
+    "latitude": 50.81159,
+    "longitude": 0.05422,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Kelsey",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.48135,
+    "longitude": -0.3791,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Otterington",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.28769,
+    "longitude": -1.42045,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "South Tyneside",
+    "county": "South Tyneside",
+    "region": "North East",
+    "latitude": 54.97531,
+    "longitude": -1.37875,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Southampton",
+    "county": "",
+    "region": "",
+    "latitude": 50.9097,
+    "longitude": -1.4044,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Southend-on-Sea",
+    "county": "",
+    "region": "",
+    "latitude": 51.54,
+    "longitude": 0.71,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Southport",
+    "county": "",
+    "region": "",
+    "latitude": 53.648,
+    "longitude": -3.01,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "St Albans",
+    "county": "",
+    "region": "",
+    "latitude": 51.752,
+    "longitude": -0.336,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "St Andrews",
+    "county": "",
+    "region": "",
+    "latitude": 56.34,
+    "longitude": -2.795,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "St Helens",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.70099,
+    "longitude": -1.11041,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St Ives",
+    "county": "",
+    "region": "",
+    "latitude": 50.211,
+    "longitude": -5.48,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "St Osyth",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.78255,
+    "longitude": 1.08236,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Dogmaels",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 52.10034,
+    "longitude": -4.70086,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Florence",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.69287,
+    "longitude": -4.75732,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Gennys",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.71844,
+    "longitude": -4.61629,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Giles on the Heath",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.71411,
+    "longitude": -4.33029,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Goran",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.23593,
+    "longitude": -4.81866,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Ishmael",
+    "county": "Carmarthenshire",
+    "region": "South Wales",
+    "latitude": 51.73784,
+    "longitude": -4.35469,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Lawrence",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.71472,
+    "longitude": 0.82756,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Leonards and St. Ives",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.82521,
+    "longitude": -1.85331,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Margaret's at Cliffe",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.15037,
+    "longitude": 1.36624,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Martin-by-Looe",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.37905,
+    "longitude": -4.4339,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Mary Out Liberty",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.69406,
+    "longitude": -4.70744,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Minver Highlands",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.54393,
+    "longitude": -4.86938,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "St. Newlyn East",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.37435,
+    "longitude": -5.01164,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stafford",
+    "county": "",
+    "region": "",
+    "latitude": 52.806,
+    "longitude": -2.117,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Staining",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.8239,
+    "longitude": -3.00057,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stainmore",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.50877,
+    "longitude": -2.2729,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stalmine-with-Staynall",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.88333,
+    "longitude": -2.96967,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stamford Bridge",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.99206,
+    "longitude": -0.91631,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stanford Bishop",
+    "county": "Herefordshire, County of",
+    "region": "Central England",
+    "latitude": 52.17269,
+    "longitude": -2.45187,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stanhope",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.73742,
+    "longitude": -2.02743,
+    "park_count": 6,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stanton St. Gabriel",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.73849,
+    "longitude": -2.89006,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Staveley-in-Cartmel",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.26156,
+    "longitude": -2.96061,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Steeple",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.69257,
+    "longitude": 0.79032,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stirling",
+    "county": "Stirling",
+    "region": "Scotland",
+    "latitude": 56.1165,
+    "longitude": -3.9369,
+    "park_count": 5,
+    "source": "reference"
+  },
+  {
+    "name": "Stirton with Thorlby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.97437,
+    "longitude": -2.03633,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stockport",
+    "county": "",
+    "region": "",
+    "latitude": 53.408,
+    "longitude": -2.149,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Stoke-on-Trent",
+    "county": "",
+    "region": "",
+    "latitude": 53.0027,
+    "longitude": -2.1794,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Stonebeck Down",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.12234,
+    "longitude": -1.82395,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stourmouth",
+    "county": "Kent",
+    "region": "South East",
+    "latitude": 51.32408,
+    "longitude": 1.25592,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stourport-on-Severn",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.33955,
+    "longitude": -2.29159,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Stratford-upon-Avon",
+    "county": "Warwickshire",
+    "region": "Central England",
+    "latitude": 52.192,
+    "longitude": -1.707,
+    "park_count": 2,
+    "source": "reference"
+  },
+  {
+    "name": "Strete",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.31195,
+    "longitude": -3.63104,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sully and Lavernock",
+    "county": "Vale of Glamorgan",
+    "region": "South Wales",
+    "latitude": 51.40448,
+    "longitude": -3.18655,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sunderland",
+    "county": "",
+    "region": "",
+    "latitude": 54.9069,
+    "longitude": -1.3838,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Sutton-on-the-Forest",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.05927,
+    "longitude": -1.09438,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Swanage",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.61125,
+    "longitude": -1.97237,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Swansea",
+    "county": "",
+    "region": "",
+    "latitude": 51.6214,
+    "longitude": -3.9436,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Swindon",
+    "county": "",
+    "region": "",
+    "latitude": 51.5558,
+    "longitude": -1.7797,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Symondsbury",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.72301,
+    "longitude": -2.77827,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Sywell",
+    "county": "North Northamptonshire",
+    "region": "Central England",
+    "latitude": 52.27964,
+    "longitude": -0.80534,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tansley",
+    "county": "Derbyshire",
+    "region": "Central England",
+    "latitude": 53.14765,
+    "longitude": -1.51992,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tattershall",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.09542,
+    "longitude": -0.20363,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Taunton",
+    "county": "",
+    "region": "",
+    "latitude": 51.015,
+    "longitude": -3.1,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Tedburn St. Mary",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.72883,
+    "longitude": -3.71814,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Telford",
+    "county": "",
+    "region": "",
+    "latitude": 52.678,
+    "longitude": -2.445,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Tenbury",
+    "county": "Worcestershire",
+    "region": "Central England",
+    "latitude": 52.28511,
+    "longitude": -2.62129,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tenby",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.673,
+    "longitude": -4.702,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Tendring",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.80367,
+    "longitude": 1.13865,
+    "park_count": 5,
+    "source": "park-centroid"
+  },
+  {
+    "name": "The Havens",
+    "county": "Pembrokeshire",
+    "region": "South Wales",
+    "latitude": 51.78997,
+    "longitude": -5.07834,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Thirkleby High and Low with Osgodby",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.20716,
+    "longitude": -1.2824,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Thirston",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.27323,
+    "longitude": -1.70963,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Thornham",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.96242,
+    "longitude": 0.58214,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Thornton in Lonsdale",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.15812,
+    "longitude": -2.50782,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Threshfield",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.07952,
+    "longitude": -2.03378,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tirymynach",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.43494,
+    "longitude": -4.07106,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tollerton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.07297,
+    "longitude": -1.2162,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Topcliffe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.17755,
+    "longitude": -1.3906,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Torbay",
+    "county": "Torbay",
+    "region": "South West",
+    "latitude": 50.41862,
+    "longitude": -3.58128,
+    "park_count": 8,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Torquay",
+    "county": "",
+    "region": "",
+    "latitude": 50.4619,
+    "longitude": -3.5253,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Trearddur",
+    "county": "Isle of Anglesey",
+    "region": "North Wales",
+    "latitude": 53.27502,
+    "longitude": -4.61077,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tremeirchion",
+    "county": "Denbighshire",
+    "region": "North Wales",
+    "latitude": 53.26259,
+    "longitude": -3.39925,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Truro",
+    "county": "",
+    "region": "",
+    "latitude": 50.2632,
+    "longitude": -5.051,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Tunstall",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.35751,
+    "longitude": -1.69387,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Twyning",
+    "county": "Gloucestershire",
+    "region": "Central England",
+    "latitude": 52.02368,
+    "longitude": -2.15681,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tywardreath and Par",
+    "county": "Cornwall",
+    "region": "South West",
+    "latitude": 50.34858,
+    "longitude": -4.69611,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Tywyn",
+    "county": "Gwynedd",
+    "region": "North Wales",
+    "latitude": 52.58158,
+    "longitude": -4.09547,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ugthorpe",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.49346,
+    "longitude": -0.78292,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Ulrome",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.99453,
+    "longitude": -0.22291,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Upper Rawcliffe-with-Tarnacre",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.86513,
+    "longitude": -2.84194,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Upton",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.04292,
+    "longitude": -3.39917,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wakefield",
+    "county": "",
+    "region": "",
+    "latitude": 53.6833,
+    "longitude": -1.4977,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Walton-in-Gordano",
+    "county": "North Somerset",
+    "region": "South West",
+    "latitude": 51.46493,
+    "longitude": -2.82744,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wareham St. Martin",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.72001,
+    "longitude": -2.08624,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Warkworth",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.34517,
+    "longitude": -1.61583,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Warrington",
+    "county": "",
+    "region": "",
+    "latitude": 53.39,
+    "longitude": -2.597,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Warsill",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.08191,
+    "longitude": -1.65292,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Warton",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 54.14646,
+    "longitude": -2.77904,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Warwick",
+    "county": "",
+    "region": "",
+    "latitude": 52.282,
+    "longitude": -1.585,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Wasdale",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.42377,
+    "longitude": -3.34791,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Watford",
+    "county": "",
+    "region": "",
+    "latitude": 51.656,
+    "longitude": -0.396,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Weeley",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.85704,
+    "longitude": 1.11717,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Welburn (Sheriff Hutton & Derwent Ward)",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.09322,
+    "longitude": -0.87958,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Welshampton and Lyneal",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.89617,
+    "longitude": -2.81654,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Welshpool",
+    "county": "Powys",
+    "region": "North Wales",
+    "latitude": 52.68776,
+    "longitude": -3.15047,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wembury",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.33752,
+    "longitude": -4.11398,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wentnor",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.53412,
+    "longitude": -2.91407,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Allen",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 54.89262,
+    "longitude": -2.33974,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Ashby",
+    "county": "Lincolnshire",
+    "region": "Central England",
+    "latitude": 53.23427,
+    "longitude": -0.12258,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Dunbartonshire",
+    "county": "West Dunbartonshire",
+    "region": "Scotland",
+    "latitude": 56.00241,
+    "longitude": -4.59365,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Grinstead",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.95297,
+    "longitude": -0.35923,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Lancashire",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.58228,
+    "longitude": -2.85674,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Lulworth",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.62932,
+    "longitude": -2.26832,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Mersea",
+    "county": "Essex",
+    "region": "General East",
+    "latitude": 51.77542,
+    "longitude": 0.9339,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Quantoxhead",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.18006,
+    "longitude": -3.27146,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "West Wittering",
+    "county": "West Sussex",
+    "region": "South East",
+    "latitude": 50.78767,
+    "longitude": -0.86612,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Westby-with-Plumptons",
+    "county": "Lancashire",
+    "region": "North West",
+    "latitude": 53.78532,
+    "longitude": -2.97831,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Weston-super-Mare",
+    "county": "North Somerset",
+    "region": "South West",
+    "latitude": 51.346,
+    "longitude": -2.977,
+    "park_count": 1,
+    "source": "reference"
+  },
+  {
+    "name": "Westward",
+    "county": "Cumberland",
+    "region": "North West",
+    "latitude": 54.77631,
+    "longitude": -3.13206,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Weybourne",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.92979,
+    "longitude": 1.15212,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Weymouth",
+    "county": "Dorset",
+    "region": "South West",
+    "latitude": 50.614,
+    "longitude": -2.457,
+    "park_count": 4,
+    "source": "reference"
+  },
+  {
+    "name": "Wheathill",
+    "county": "Shropshire",
+    "region": "Central England",
+    "latitude": 52.42606,
+    "longitude": -2.57758,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Whitby",
+    "county": "",
+    "region": "",
+    "latitude": 54.4863,
+    "longitude": -0.6133,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Whitehaven",
+    "county": "",
+    "region": "",
+    "latitude": 54.549,
+    "longitude": -3.587,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Whitton and Tosson",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.30246,
+    "longitude": -1.9154,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Whorlton",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.41215,
+    "longitude": -1.26402,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wigan",
+    "county": "",
+    "region": "",
+    "latitude": 53.545,
+    "longitude": -2.632,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Wigglesworth",
+    "county": "North Yorkshire",
+    "region": "North West",
+    "latitude": 53.99764,
+    "longitude": -2.33658,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Williton",
+    "county": "Somerset",
+    "region": "South West",
+    "latitude": 51.18083,
+    "longitude": -3.29831,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Winchester",
+    "county": "",
+    "region": "",
+    "latitude": 51.0632,
+    "longitude": -1.308,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Windermere",
+    "county": "",
+    "region": "",
+    "latitude": 54.38,
+    "longitude": -2.905,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Windermere and Bowness",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.36698,
+    "longitude": -2.9216,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Winksley",
+    "county": "North Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 54.14036,
+    "longitude": -1.62487,
+    "park_count": 3,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Winsford",
+    "county": "Cheshire West and Chester",
+    "region": "North West",
+    "latitude": 53.18502,
+    "longitude": -2.51571,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Withernsea",
+    "county": "East Riding of Yorkshire",
+    "region": "Yorkshire and Humber",
+    "latitude": 53.73796,
+    "longitude": 0.02404,
+    "park_count": 4,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wolsingham",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.72123,
+    "longitude": -1.83748,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wolverhampton",
+    "county": "",
+    "region": "",
+    "latitude": 52.587,
+    "longitude": -2.1288,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Woodbury",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.68184,
+    "longitude": -3.37607,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wooler",
+    "county": "Northumberland",
+    "region": "North East",
+    "latitude": 55.54562,
+    "longitude": -2.01103,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Woolfardisworthy",
+    "county": "Devon",
+    "region": "South West",
+    "latitude": 50.98675,
+    "longitude": -4.35663,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wootton Bridge",
+    "county": "Isle of Wight",
+    "region": "South East",
+    "latitude": 50.74076,
+    "longitude": -1.22905,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Worcester",
+    "county": "",
+    "region": "",
+    "latitude": 52.192,
+    "longitude": -2.22,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Worthing",
+    "county": "",
+    "region": "",
+    "latitude": 50.8179,
+    "longitude": -0.3729,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Wortwell",
+    "county": "Norfolk",
+    "region": "General East",
+    "latitude": 52.41549,
+    "longitude": 1.35231,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Wrexham",
+    "county": "",
+    "region": "",
+    "latitude": 53.043,
+    "longitude": -2.993,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Wycliffe with Thorpe",
+    "county": "County Durham",
+    "region": "North East",
+    "latitude": 54.50969,
+    "longitude": -1.85648,
+    "park_count": 2,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Y Ferwig",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.13517,
+    "longitude": -4.63471,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "Yanwath and Eamont Bridge",
+    "county": "Westmorland and Furness",
+    "region": "North West",
+    "latitude": 54.6301,
+    "longitude": -2.73774,
+    "park_count": 1,
+    "source": "park-centroid"
+  },
+  {
+    "name": "York",
+    "county": "",
+    "region": "",
+    "latitude": 53.96,
+    "longitude": -1.0873,
+    "park_count": 0,
+    "source": "reference"
+  },
+  {
+    "name": "Ystrad Fflur",
+    "county": "Ceredigion",
+    "region": "South Wales",
+    "latitude": 52.26655,
+    "longitude": -3.8731,
+    "park_count": 1,
+    "source": "park-centroid"
+  }
+]

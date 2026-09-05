@@ -11,6 +11,7 @@
   :root {
     --ink: #16283A;
     --navy: #122536;
+    --navy-deep: #0C1B29;
     --cream: #F6F0E4;
     --card: #FFFDF8;
     --mustard: #E8A93D;
@@ -35,63 +36,152 @@
 
   a { color: var(--teal); }
 
+  /* ---------- Header (shared across the site) ---------- */
   header.hero {
-    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
     color: var(--cream);
-    padding: 44px 24px 0;
+    padding: 0 0 28px;
   }
 
-  .hero-inner {
+  /* soft colour wash + fine texture, all in CSS so nothing extra to load */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
     max-width: 1100px;
     margin: 0 auto;
-    padding-bottom: 24px;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
   }
 
   .hero-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--mustard);
     font-weight: 600;
-    margin: 0 0 6px;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 16px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
   }
 
   h1.hero-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(40px, 7vw, 64px);
-    letter-spacing: 0.01em;
-    margin: 0 0 10px;
-    line-height: 0.95;
+    font-size: clamp(44px, 8vw, 76px);
+    letter-spacing: 0.005em;
+    margin: 0 0 12px;
+    line-height: 0.9;
   }
+  h1.hero-title .accent { color: var(--mustard); }
 
   .hero-sub {
-    font-size: 16px;
-    color: #D8DFE3;
-    max-width: 46ch;
-    margin: 0 0 18px;
+    font-size: 16.5px;
+    color: #CFDAE2;
+    max-width: 52ch;
+    margin: 0;
   }
 
-  nav.site-nav {
-    display: flex;
-    gap: 18px;
-    padding: 0 0 18px;
-    flex-wrap: wrap;
+  @media (max-width: 640px) {
+    header.hero { padding: 0 0 24px; }
+    .hero-inner { padding-top: 32px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
   }
 
-  nav.site-nav a {
-    color: #D8DFE3;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 4px;
-  }
-
-  nav.site-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
-  nav.site-nav a:hover { color: var(--mustard); }
 
   main {
     max-width: 1100px;
@@ -242,6 +332,171 @@
     color: var(--muted);
     font-size: 14.5px;
   }
+
+  /* ---------- Caravan listings (embedded from caravans.html) ---------- */
+  .listings-section { margin-top: 40px; }
+
+  .listings-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px 20px;
+    margin-bottom: 18px;
+  }
+
+  .listings-head h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  .listings-head .panel-sub { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .field label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .field select {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+    min-width: 190px;
+  }
+  .field select:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-name { font-size: 16px; font-weight: 700; margin: 0 0 2px; }
+  .card-name-link { color: inherit; text-decoration: none; }
+  .card-name-link:hover, .card-name-link:focus-visible { color: var(--teal); text-decoration: underline; }
+  .card-make { font-size: 13px; color: var(--muted); margin: 0; }
+
+  .price-tag {
+    flex-shrink: 0;
+    background: var(--mustard);
+    color: var(--mustard-dark);
+    font-weight: 700;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    padding: 6px 10px 6px 12px;
+    border-radius: 4px;
+    border-left: 2px dashed rgba(138, 95, 30, 0.5);
+    transform: rotate(-1.5deg);
+    white-space: nowrap;
+  }
+
+  .card-meta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .card-meta li { display: flex; align-items: center; gap: 7px; }
+  .card-meta svg { flex-shrink: 0; width: 14px; height: 14px; color: var(--teal); }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .card-source { font-size: 11px; color: var(--muted); }
+  .card-link { font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .card-link:hover { text-decoration: underline; }
+
+  .listings-count { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+
+  /* ---------- Pagination ---------- */
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 0 0;
+  }
+  .pagination-info { font-size: 13px; color: var(--muted); }
+  .pagination-controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+  .page-btn, .page-num-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 11px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .page-btn:hover:not(:disabled), .page-num-btn:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+  .page-btn:disabled { opacity: 0.4; cursor: default; }
+  .page-num-btn { min-width: 34px; text-align: center; }
+  .page-num-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; cursor: default; }
+  .page-numbers { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .page-ellipsis { padding: 0 4px; color: var(--muted); font-size: 13px; }
+
+  @media (max-width: 640px) {
+    .pagination { flex-direction: column; align-items: stretch; }
+    .pagination-controls { justify-content: center; }
+    .listings-head .field select { min-width: 0; width: 100%; }
+  }
+
+  .listings-empty {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+    color: var(--muted);
+    font-size: 14.5px;
+    text-align: center;
+  }
+
   footer {
     text-align: center;
     font-size: 12px;
@@ -253,16 +508,21 @@
 <body>
 
 <header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html">Compare</a>
+        <a href="caravans.html">All listings</a>
+        <a href="map.html">Search by region</a>
+        <a href="parks.html">List of parks</a>
+      </nav>
+    </div>
+  </div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Static caravans &amp; holiday homes</p>
-    <h1 class="hero-title">Static Caravan Watch</h1>
-    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
-    <nav class="site-nav">
-      <a href="index.html">All listings</a>
-      <a href="map.html">Search by region</a>
-      <a href="coming-soon.html">Coming soon</a>
-      <a href="parks.html">list of parks</a>
-    </nav>
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Park <span class="accent">Information</span></h1>
+    <p class="hero-sub">Contact details, pitch fees and park size for a single holiday park.</p>
   </div>
 </header>
 
@@ -272,7 +532,6 @@
     Back to the map
   </a>
 
-  <p class="page-eyebrow">Park information</p>
   <h2 class="page-title" id="park-title">Loading&hellip;</h2>
   <p class="page-intro" id="park-strap">&nbsp;</p>
 
@@ -294,9 +553,38 @@
     </div>
 
     <div class="park-actions">
-      <a class="park-btn" id="listings-btn" href="index.html">View caravans at this park</a>
       <a class="park-btn ghost" id="website-btn" href="#" target="_blank" rel="noopener">Visit park website</a>
     </div>
+
+    <section class="listings-section" id="listings-section">
+      <div class="listings-head">
+        <div>
+          <h3>Caravans for sale here</h3>
+          <p class="panel-sub" id="listings-sub">Listings currently on the market at this park</p>
+        </div>
+        <div class="field">
+          <label for="listings-sort">Sort by</label>
+          <select id="listings-sort">
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="name-asc">Name: A&ndash;Z</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="listings-count" id="listings-count"></p>
+      <div class="grid" id="listings-grid"></div>
+      <div class="listings-empty" id="listings-empty" style="display:none;"></div>
+
+      <div class="pagination" id="listings-pagination" style="display:none;">
+        <div class="pagination-info"></div>
+        <div class="pagination-controls">
+          <button type="button" class="page-btn" data-action="prev">&lsaquo; Prev</button>
+          <div class="page-numbers"></div>
+          <button type="button" class="page-btn" data-action="next">Next &rsaquo;</button>
+        </div>
+      </div>
+    </section>
   </div>
 
   <div class="park-error" id="park-error" style="display:none;"></div>
@@ -306,6 +594,7 @@
 
 <script>
 const PARKS_JSON_PATH = 'parks.json';
+const DATA_JSON_PATH = 'data.json';
 const params = new URLSearchParams(window.location.search);
 const wantName = (params.get('park') || '').trim();
 const wantPc = (params.get('pc') || '').trim().toUpperCase();
@@ -353,9 +642,13 @@ function showError(msg) {
 if (!wantName) {
   showError('No park was specified. Head <a href="map.html">back to the region map</a> and pick a pin.');
 } else {
-  fetch(PARKS_JSON_PATH)
-    .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
-    .then(parks => {
+  Promise.all([
+    fetch(PARKS_JSON_PATH).then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); }),
+    fetch(DATA_JSON_PATH).then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+      .then(text => JSON.parse(text.replace(/:\s*NaN/g, ': null')))
+      .catch(err => { console.error('Could not load listings data.json', err); return null; })
+  ])
+    .then(([parks, listings]) => {
       const lname = wantName.toLowerCase();
       let p = parks.find(x => (x.park_name || '').toLowerCase() === lname &&
                               (!wantPc || (x.postcode || '').toUpperCase() === wantPc));
@@ -366,6 +659,7 @@ if (!wantName) {
         return;
       }
       render(p);
+      initListings(p, listings || []);
     })
     .catch(err => {
       console.error(err);
@@ -385,6 +679,10 @@ function render(p) {
     ? escapeHtml(p.postcode) + ' &middot; <a href="https://www.google.com/maps/search/?api=1&query=' +
       encodeURIComponent(p.park_name + ' ' + p.postcode) + '" target="_blank" rel="noopener">Open in Maps</a>'
     : none());
+  const place = v => String(v ?? '').trim();
+  c += row('Region', place(p.region) ? escapeHtml(place(p.region)) : none('Not recorded'));
+  c += row('County', place(p.county) ? escapeHtml(place(p.county)) : none('Not recorded'));
+  c += row('Closest town', place(p.town) ? escapeHtml(place(p.town)) : none('Not recorded'));
   c += row('Phone', p.phone_number
     ? '<a href="' + telHref(p.phone_number) + '">' + escapeHtml(p.phone_number) + '</a>'
     : none('No phone number on file'));
@@ -417,14 +715,231 @@ function render(p) {
   feeBody.innerHTML = f;
 
   // ---- actions ----
-  const listings = document.getElementById('listings-btn');
-  listings.href = 'index.html?park=' + encodeURIComponent(p.park_name);
   const site = document.getElementById('website-btn');
   if (p.website) { site.href = encodeURI(p.website); }
   else { site.style.display = 'none'; }
 
   bodyEl.style.display = 'block';
 }
+
+// ---------------------------------------------------------------------------
+// Caravan listings for this park (embedded here instead of linking out to
+// caravans.html — logic mirrors caravans.html's park deep-link matching so
+// the same listings show up either way).
+// ---------------------------------------------------------------------------
+
+const ICONS = {
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>',
+  ruler: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="10" y1="9" x2="10" y2="12"/><line x1="14" y1="9" x2="14" y2="12"/><line x1="18" y1="9" x2="18" y2="12"/></svg>',
+  bed: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v2"/><path d="M12 12h7a2 2 0 0 1 2 2v4"/><path d="M3 18h18"/><rect x="3" y="9" width="7" height="3.5" rx="1"/></svg>',
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
+};
+
+// Same hashing scheme as caravans.html / caravan.html — keep in step so a
+// card's link lands on the right detail page.
+function caravanId(d) {
+  const parts = [
+    d.name, d.make, d.model, d.location, d.park,
+    d.price_number, d.bedrooms, d.year, d.dimensions,
+    d.source_site, d.listing_url
+  ].map(v => (v === null || v === undefined) ? '' : String(v)).join('|');
+  let h1 = 0x811c9dc5, h2 = 0x01000193;
+  for (let i = 0; i < parts.length; i++) {
+    const c = parts.charCodeAt(i);
+    h1 = (h1 ^ c) >>> 0;
+    h1 = Math.imul(h1, 0x01000193) >>> 0;
+    h2 = (h2 + c) >>> 0;
+    h2 = Math.imul(h2, 0x85ebca6b) >>> 0;
+  }
+  return h1.toString(36) + h2.toString(36);
+}
+
+function caravanHref(d) {
+  const i = (d._idx === undefined) ? '' : '&i=' + d._idx;
+  return 'caravan.html?id=' + encodeURIComponent(caravanId(d)) + i;
+}
+
+function formatListingDate(iso) {
+  if (!iso) return 'unknown date';
+  const d = new Date(iso + 'T00:00:00');
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+// Same normalisation caravans.html uses to line up a park name against the
+// messier "location" field in the listings data ("Aberconwy Resort & Spa"
+// vs "Aberconwy Resort and Spa, North Wales, Conwy").
+function normPark(str) {
+  return String(str ?? '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .split(' ')
+    .filter(w => w && w !== 'and')
+    .join(' ');
+}
+
+function listingsForPark(parkName, allListings) {
+  const target = normPark(parkName);
+  if (!target) return [];
+  const key = d => normPark((d.location || '').split(',')[0]);
+
+  const exact = allListings.filter(d => key(d) === target);
+  if (exact.length) return exact;
+
+  return allListings.filter(d => {
+    const k = key(d);
+    return k && (k.startsWith(target + ' ') || target.startsWith(k + ' '));
+  });
+}
+
+const listingsState = { sort: 'price-asc', page: 1, pageSize: 12 };
+let parkListings = [];
+
+const listingsSection = document.getElementById('listings-section');
+const listingsSub = document.getElementById('listings-sub');
+const listingsCountEl = document.getElementById('listings-count');
+const listingsGrid = document.getElementById('listings-grid');
+const listingsEmptyEl = document.getElementById('listings-empty');
+const listingsPaginationEl = document.getElementById('listings-pagination');
+const listingsSortEl = document.getElementById('listings-sort');
+
+function initListings(p, allListings) {
+  parkListings = listingsForPark(p.park_name, allListings);
+  parkListings.forEach(d => {
+    if (typeof d._idx !== 'number') {
+      const idx = allListings.indexOf(d);
+      if (idx !== -1) d._idx = idx;
+    }
+  });
+  renderListings();
+}
+
+function listingCardHTML(d) {
+  const dims = d.dimensions ? escapeHtml(d.dimensions) : 'Dimensions not listed';
+  const beds = (d.bedrooms !== null && d.bedrooms !== undefined) ? d.bedrooms + ' bedroom' + (d.bedrooms == 1 ? '' : 's') : 'Bedrooms not specified';
+  const yearVal = (d.year !== null && d.year !== undefined && !isNaN(d.year)) ? String(Math.round(d.year)) : null;
+  const yearLi = yearVal ? '<li>' + ICONS.calendar + ' ' + yearVal + '</li>' : '';
+  return '' +
+    '<article class="card">' +
+      '<div class="card-top">' +
+        '<div>' +
+          '<h3 class="card-name"><a class="card-name-link" href="' + caravanHref(d) + '">' + escapeHtml(d.name) + '</a></h3>' +
+          '<p class="card-make">' + escapeHtml(d.make) + ' &middot; ' + escapeHtml(d.model) + (yearVal ? ' &middot; ' + yearVal : '') + '</p>' +
+        '</div>' +
+        '<div class="price-tag">' + escapeHtml(d.price_display) + '</div>' +
+      '</div>' +
+      '<ul class="card-meta">' +
+        '<li>' + ICONS.pin + ' ' + escapeHtml(d.location) + '</li>' +
+        yearLi +
+        '<li>' + ICONS.ruler + ' ' + dims + '</li>' +
+        '<li>' + ICONS.bed + ' ' + beds + '</li>' +
+      '</ul>' +
+      '<div class="card-footer">' +
+        '<span class="card-source">Seen on ' + escapeHtml(d.source_site) + ' &middot; ' + formatListingDate(d.date_scraped) + '</span>' +
+        '<a class="card-link" href="' + escapeHtml(d.listing_url) + '" target="_blank" rel="noopener">Source listing &nearr;</a>' +
+      '</div>' +
+    '</article>';
+}
+
+function sortedListings() {
+  const arr = parkListings.slice();
+  switch (listingsState.sort) {
+    case 'price-asc': arr.sort((a, b) => a.price_number - b.price_number); break;
+    case 'price-desc': arr.sort((a, b) => b.price_number - a.price_number); break;
+    case 'name-asc': arr.sort((a, b) => a.name.localeCompare(b.name)); break;
+  }
+  return arr;
+}
+
+function buildPageNumbers(current, total) {
+  const keep = new Set([1, total, current, current - 1, current + 1]);
+  const sorted = [...keep].filter(n => n >= 1 && n <= total).sort((a, b) => a - b);
+  const out = [];
+  let prev = null;
+  sorted.forEach(n => {
+    if (prev !== null && n - prev > 1) out.push('...');
+    out.push(n);
+    prev = n;
+  });
+  return out;
+}
+
+function renderListingsPagination(totalItems, totalPages) {
+  const info = listingsPaginationEl.querySelector('.pagination-info');
+  const numbers = listingsPaginationEl.querySelector('.page-numbers');
+  const prevBtn = listingsPaginationEl.querySelector('[data-action="prev"]');
+  const nextBtn = listingsPaginationEl.querySelector('[data-action="next"]');
+
+  if (totalItems <= listingsState.pageSize) {
+    listingsPaginationEl.style.display = 'none';
+    return;
+  }
+  listingsPaginationEl.style.display = 'flex';
+
+  const start = (listingsState.page - 1) * listingsState.pageSize + 1;
+  const end = Math.min(listingsState.page * listingsState.pageSize, totalItems);
+  info.textContent = 'Page ' + listingsState.page + ' of ' + totalPages + ' — showing ' + start + '–' + end + ' of ' + totalItems;
+
+  prevBtn.disabled = listingsState.page <= 1;
+  nextBtn.disabled = listingsState.page >= totalPages;
+
+  numbers.innerHTML = buildPageNumbers(listingsState.page, totalPages).map(entry => {
+    if (entry === '...') return '<span class="page-ellipsis">&hellip;</span>';
+    return '<button type="button" class="page-num-btn' + (entry === listingsState.page ? ' active' : '') + '" data-page="' + entry + '"' +
+      (entry === listingsState.page ? ' aria-current="page"' : '') + '>' + entry + '</button>';
+  }).join('');
+}
+
+function renderListings() {
+  const sorted = sortedListings();
+
+  if (sorted.length === 0) {
+    listingsCountEl.textContent = '';
+    listingsGrid.style.display = 'none';
+    listingsPaginationEl.style.display = 'none';
+    listingsEmptyEl.style.display = 'block';
+    listingsEmptyEl.innerHTML = 'No caravans are currently listed for sale at this park. ' +
+      '<a href="caravans.html">Browse all listings</a> instead.';
+    listingsSortEl.parentElement.style.display = 'none';
+    return;
+  }
+
+  listingsGrid.style.display = 'grid';
+  listingsEmptyEl.style.display = 'none';
+  listingsSortEl.parentElement.style.display = 'flex';
+
+  const totalPages = Math.max(1, Math.ceil(sorted.length / listingsState.pageSize));
+  if (listingsState.page > totalPages) listingsState.page = totalPages;
+  if (listingsState.page < 1) listingsState.page = 1;
+
+  listingsCountEl.textContent = sorted.length === 1
+    ? '1 caravan for sale at this park'
+    : sorted.length + ' caravans for sale at this park';
+
+  const start = (listingsState.page - 1) * listingsState.pageSize;
+  listingsGrid.innerHTML = sorted.slice(start, start + listingsState.pageSize).map(listingCardHTML).join('');
+  renderListingsPagination(sorted.length, totalPages);
+}
+
+listingsSortEl.addEventListener('change', e => {
+  listingsState.sort = e.target.value;
+  listingsState.page = 1;
+  renderListings();
+});
+
+listingsPaginationEl.querySelector('[data-action="prev"]').addEventListener('click', () => {
+  if (listingsState.page > 1) { listingsState.page -= 1; renderListings(); listingsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
+listingsPaginationEl.querySelector('[data-action="next"]').addEventListener('click', () => {
+  listingsState.page += 1; renderListings(); listingsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+listingsPaginationEl.querySelector('.page-numbers').addEventListener('click', e => {
+  const btn = e.target.closest('.page-num-btn');
+  if (!btn) return;
+  listingsState.page = Number(btn.dataset.page);
+  renderListings();
+  listingsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 // send "back" to the map, keeping the browser's own history if we came from there
 document.getElementById('back-link').addEventListener('click', (e) => {

@@ -305,32 +305,6 @@
   }
   .form-error.hidden { display: none; }
 
-  /* ---------- Results ---------- */
-  .criteria-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    background: rgba(31, 111, 110, 0.09);
-    border: 1px solid rgba(31, 111, 110, 0.28);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 13.5px;
-    margin: 26px 0 12px;
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 3px 11px;
-    font-size: 12.5px;
-    font-weight: 600;
-  }
-
   /* ---------- Price summary ---------- */
   .price-box {
     background: var(--card);
@@ -413,39 +387,188 @@
     color: var(--ink);
   }
 
-  .scale-ends {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 2px;
+  /* Lowest / highest labels, sitting above the scale at either end,
+     alongside the middle label rather than in a row underneath. */
+  .scale-edge-label {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    line-height: 1.15;
   }
+  .scale-edge-label.is-low { left: 0; text-align: left; }
+  .scale-edge-label.is-high { right: 0; text-align: right; }
 
-  .scale-end {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-  .scale-end.right { text-align: right; }
-
-  .scale-end-label {
-    font-size: 11px;
+  .scale-edge-label .lab {
+    display: block;
+    font-size: 10.5px;
     text-transform: uppercase;
     letter-spacing: 0.07em;
     color: var(--muted);
     font-weight: 600;
   }
 
-  .scale-end-value {
-    font-size: 19px;
+  .scale-edge-label .val {
+    display: block;
+    font-size: 16px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
-    line-height: 1.2;
+    color: var(--ink);
   }
 
   .price-single {
     font-size: 13px;
     color: var(--muted);
     margin: 0;
+  }
+
+  /* ---------- Scatter charts ---------- */
+  .scatter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin: 0 0 20px;
+  }
+
+  .chart-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px 14px;
+    min-width: 0;
+  }
+
+  .chart-box h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  .chart-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+
+  .chart-box svg { display: block; width: 100%; height: auto; }
+
+  .ax-line { stroke: var(--line); stroke-width: 1; }
+  .ax-grid { stroke: rgba(223, 213, 193, 0.7); stroke-width: 1; }
+  .ax-text {
+    font-family: var(--font-body);
+    font-size: 10px;
+    fill: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .ax-title {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    fill: var(--muted);
+  }
+  .dot-pt { fill: var(--teal); fill-opacity: 0.42; cursor: pointer; }
+  .dot-pt:hover { fill: var(--coral); fill-opacity: 0.95; }
+  .chart-box.is-year .dot-pt { fill: var(--mustard-dark); fill-opacity: 0.38; }
+  .chart-box.is-year .dot-pt:hover { fill: var(--coral); fill-opacity: 0.95; }
+
+  /* a chart with a selection dims everything that isn't picked */
+  .chart-box.has-pick .dot-pt { fill-opacity: 0.13; }
+  .chart-box.has-pick .dot-pt.picked,
+  .chart-box.is-year.has-pick .dot-pt.picked {
+    fill: var(--coral);
+    fill-opacity: 1;
+    stroke: var(--card);
+    stroke-width: 1.2;
+  }
+
+  /* ---------- Clicked-dot panel ---------- */
+  .pick-panel {
+    border-top: 1px solid var(--line);
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  .pick-panel.hidden { display: none; }
+
+  .pick-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .pick-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .pick-close {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 3px 9px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .pick-close:hover { border-color: var(--teal); background: rgba(31, 111, 110, 0.08); }
+
+  .pick-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+
+  .pick-list li {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(223, 213, 193, 0.55);
+  }
+  .pick-list li:last-child { border-bottom: none; }
+
+  .pick-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .pick-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .pick-name:hover { color: var(--teal); text-decoration: underline; }
+  .pick-name .ext { color: var(--teal); font-weight: 400; }
+
+  .pick-price {
+    font-size: 13.5px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--mustard-dark);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pick-meta {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1px;
   }
 
   .results-count {
@@ -489,6 +612,19 @@
     padding-top: 12px;
     padding-bottom: 10px;
   }
+
+  table.results thead th[data-field] {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  table.results thead th[data-field]:hover { color: var(--teal); }
+  table.results thead th[data-field]:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: -2px;
+  }
+  table.results thead th.sorted { color: var(--teal); }
+  .sort-arrow { font-size: 9px; letter-spacing: 0; }
 
   table.results tbody tr { border-bottom: 1px solid rgba(223, 213, 193, 0.55); }
   table.results tbody tr:last-child { border-bottom: none; }
@@ -649,7 +785,8 @@
   }
 
   @media (max-width: 560px) {
-    .scale-end-value { font-size: 17px; }
+    .scale-edge-label .val { font-size: 13px; }
+    .scale-mid-label .val { font-size: 13px; }
   }
 
   @media (max-width: 640px) {
@@ -723,12 +860,20 @@
         </select>
         <span class="hint">Shows that year and newer</span>
       </div>
+
+      <div class="field">
+        <label for="in-region">Region</label>
+        <select id="in-region">
+          <option value="">Any region</option>
+        </select>
+        <span class="hint">From the park's entry in our park list</span>
+      </div>
     </div>
 
     <div class="form-actions">
       <button class="btn-primary" type="submit">Find matching caravans</button>
       <button class="clear-btn" type="button" id="reset-btn">Start again</button>
-      <p class="form-error hidden" id="form-error">Enter at least one detail &mdash; make, model, a dimension, bedrooms or a year.</p>
+      <p class="form-error hidden" id="form-error">Enter at least one detail &mdash; make, model, a dimension, bedrooms, a year or a region.</p>
     </div>
   </form>
 
@@ -966,16 +1111,117 @@
      State + data
      ========================================================================== */
   let ALL_DATA = [];
+  let ALL_PARKS = [];
   let lastResults = [];
   let lastCriteria = null;
   let lastUsesDims = false;
   let page = 1;
   const PAGE_SIZE = 50;
+  let sortField = 'price';
+  let sortDir = 'asc';
 
   const resultsEl = document.getElementById('results');
   const updatedBadge = document.getElementById('updated-badge');
   const formEl = document.getElementById('compare-form');
   const errorEl = document.getElementById('form-error');
+
+
+  /* --------------------------------------------------------------------------
+     Stable per-listing id, shared with caravan.html (and caravans.html).
+     data.json has no id column and some rows have no listing_url, so we hash
+     the fields that actually identify a van. Keep these copies in step.
+     ------------------------------------------------------------------------ */
+  function caravanId(d) {
+    const parts = [
+      d.name, d.make, d.model, d.location, d.park,
+      d.price_number, d.bedrooms, d.year, d.dimensions,
+      d.source_site, d.listing_url
+    ].map(v => (v === null || v === undefined) ? '' : String(v)).join('|');
+    let h1 = 0x811c9dc5, h2 = 0x01000193;
+    for (let i = 0; i < parts.length; i++) {
+      const c = parts.charCodeAt(i);
+      h1 = (h1 ^ c) >>> 0;
+      h1 = Math.imul(h1, 0x01000193) >>> 0;
+      h2 = (h2 + c) >>> 0;
+      h2 = Math.imul(h2, 0x85ebca6b) >>> 0;
+    }
+    return h1.toString(36) + h2.toString(36);
+  }
+
+  // Link to this site's own detail page for a listing. The index is only a
+  // fast path — caravan.html falls back to searching by id.
+  function caravanHref(d) {
+    const i = (d._idx === undefined) ? '' : '&i=' + d._idx;
+    return 'caravan.html?id=' + encodeURIComponent(caravanId(d)) + i;
+  }
+
+  /* --------------------------------------------------------------------------
+     Park lookup: data.json's `park` field is joined to parks.json's `park_name`
+     so the table can show where a van actually is (town / county / region)
+     rather than repeating the park name. Listing names carry extra tails
+     ("Aberconwy Resort and Spa, North Wales, Conwy" vs "Aberconwy Resort &
+     Spa"), so match on a normalised form of the bit before the first comma —
+     the same rule caravan.html uses.
+     ------------------------------------------------------------------------ */
+  function normPark(str) {
+    return String(str ?? '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .split(' ')
+      .filter(w => w && w !== 'and')
+      .join(' ');
+  }
+
+  function findPark(name) {
+    const target = normPark(String(name ?? '').split(',')[0]);
+    if (!target || !ALL_PARKS.length) return null;
+    const pairs = ALL_PARKS.map(p => ({ p, key: normPark(String(p.park_name || '').split(',')[0]) }));
+    const exact = pairs.find(x => x.key === target);
+    if (exact) return exact.p;
+    // one name is a leading extension of the other, e.g.
+    // "Wood Farm Country & Leisure Park" <-> "Wood Farm"
+    const partial = pairs.find(x =>
+      x.key.startsWith(target + ' ') || target.startsWith(x.key + ' ')
+    );
+    return partial ? partial.p : null;
+  }
+
+  // Cache the matched park on each listing once, so rendering and sorting are cheap.
+  function attachParks(data) {
+    const cache = new Map();
+    data.forEach(d => {
+      const key = normPark(String(d.park || d.location || '').split(',')[0]);
+      if (!cache.has(key)) cache.set(key, findPark(d.park || d.location));
+      d._park = cache.get(key);
+    });
+  }
+
+  // Town / county / region for a listing, from its park entry where we have
+  // one and from the listing's own columns otherwise. Duplicates dropped so
+  // e.g. a town that matches its county isn't printed twice.
+  function locationBits(d) {
+    const p = d._park;
+    const raw = p
+      ? [p.town, p.county, p.region]
+      : [d.town, d.county, d.region];
+    const out = [];
+    raw.forEach(v => {
+      const t = String(v ?? '').trim();
+      if (t && !out.some(x => x.toLowerCase() === t.toLowerCase())) out.push(t);
+    });
+    return out;
+  }
+
+  function locationText(d) {
+    return locationBits(d).join(', ');
+  }
+
+  // The region a listing sits in: its park's entry in parks.json where the
+  // names matched, and the listing's own column otherwise.
+  function listingRegion(d) {
+    const p = d._park;
+    return String((p && p.region) || d.region || '').trim();
+  }
 
   function escapeHTML(str) {
     return String(str ?? '').replace(/[&<>"']/g, s => (
@@ -1029,6 +1275,10 @@
       if (d.year === null || d.year === undefined || isNaN(y)) return false;
       if (y < Number(c.year)) return false;
     }
+
+    if (c.region !== '') {
+      if (listingRegion(d).toLowerCase() !== c.region.toLowerCase()) return false;
+    }
     return true;
   }
 
@@ -1054,38 +1304,81 @@
       length: lenRaw === '' ? null : Number(lenRaw),
       width: widRaw === '' ? null : Number(widRaw),
       bedrooms: document.getElementById('in-bedrooms').value,
-      year: document.getElementById('in-year').value
+      year: document.getElementById('in-year').value,
+      region: document.getElementById('in-region').value
     };
   }
 
   function criteriaEmpty(c) {
     return !c.make && !c.model && c.length === null && c.width === null &&
-      c.bedrooms === '' && c.year === '';
+      c.bedrooms === '' && c.year === '' && c.region === '';
   }
 
-  function priceOf(d) {
-    const p = d.price_number;
-    return (p === null || p === undefined || isNaN(p)) ? Infinity : p;
+  // Value used to sort by a given column, plus whether that listing lacks the
+  // field entirely — missing values always sink to the bottom, whichever way
+  // the column is sorted.
+  function sortValue(d, field) {
+    switch (field) {
+      case 'name':
+        return { v: String(d.name || '').toLowerCase(), missing: !d.name };
+      case 'location': {
+        const loc = locationText(d);
+        return { v: loc.toLowerCase(), missing: !loc };
+      }
+      case 'year': {
+        const y = Number(d.year);
+        const missing = d.year === null || d.year === undefined || isNaN(y);
+        return { v: missing ? null : y, missing: missing };
+      }
+      case 'size': {
+        const dims = parseDims(d.dimensions);
+        return { v: dims ? dims.length : null, missing: !dims };
+      }
+      case 'beds': {
+        const missing = d.bedrooms === null || d.bedrooms === undefined;
+        return { v: missing ? null : Number(d.bedrooms), missing: missing };
+      }
+      case 'price':
+      default: {
+        const p = d.price_number;
+        const missing = p === null || p === undefined || isNaN(p);
+        return { v: missing ? null : p, missing: missing };
+      }
+    }
   }
 
-  // Filter on make / model / bedrooms, then order: closest size first (when a
-  // size was given), and within the same closeness, cheapest first. Listings
-  // with no size on them sit at the back of the queue.
-  function search(c) {
-    const usesDims = c.length !== null || c.width !== null;
-    const out = ALL_DATA.filter(d => matchesCriteria(d, c));
-    out.forEach(d => { d._gap = sizeGap(d, c); });
+  function compareField(a, b, field, dir) {
+    const A = sortValue(a, field), B = sortValue(b, field);
+    if (A.missing && B.missing) return 0;
+    if (A.missing) return 1;
+    if (B.missing) return -1;
+    const cmp = typeof A.v === 'string' ? A.v.localeCompare(B.v) : A.v - B.v;
+    return dir === 'desc' ? -cmp : cmp;
+  }
 
-    out.sort((a, b) => {
+  // Orders the list. A size that was typed in always takes priority — closest
+  // match first — no matter which column is currently sorted; the chosen
+  // column (price, by default) only decides order within each closeness tier,
+  // or the whole list when no size was given. Name is the final tie-breaker.
+  function sortList(list, usesDims) {
+    list.sort((a, b) => {
       if (usesDims) {
         const ga = a._gap === null ? Infinity : a._gap;
         const gb = b._gap === null ? Infinity : b._gap;
         if (ga !== gb) return ga - gb;
       }
-      const pa = priceOf(a), pb = priceOf(b);
-      if (pa !== pb) return pa - pb;
+      const cmp = compareField(a, b, sortField, sortDir);
+      if (cmp !== 0) return cmp;
       return String(a.name || '').localeCompare(String(b.name || ''));
     });
+  }
+
+  // Filter on make / model / bedrooms, then order by sortList above.
+  function search(c) {
+    const usesDims = c.length !== null || c.width !== null;
+    const out = ALL_DATA.filter(d => matchesCriteria(d, c));
+    out.forEach(d => { d._gap = sizeGap(d, c); });
+    sortList(out, usesDims);
     return { list: out, usesDims: usesDims };
   }
 
@@ -1100,7 +1393,17 @@
     else if (c.width !== null) chips.push('Width: ' + c.width + 'ft');
     if (c.bedrooms !== '') chips.push(c.bedrooms + ' bedroom' + (c.bedrooms === '1' ? '' : 's'));
     if (c.year !== '') chips.push(c.year + ' or newer');
+    if (c.region !== '') chips.push('Region: ' + c.region);
     return chips.map(t => '<span class="chip">' + escapeHTML(t) + '</span>').join('');
+  }
+
+  // Town on its own line, county and region beneath it.
+  function locationCell(d) {
+    const bits = locationBits(d);
+    if (!bits.length) return '<span class="dash">&mdash;</span>';
+    const head = escapeHTML(bits[0]);
+    const rest = bits.slice(1).map(escapeHTML).join(' · ');
+    return rest ? `${head}<span class="row-sub">${rest}</span>` : head;
   }
 
   function rowHTML(d) {
@@ -1119,10 +1422,10 @@
     return `
       <tr title="${escapeHTML(seen)}">
         <td class="col-name">
-          <a class="row-name" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">${escapeHTML(d.name)} <span class="ext">&nearr;</span></a>
+          <a class="row-name" href="${caravanHref(d)}">${escapeHTML(d.name)} <span class="ext">&rsaquo;</span></a>
           <span class="row-sub">${escapeHTML(d.make)} &middot; ${escapeHTML(d.model)}</span>
         </td>
-        <td class="col-park" data-label="Park"><span class="cell">${escapeHTML(d.location)}</span></td>
+        <td class="col-park" data-label="Location"><span class="cell">${locationCell(d)}</span></td>
         <td class="col-num" data-label="Year"><span class="cell">${yearVal}</span></td>
         <td data-label="Size"><span class="cell">${dims}${note}</span></td>
         <td class="col-num" data-label="Beds"><span class="cell">${beds}</span></td>
@@ -1130,18 +1433,34 @@
       </tr>`;
   }
 
+  const SORT_COLUMNS = [
+    { field: 'name', label: 'Caravan', cls: 'col-name' },
+    { field: 'location', label: 'Location', cls: 'col-park' },
+    { field: 'year', label: 'Year', cls: 'col-num' },
+    { field: 'size', label: 'Size', cls: '' },
+    { field: 'beds', label: 'Beds', cls: 'col-num' },
+    { field: 'price', label: 'Price', cls: 'col-price' }
+  ];
+
+  function sortArrow(field) {
+    if (field !== sortField) return '';
+    return ' <span class="sort-arrow">' + (sortDir === 'asc' ? '▲' : '▼') + '</span>';
+  }
+
+  function tableHeadHTML() {
+    const cells = SORT_COLUMNS.map(col => {
+      const classes = [col.cls, col.field === sortField ? 'sorted' : ''].filter(Boolean).join(' ');
+      const classAttr = classes ? ` class="${classes}"` : '';
+      return `<th${classAttr} data-field="${col.field}" role="button" tabindex="0" aria-sort="${col.field === sortField ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}">${col.label}${sortArrow(col.field)}</th>`;
+    }).join('');
+    return `<tr>${cells}</tr>`;
+  }
+
   function tableHTML(items) {
     return `<div class="table-wrap">
       <table class="results">
         <thead>
-          <tr>
-            <th class="col-name">Caravan</th>
-            <th class="col-park">Park</th>
-            <th class="col-num">Year</th>
-            <th>Size</th>
-            <th class="col-num">Beds</th>
-            <th class="col-price">Price</th>
-          </tr>
+          ${tableHeadHTML()}
         </thead>
         <tbody>${items.map(rowHTML).join('')}</tbody>
       </table>
@@ -1179,8 +1498,9 @@
     const pct = v => ((v - min) / (max - min)) * 100;
     const ticks = priced.map(d => `<span class="scale-tick" style="left:${pct(d.price_number).toFixed(2)}%" title="${escapeHTML(d.name)} — ${escapeHTML(d.price_display)}"></span>`).join('');
     const midPct = pct(mid);
-    // keep the floating label from hanging off either end of the box
-    const labelPct = Math.min(90, Math.max(10, midPct));
+    // keep the floating middle label clear of the lowest/highest labels
+    // that now sit right at the two ends, above the scale
+    const labelPct = Math.min(82, Math.max(18, midPct));
 
     return `<div class="price-box">
       <h3>Prices across these ${priced.length} matches</h3>
@@ -1188,22 +1508,240 @@
         <div class="scale-track"></div>
         ${ticks}
         <span class="scale-median" style="left:${midPct.toFixed(2)}%" title="Middle (median) ${money(mid)}"></span>
+        <span class="scale-edge-label is-low" title="Lowest ${escapeHTML(priced[0].price_display)}">
+          <span class="lab">Lowest</span>
+          <span class="val">${escapeHTML(priced[0].price_display)}</span>
+        </span>
         <span class="scale-mid-label" style="left:${labelPct.toFixed(2)}%">
           <span class="lab">Middle</span>
           <span class="val">${money(mid)}</span>
         </span>
-      </div>
-      <div class="scale-ends">
-        <span class="scale-end">
-          <span class="scale-end-label">Lowest</span>
-          <span class="scale-end-value">${escapeHTML(priced[0].price_display)}</span>
-        </span>
-        <span class="scale-end right">
-          <span class="scale-end-label">Highest</span>
-          <span class="scale-end-value">${escapeHTML(priced[priced.length - 1].price_display)}</span>
+        <span class="scale-edge-label is-high" title="Highest ${escapeHTML(priced[priced.length - 1].price_display)}">
+          <span class="lab">Highest</span>
+          <span class="val">${escapeHTML(priced[priced.length - 1].price_display)}</span>
         </span>
       </div>
     </div>`;
+  }
+
+  /* ---- scatter charts --------------------------------------------------
+     Price against floor area, and price against year. Both read the same
+     matching listings as the price scale above; anything missing the value
+     on either axis is simply left out.
+     -------------------------------------------------------------------- */
+
+  // Round tick steps (1, 2, 2.5, 5, 10 × a power of ten) so the labels read
+  // as sensible numbers rather than whatever the data happens to span.
+  function niceTicks(min, max, count) {
+    if (!(max > min)) {
+      const pad = Math.abs(min) > 0 ? Math.abs(min) * 0.1 : 1;
+      min -= pad; max += pad;
+    }
+    const rawStep = (max - min) / Math.max(1, count);
+    const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+    const norm = rawStep / mag;
+    const step = (norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 2.5 ? 2.5 : norm <= 5 ? 5 : 10) * mag;
+    const lo = Math.floor(min / step) * step;
+    const hi = Math.ceil(max / step) * step;
+    const ticks = [];
+    for (let v = lo; v <= hi + step / 1000; v += step) ticks.push(Math.round(v * 1e6) / 1e6);
+    return { ticks: ticks, lo: lo, hi: hi };
+  }
+
+  function shortMoney(n) {
+    if (n >= 1000000) return '£' + (n / 1000000).toFixed(n % 1000000 ? 1 : 0) + 'm';
+    if (n >= 1000) return '£' + (n / 1000).toFixed(n % 1000 ? 1 : 0) + 'k';
+    return '£' + Math.round(n);
+  }
+
+  // Dot radius in SVG units. Two dots "intersect" when their centres are
+  // closer than two radii apart, i.e. the circles visibly overlap on screen.
+  const DOT_R = 3.4;
+
+  // Points currently drawn, per chart, so click handling can find neighbours.
+  const CHART_POINTS = { area: [], year: [] };
+
+  function scatterSVG(points, opts) {
+    const W = 640, H = 340;
+    const PAD = { top: 14, right: 16, bottom: 46, left: 62 };
+    const plotW = W - PAD.left - PAD.right;
+    const plotH = H - PAD.top - PAD.bottom;
+
+    const xs = points.map(p => p.x), ys = points.map(p => p.y);
+    const xr = niceTicks(Math.min(...xs), Math.max(...xs), opts.xTicks || 6);
+    const yr = niceTicks(Math.min(...ys), Math.max(...ys), 5);
+
+    const sx = v => PAD.left + ((v - xr.lo) / (xr.hi - xr.lo)) * plotW;
+    const sy = v => PAD.top + plotH - ((v - yr.lo) / (yr.hi - yr.lo)) * plotH;
+
+    const yGrid = yr.ticks.map(t => `
+      <line class="ax-grid" x1="${PAD.left}" y1="${sy(t).toFixed(1)}" x2="${(PAD.left + plotW).toFixed(1)}" y2="${sy(t).toFixed(1)}"></line>
+      <text class="ax-text" x="${PAD.left - 8}" y="${(sy(t) + 3.5).toFixed(1)}" text-anchor="end">${shortMoney(t)}</text>`).join('');
+
+    const xGrid = xr.ticks.map(t => `
+      <line class="ax-grid" x1="${sx(t).toFixed(1)}" y1="${PAD.top}" x2="${sx(t).toFixed(1)}" y2="${(PAD.top + plotH).toFixed(1)}"></line>
+      <text class="ax-text" x="${sx(t).toFixed(1)}" y="${(PAD.top + plotH + 16).toFixed(1)}" text-anchor="middle">${opts.xFormat(t)}</text>`).join('');
+
+    // Remember where each dot landed, so a click can work out which other
+    // dots overlap it.
+    points.forEach((p, i) => { p.cx = sx(p.x); p.cy = sy(p.y); p.i = i; });
+
+    const dots = points.map(p => `<circle class="dot-pt" data-i="${p.i}" cx="${p.cx.toFixed(1)}" cy="${p.cy.toFixed(1)}" r="${DOT_R}"><title>${escapeHTML(p.label)}</title></circle>`).join('');
+
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHTML(opts.aria)}" preserveAspectRatio="xMidYMid meet">
+      ${yGrid}${xGrid}
+      <line class="ax-line" x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top + plotH}"></line>
+      <line class="ax-line" x1="${PAD.left}" y1="${PAD.top + plotH}" x2="${PAD.left + plotW}" y2="${PAD.top + plotH}"></line>
+      ${dots}
+      <text class="ax-title" x="${(PAD.left + plotW / 2).toFixed(1)}" y="${H - 10}" text-anchor="middle">${escapeHTML(opts.xTitle)}</text>
+      <text class="ax-title" transform="translate(14 ${(PAD.top + plotH / 2).toFixed(1)}) rotate(-90)" text-anchor="middle">Price</text>
+    </svg>`;
+  }
+
+  function scattersHTML(list) {
+    const priced = list.filter(d => typeof d.price_number === 'number' && !isNaN(d.price_number));
+    if (!priced.length) return '';
+
+    const areaPts = [];
+    const yearPts = [];
+    priced.forEach(d => {
+      const dims = parseDims(d.dimensions);
+      if (dims) {
+        const area = dims.length * dims.width;
+        areaPts.push({
+          x: area,
+          y: d.price_number,
+          d: d,
+          label: `${d.name} — ${Math.round(area)} sq ft (${d.dimensions}) — ${d.price_display}`
+        });
+      }
+      const y = Number(d.year);
+      if (d.year !== null && d.year !== undefined && !isNaN(y) && y > 1900) {
+        yearPts.push({ x: y, y: d.price_number, d: d, label: `${d.name} — ${Math.round(y)} — ${d.price_display}` });
+      }
+    });
+
+    CHART_POINTS.area = areaPts.length >= 2 ? areaPts : [];
+    CHART_POINTS.year = yearPts.length >= 2 ? yearPts : [];
+
+    const panel = `<div class="pick-panel hidden">
+        <div class="pick-head">
+          <p class="pick-title"></p>
+          <button type="button" class="pick-close">Clear</button>
+        </div>
+        <ul class="pick-list"></ul>
+      </div>`;
+
+    const boxes = [];
+
+    if (areaPts.length >= 2) {
+      boxes.push(`<div class="chart-box is-area" data-chart="area">
+        <h3>Price vs floor area</h3>
+        <p class="chart-note">${areaPts.length} match${areaPts.length === 1 ? '' : 'es'} state a size. Area is length &times; width. Click a dot for the caravans it covers.</p>
+        ${scatterSVG(areaPts, {
+          xTitle: 'Floor area (sq ft)',
+          xFormat: t => Math.round(t).toLocaleString('en-GB'),
+          aria: 'Scatter chart of price against floor area'
+        })}
+        ${panel}
+      </div>`);
+    }
+
+    if (yearPts.length >= 2) {
+      boxes.push(`<div class="chart-box is-year" data-chart="year">
+        <h3>Price vs year</h3>
+        <p class="chart-note">${yearPts.length} match${yearPts.length === 1 ? '' : 'es'} state a year. Click a dot for the caravans it covers.</p>
+        ${scatterSVG(yearPts, {
+          xTitle: 'Year',
+          xTicks: 5,
+          xFormat: t => String(Math.round(t)),
+          aria: 'Scatter chart of price against year'
+        })}
+        ${panel}
+      </div>`);
+    }
+
+    if (!boxes.length) return '';
+    return `<div class="scatter-grid">${boxes.join('')}</div>`;
+  }
+
+  /* ---- clicking a dot --------------------------------------------------
+     Dots sit on top of one another wherever several caravans share a price
+     and a size (or year), so a click picks up the dot you hit plus every
+     dot whose circle overlaps it, and lists the lot underneath.
+     -------------------------------------------------------------------- */
+
+  function pickRowHTML(p) {
+    const d = p.d;
+    const bits = [];
+    if (d.make || d.model) bits.push(`${escapeHTML(d.make || '')}${d.make && d.model ? ' · ' : ''}${escapeHTML(d.model || '')}`);
+    const y = Number(d.year);
+    if (d.year !== null && d.year !== undefined && !isNaN(y)) bits.push(String(Math.round(y)));
+    if (d.dimensions) bits.push(escapeHTML(d.dimensions));
+    if (d.bedrooms !== null && d.bedrooms !== undefined) {
+      const b = Number(d.bedrooms);
+      bits.push(`${b} bedroom${b === 1 ? '' : 's'}`);
+    }
+    if (d.location) bits.push(escapeHTML(d.location));
+    return `<li>
+      <div class="pick-row">
+        <a class="pick-name" href="${caravanHref(d)}">${escapeHTML(d.name)} <span class="ext">&rsaquo;</span></a>
+        <span class="pick-price">${escapeHTML(d.price_display)}</span>
+      </div>
+      <span class="pick-meta">${bits.join(' &middot; ')}</span>
+    </li>`;
+  }
+
+  function clearPick(box) {
+    box.classList.remove('has-pick');
+    box.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
+    const panel = box.querySelector('.pick-panel');
+    if (panel) {
+      panel.classList.add('hidden');
+      panel.querySelector('.pick-list').innerHTML = '';
+    }
+  }
+
+  function showPick(box, index) {
+    const pts = CHART_POINTS[box.dataset.chart] || [];
+    const hit = pts[index];
+    if (!hit) return;
+
+    const reach = DOT_R * 2;
+    const group = pts.filter(p => {
+      const dx = p.cx - hit.cx, dy = p.cy - hit.cy;
+      return (dx * dx + dy * dy) <= reach * reach;
+    });
+    // clicked caravan first, then cheapest
+    group.sort((a, b) => (a === hit ? -1 : b === hit ? 1 : a.d.price_number - b.d.price_number));
+
+    box.classList.add('has-pick');
+    box.querySelectorAll('.dot-pt').forEach(c => c.classList.remove('picked'));
+    const picked = new Set(group.map(p => p.i));
+    box.querySelectorAll('.dot-pt').forEach(c => {
+      if (picked.has(Number(c.dataset.i))) c.classList.add('picked');
+    });
+
+    const panel = box.querySelector('.pick-panel');
+    panel.querySelector('.pick-title').textContent = group.length === 1
+      ? '1 caravan at this dot'
+      : `${group.length} caravans at this dot`;
+    panel.querySelector('.pick-list').innerHTML = group.map(pickRowHTML).join('');
+    panel.classList.remove('hidden');
+  }
+
+  function wireScatters() {
+    resultsEl.querySelectorAll('.chart-box').forEach(box => {
+      const svg = box.querySelector('svg');
+      if (!svg) return;
+      svg.addEventListener('click', e => {
+        const dot = e.target.closest('.dot-pt');
+        if (dot) showPick(box, Number(dot.dataset.i));
+        else clearPick(box);
+      });
+      const closeBtn = box.querySelector('.pick-close');
+      if (closeBtn) closeBtn.addEventListener('click', () => clearPick(box));
+    });
   }
 
   function buildPageNumbers(current, total) {
@@ -1225,7 +1763,6 @@
 
     if (!list.length) {
       resultsEl.innerHTML = `
-        <div class="criteria-bar"><strong>Looking for:</strong> ${criteriaChips(c)}</div>
         <div class="state-msg">
           <h2>No matches</h2>
           <p>Nothing on the market right now fits that. Try dropping a detail &mdash; the model or the size is usually the strictest one.</p>
@@ -1244,9 +1781,9 @@
       : 'cheapest first';
 
     resultsEl.innerHTML = `
-      <div class="criteria-bar"><strong>Looking for:</strong> ${criteriaChips(c)}</div>
       <p class="results-count">${list.length} matching caravan${list.length === 1 ? '' : 's'}, ${orderText}.</p>
       ${priceBoxHTML(list)}
+      ${scattersHTML(list)}
       ${tableHTML(items)}
       <div class="pagination${totalPages > 1 ? '' : ' hidden'}">
         <div class="pagination-info">Page ${page} of ${totalPages} &mdash; showing ${start + 1}&ndash;${Math.min(start + PAGE_SIZE, list.length)} of ${list.length}</div>
@@ -1260,6 +1797,8 @@
         </div>
       </div>`;
 
+    wireScatters();
+
     const bar = resultsEl.querySelector('.pagination');
     if (bar) {
       bar.addEventListener('click', e => {
@@ -1271,6 +1810,34 @@
         else return;
         renderResults();
         resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    const headRow = resultsEl.querySelector('table.results thead tr');
+    if (headRow) {
+      const applySort = th => {
+        const field = th.dataset.field;
+        if (!field) return;
+        if (sortField === field) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortField = field;
+          sortDir = 'asc';
+        }
+        sortList(lastResults, lastUsesDims);
+        page = 1;
+        renderResults();
+      };
+      headRow.addEventListener('click', e => {
+        const th = e.target.closest('th[data-field]');
+        if (th) applySort(th);
+      });
+      headRow.addEventListener('keydown', e => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const th = e.target.closest('th[data-field]');
+        if (!th) return;
+        e.preventDefault();
+        applySort(th);
       });
     }
   }
@@ -1290,6 +1857,16 @@
       opt.value = String(b);
       opt.textContent = `${b} bedroom${b == 1 ? '' : 's'}`;
       sel.appendChild(opt);
+    });
+
+    const regions = [...new Set(data.map(listingRegion).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b));
+    const rsel = document.getElementById('in-region');
+    regions.forEach(r => {
+      const opt = document.createElement('option');
+      opt.value = r;
+      opt.textContent = r;
+      rsel.appendChild(opt);
     });
 
     const years = [...new Set(data.map(d => Number(d.year)).filter(y => !isNaN(y) && y > 1900))]
@@ -1313,6 +1890,15 @@
       const models = [...new Set((pool.length ? pool : ALL_DATA).map(d => d.model_canon).filter(Boolean))]
         .sort((a, b) => a.localeCompare(b));
       listEl.innerHTML = models.map(m => `<option value="${escapeHTML(m)}">`).join('');
+    });
+  }
+
+  // Make & model start blank on every click, so you don't have to select-all
+  // and retype to swap what you typed for something else.
+  function wireClearOnClick() {
+    ['in-make', 'in-model'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('click', () => { el.value = ''; });
     });
   }
 
@@ -1380,6 +1966,12 @@
       const ysel = document.getElementById('in-year');
       if ([...ysel.options].some(o => o.value === year)) ysel.value = year;
     }
+    const region = p.get('region');
+    if (region) {
+      const rsel = document.getElementById('in-region');
+      const hit = [...rsel.options].find(o => o.value.toLowerCase() === region.toLowerCase());
+      if (hit) rsel.value = hit.value;
+    }
     if (!criteriaEmpty(readCriteria())) {
       formEl.dispatchEvent(new Event('submit'));
     }
@@ -1387,15 +1979,31 @@
 
   async function init() {
     try {
-      const res = await fetch('data.json');
+      const [res, parksRes] = await Promise.all([
+        fetch('data.json'),
+        // The table degrades to the listing's own town/county/region if this fails.
+        fetch('parks.json').catch(() => null)
+      ]);
       if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+      if (parksRes && parksRes.ok) {
+        try {
+          const parks = JSON.parse((await parksRes.text()).replace(/:\s*NaN/g, ': null'));
+          if (Array.isArray(parks)) ALL_PARKS = parks;
+        } catch (e) {
+          console.error('Could not parse parks.json', e);
+        }
+      }
       let text = await res.text();
       text = text.replace(/:\s*NaN/g, ': null');
       ALL_DATA = JSON.parse(text);
+      // remember each record's position so detail-page links can jump straight to it
+      ALL_DATA.forEach((d, i) => { d._idx = i; });
       canonicalise(ALL_DATA);
+      attachParks(ALL_DATA);
       populateInputs(ALL_DATA);
       wireForm();
       wireModelNarrowing();
+      wireClearOnClick();
       setUpdatedBadge(ALL_DATA);
       applyIncomingParams();
     } catch (err) {

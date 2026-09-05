@@ -606,6 +606,15 @@
     margin: 0 0 2px;
   }
 
+  .card-name-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-name-link:hover, .card-name-link:focus-visible {
+    color: var(--teal);
+    text-decoration: underline;
+  }
+
   .card-make {
     font-size: 13px;
     color: var(--muted);
@@ -1093,6 +1102,36 @@
   const countEl = document.getElementById('results-count');
   const updatedBadge = document.getElementById('updated-badge');
 
+
+  /* --------------------------------------------------------------------------
+     Stable per-listing id, shared with caravan.html (and compare.html).
+     data.json has no id column and some rows have no listing_url, so we hash
+     the fields that actually identify a van. Keep these copies in step.
+     ------------------------------------------------------------------------ */
+  function caravanId(d) {
+    const parts = [
+      d.name, d.make, d.model, d.location, d.park,
+      d.price_number, d.bedrooms, d.year, d.dimensions,
+      d.source_site, d.listing_url
+    ].map(v => (v === null || v === undefined) ? '' : String(v)).join('|');
+    let h1 = 0x811c9dc5, h2 = 0x01000193;
+    for (let i = 0; i < parts.length; i++) {
+      const c = parts.charCodeAt(i);
+      h1 = (h1 ^ c) >>> 0;
+      h1 = Math.imul(h1, 0x01000193) >>> 0;
+      h2 = (h2 + c) >>> 0;
+      h2 = Math.imul(h2, 0x85ebca6b) >>> 0;
+    }
+    return h1.toString(36) + h2.toString(36);
+  }
+
+  // Link to this site's own detail page for a listing. The index is only a
+  // fast path — caravan.html falls back to searching by id.
+  function caravanHref(d) {
+    const i = (d._idx === undefined) ? '' : '&i=' + d._idx;
+    return 'caravan.html?id=' + encodeURIComponent(caravanId(d)) + i;
+  }
+
   function escapeHTML(str) {
     return String(str ?? '').replace(/[&<>"']/g, s => (
       { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]
@@ -1455,11 +1494,25 @@
     });
   }
 
+  function hasPrice(d) {
+    return typeof d.price_number === 'number' && !isNaN(d.price_number);
+  }
+
+  // Listings with no price (POA, sold, under offer, ...) always sink to the
+  // bottom of the list, whichever direction the price sort runs.
+  function priceCompare(a, b, dir) {
+    const ap = hasPrice(a), bp = hasPrice(b);
+    if (!ap && !bp) return 0;
+    if (!ap) return 1;
+    if (!bp) return -1;
+    return dir === 'desc' ? b.price_number - a.price_number : a.price_number - b.price_number;
+  }
+
   function applySort(list) {
     const arr = [...list];
     switch (state.sort) {
-      case 'price-asc': arr.sort((a, b) => a.price_number - b.price_number); break;
-      case 'price-desc': arr.sort((a, b) => b.price_number - a.price_number); break;
+      case 'price-asc': arr.sort((a, b) => priceCompare(a, b, 'asc')); break;
+      case 'price-desc': arr.sort((a, b) => priceCompare(a, b, 'desc')); break;
       case 'name-asc': arr.sort((a, b) => a.name.localeCompare(b.name)); break;
       case 'location-asc': arr.sort((a, b) => a.location.localeCompare(b.location)); break;
     }
@@ -1475,7 +1528,7 @@
       <article class="card">
         <div class="card-top">
           <div>
-            <h3 class="card-name">${escapeHTML(d.name)}</h3>
+            <h3 class="card-name"><a class="card-name-link" href="${caravanHref(d)}">${escapeHTML(d.name)}</a></h3>
             <p class="card-make">${escapeHTML(d.make)} &middot; ${escapeHTML(d.model)}${yearVal ? ` &middot; ${yearVal}` : ''}</p>
           </div>
           <div class="price-tag">${escapeHTML(d.price_display)}</div>
@@ -1488,7 +1541,7 @@
         </ul>
         <div class="card-footer">
           <span class="card-source">Seen on ${escapeHTML(d.source_site)} &middot; ${formatDate(d.date_scraped)}</span>
-          <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">View listing &rarr;</a>
+          <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">Source listing &nearr;</a>
         </div>
       </article>
     `;
@@ -1734,6 +1787,8 @@
       // defensive: tolerate bare NaN tokens if the export script hasn't been fixed to emit strict JSON yet
       text = text.replace(/:\s*NaN/g, ': null');
       ALL_DATA = JSON.parse(text);
+      // remember each record's position so detail-page links can jump straight to it
+      ALL_DATA.forEach((d, i) => { d._idx = i; });
       canonicalise(ALL_DATA);
       populateFilters(ALL_DATA);
       wireControls();

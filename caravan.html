@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caravan listing &middot; Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --navy-deep: #0C1B29;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  /* ---------- Header (shared across the site) ---------- */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 0 0 28px;
+  }
+
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
+  }
+
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 16px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 68px);
+    letter-spacing: 0.005em;
+    margin: 0 0 12px;
+    line-height: 0.92;
+  }
+  h1.hero-title .accent { color: var(--mustard); }
+
+  .hero-sub {
+    font-size: 16.5px;
+    color: #CFDAE2;
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 0 0 24px; }
+    .hero-inner { padding-top: 32px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  .van-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  .van-back:hover { text-decoration: underline; }
+
+  /* ---------- Price banner ---------- */
+  .van-headline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+  }
+
+  .van-headline .who { min-width: 0; }
+
+  h2.van-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 5vw, 40px);
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0 0 6px;
+  }
+
+  .van-strap {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .price-tag {
+    flex-shrink: 0;
+    background: var(--mustard);
+    color: var(--mustard-dark);
+    font-weight: 700;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+    padding: 10px 16px 10px 18px;
+    border-radius: 5px;
+    border-left: 3px dashed rgba(138, 95, 30, 0.5);
+    transform: rotate(-1.5deg);
+    white-space: nowrap;
+  }
+
+  /* ---------- Detail panels ---------- */
+  .van-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    align-items: start;
+    margin-top: 26px;
+  }
+
+  .van-panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px 24px;
+  }
+
+  .van-panel h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  .van-panel .panel-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+
+  .van-row {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .van-row:first-of-type { border-top: 0; }
+  .van-row .k {
+    flex: 0 0 120px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .van-row .v { flex: 1 1 auto; word-break: break-word; }
+  .van-row .v a { font-weight: 600; }
+  .van-row .v .none { color: var(--muted); }
+
+  .source-note {
+    font-size: 12.5px;
+    color: var(--mustard-dark);
+    background: rgba(232, 169, 61, 0.14);
+    border-left: 3px solid var(--mustard);
+    padding: 9px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 18px 0 0;
+  }
+
+  .van-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+  }
+  .van-btn {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    line-height: 1;
+    border: 1px solid var(--ink);
+  }
+  .van-btn:hover { background: #234e78; color: var(--cream); }
+  .van-btn.ghost { color: var(--ink); background: transparent; }
+  .van-btn.ghost:hover { color: var(--cream); background: var(--ink); }
+
+  /* ---------- Similar listings ---------- */
+  .similar { margin-top: 40px; }
+  .similar h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    margin: 0 0 4px;
+  }
+  .similar .panel-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+
+  .similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 14px;
+  }
+
+  a.similar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.16s ease, transform 0.16s ease;
+  }
+  a.similar-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  a.similar-card .sc-name { font-weight: 700; font-size: 14.5px; }
+  a.similar-card .sc-meta { font-size: 12.5px; color: var(--muted); }
+  a.similar-card .sc-price { font-weight: 700; font-size: 14px; color: var(--mustard-dark); margin-top: 4px; }
+
+  .van-error {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  .van-error code {
+    background: var(--line);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html">Compare</a>
+        <a href="caravans.html">All listings</a>
+        <a href="map.html">Search by region</a>
+        <a href="parks.html">List of parks</a>
+      </nav>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title" id="hero-title">Caravan <span class="accent">Listing</span></h1>
+    <p class="hero-sub" id="hero-sub">Everything we've recorded about this listing, and a link straight to the source.</p>
+  </div>
+</header>
+
+<main>
+  <a class="van-back" href="caravans.html" id="back-link">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l-5 6 5 6"/></svg>
+    Back to listings
+  </a>
+
+  <div id="van-body" style="display:none;">
+    <div class="van-headline">
+      <div class="who">
+        <h2 class="van-name" id="van-name">&nbsp;</h2>
+        <p class="van-strap" id="van-strap">&nbsp;</p>
+      </div>
+      <div class="price-tag" id="van-price"></div>
+    </div>
+
+    <div class="van-sections">
+      <section class="van-panel">
+        <h3>The caravan</h3>
+        <p class="panel-sub">Make, model and specification as listed</p>
+        <div id="spec-rows"></div>
+      </section>
+
+      <section class="van-panel">
+        <h3>Where &amp; who</h3>
+        <p class="panel-sub">Park, location and where we found this listing</p>
+        <div id="place-rows"></div>
+        <p class="source-note" id="source-note" style="display:none;"></p>
+      </section>
+    </div>
+
+    <div class="van-actions">
+      <a class="van-btn" id="source-btn" href="#" target="_blank" rel="noopener">View on source website</a>
+      <a class="van-btn ghost" id="park-listings-btn" href="caravans.html">Other caravans at this park</a>
+      <a class="van-btn ghost" id="park-info-btn" href="#">Park information</a>
+    </div>
+
+    <section class="similar" id="similar-wrap" style="display:none;">
+      <h3>Similar listings</h3>
+      <p class="panel-sub" id="similar-sub"></p>
+      <div class="similar-grid" id="similar-grid"></div>
+    </section>
+  </div>
+
+  <div class="van-error" id="van-error" style="display:none;"></div>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use.</footer>
+
+<script>
+  const DATA_PATH  = 'data.json';
+  const PARKS_PATH = 'parks.json';
+
+  // parks.json, once loaded — used to point the Park link at park.html only
+  // when that park actually has a record to show.
+  let ALL_PARKS = [];
+
+  const params  = new URLSearchParams(window.location.search);
+  const wantId  = (params.get('id') || '').trim();
+  const wantIdx = params.get('i');
+  const wantUrl = (params.get('url') || '').trim();
+
+  const bodyEl   = document.getElementById('van-body');
+  const errEl    = document.getElementById('van-error');
+
+  function escapeHTML(str) {
+    return String(str ?? '').replace(/[&<>"']/g, s => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]
+    ));
+  }
+
+  /* --------------------------------------------------------------------------
+     Stable per-listing id.
+     data.json has no id column and some rows have no listing_url at all, so we
+     hash the fields that actually identify a van. The same function lives in
+     caravans.html and compare.html — keep the three in step if you change it.
+     ------------------------------------------------------------------------ */
+  function caravanId(d) {
+    const parts = [
+      d.name, d.make, d.model, d.location, d.park,
+      d.price_number, d.bedrooms, d.year, d.dimensions,
+      d.source_site, d.listing_url
+    ].map(v => (v === null || v === undefined) ? '' : String(v)).join('|');
+    let h1 = 0x811c9dc5, h2 = 0x01000193;
+    for (let i = 0; i < parts.length; i++) {
+      const c = parts.charCodeAt(i);
+      h1 = (h1 ^ c) >>> 0;
+      h1 = Math.imul(h1, 0x01000193) >>> 0;
+      h2 = (h2 + c) >>> 0;
+      h2 = Math.imul(h2, 0x85ebca6b) >>> 0;
+    }
+    return h1.toString(36) + h2.toString(36);
+  }
+
+  function formatDate(iso) {
+    if (!iso) return 'unknown date';
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function num(v) {
+    return (v === null || v === undefined || isNaN(v)) ? null : Number(v);
+  }
+
+  function row(k, v) {
+    return '<div class="van-row"><span class="k">' + k + '</span><span class="v">' + v + '</span></div>';
+  }
+
+  function none(text) { return '<span class="none">' + (text || 'Not listed') + '</span>'; }
+
+  function prettyHost(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ''); }
+    catch (e) { return url; }
+  }
+
+  function showError(msg) {
+    errEl.style.display = 'block';
+    errEl.innerHTML = msg;
+  }
+
+  /* --------------------------------------------------------------------------
+     Park names in data.json and parks.json don't always agree
+     ("Aberconwy Resort and Spa, North Wales, Conwy" vs "Aberconwy Resort & Spa"),
+     so match on a normalised form of the bit before the first comma — the same
+     rule caravans.html uses for its ?park= deep links.
+     ------------------------------------------------------------------------ */
+  function normPark(str) {
+    return String(str ?? '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .split(' ')
+      .filter(w => w && w !== 'and')
+      .join(' ');
+  }
+
+  function findPark(name) {
+    const target = normPark(String(name).split(',')[0]);
+    if (!target || !ALL_PARKS.length) return null;
+    const pairs = ALL_PARKS.map(p => ({ p, key: normPark(String(p.park_name || '').split(',')[0]) }));
+    const exact = pairs.find(x => x.key === target);
+    if (exact) return exact.p;
+    // one name is a leading extension of the other, e.g.
+    // "Wood Farm Country & Leisure Park" <-> "Wood Farm"
+    const partial = pairs.find(x =>
+      x.key.startsWith(target + ' ') || target.startsWith(x.key + ' ')
+    );
+    return partial ? partial.p : null;
+  }
+
+  function parkHref(park) {
+    return 'park.html?park=' + encodeURIComponent(park.park_name) +
+      (park.postcode ? '&pc=' + encodeURIComponent(park.postcode) : '');
+  }
+
+  function findRecord(data) {
+    // fast path: the index the linking page handed us, verified by id
+    const i = wantIdx === null ? -1 : Number(wantIdx);
+    if (Number.isInteger(i) && i >= 0 && i < data.length) {
+      if (!wantId || caravanId(data[i]) === wantId) return data[i];
+    }
+    if (wantId) {
+      const hit = data.find(d => caravanId(d) === wantId);
+      if (hit) return hit;
+    }
+    if (wantUrl) {
+      const hit = data.find(d => d.listing_url === wantUrl);
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  function render(d, data) {
+    document.title = d.name + ' · Static Caravan Watch';
+    document.getElementById('hero-title').innerHTML =
+      escapeHTML(d.make || 'Caravan') + ' <span class="accent">' + escapeHTML(d.model || 'Listing') + '</span>';
+    document.getElementById('hero-sub').textContent =
+      'Everything we’ve recorded about this listing, and a link straight to the source.';
+
+    document.getElementById('van-name').textContent = d.name || 'Unnamed listing';
+    const year = num(d.year);
+    const strapBits = [];
+    if (year) strapBits.push(String(Math.round(year)));
+    if (d.location) strapBits.push(d.location);
+    document.getElementById('van-strap').textContent = strapBits.join(' · ') || 'Static caravan';
+
+    document.getElementById('van-price').textContent = d.price_display || 'Price on application';
+
+    // ---- specification ----
+    const beds = num(d.bedrooms);
+    let s = '';
+    s += row('Make', d.make ? escapeHTML(d.make) : none());
+    s += row('Model', d.model ? escapeHTML(d.model) : none());
+    s += row('Year', year ? String(Math.round(year)) : none('Not stated'));
+    s += row('Bedrooms', beds !== null
+      ? Math.round(beds) + ' bedroom' + (Math.round(beds) === 1 ? '' : 's')
+      : none('Not specified'));
+    s += row('Dimensions', d.dimensions ? escapeHTML(d.dimensions) : none('Not listed'));
+    s += row('Price', d.price_display
+      ? escapeHTML(d.price_display)
+      : none('Price on application'));
+    document.getElementById('spec-rows').innerHTML = s;
+
+    // ---- place & source ----
+    const parkName = d.park || d.location || '';
+    const parkRec = parkName ? findPark(parkName) : null;
+    let p = '';
+    p += row('Park', parkName
+      ? (parkRec
+          // we have a park record — send them to its own page
+          ? '<a href="' + parkHref(parkRec) + '">' + escapeHTML(parkName) + '</a>'
+          // no record in parks.json, so a park page would just 404 — offer the
+          // park's other listings instead of a dead end
+          : '<a href="caravans.html?park=' + encodeURIComponent(parkName) + '">' + escapeHTML(parkName) + '</a>')
+      : none());
+    // parks.json is the authority on where a park actually is; fall back to the
+    // listing's own columns when the park name didn't match an entry.
+    const place = f => escapeHTML(String((parkRec && parkRec[f]) || d[f] || '').trim());
+    const region = place('region'), county = place('county'), town = place('town');
+    p += row('Region', region || none('Not recorded'));
+    p += row('County', county || none('Not recorded'));
+    p += row('Closest town', town || none('Not recorded'));
+    // parks.json is the better source for this: every park in it has a postcode,
+    // whereas data.json only carries one for about half the listings.
+    const postcode = (parkRec && parkRec.postcode) || d.postcode || '';
+    p += row('Postcode', postcode
+      ? escapeHTML(postcode) + ' &middot; <a href="https://www.google.com/maps/search/?api=1&query=' +
+        encodeURIComponent(parkName + ' ' + postcode) + '" target="_blank" rel="noopener">Open in Maps</a>'
+      : none('Not recorded'));
+    p += row('Source', d.source_site ? escapeHTML(d.source_site) : none('Unknown'));
+    p += row('Listing', d.listing_url
+      ? '<a href="' + encodeURI(d.listing_url) + '" target="_blank" rel="noopener">' +
+        escapeHTML(prettyHost(d.listing_url)) + ' ↗</a>'
+      : none('No direct link recorded'));
+    p += row('Last seen', formatDate(d.date_scraped));
+    document.getElementById('place-rows').innerHTML = p;
+
+    const note = document.getElementById('source-note');
+    if (!d.listing_url) {
+      note.style.display = 'block';
+      note.innerHTML = 'This listing came from a page that lists several caravans at once, so there’s no direct link to this one. Try the park’s own website.';
+    }
+
+    // ---- actions ----
+    const srcBtn = document.getElementById('source-btn');
+    if (d.listing_url) {
+      srcBtn.href = encodeURI(d.listing_url);
+      srcBtn.textContent = 'View on ' + (d.source_site || prettyHost(d.listing_url)) + ' ↗';
+    } else {
+      srcBtn.style.display = 'none';
+    }
+
+    const parkListings = document.getElementById('park-listings-btn');
+    if (parkName) parkListings.href = 'caravans.html?park=' + encodeURIComponent(parkName);
+    else parkListings.style.display = 'none';
+
+    const parkInfo = document.getElementById('park-info-btn');
+    if (parkRec) parkInfo.href = parkHref(parkRec);
+    else parkInfo.style.display = 'none';
+
+    // ---- similar listings: same make & model, cheapest first ----
+    const key = s => String(s ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    const thisId = caravanId(d);
+    const similar = data
+      .filter(o => caravanId(o) !== thisId &&
+                   key(o.make) === key(d.make) &&
+                   key(o.model) === key(d.model))
+      .sort((a, b) => (a.price_number || 0) - (b.price_number || 0))
+      .slice(0, 6);
+
+    if (similar.length) {
+      document.getElementById('similar-wrap').style.display = 'block';
+      document.getElementById('similar-sub').textContent =
+        'Other ' + [d.make, d.model].filter(Boolean).join(' ') + ' listings we’ve seen.';
+      document.getElementById('similar-grid').innerHTML = similar.map(o => {
+        const idx = data.indexOf(o);
+        const yr = num(o.year);
+        const meta = [yr ? String(Math.round(yr)) : null, o.location].filter(Boolean).join(' · ');
+        return '<a class="similar-card" href="caravan.html?id=' + encodeURIComponent(caravanId(o)) +
+               '&i=' + idx + '">' +
+               '<span class="sc-name">' + escapeHTML(o.name) + '</span>' +
+               '<span class="sc-meta">' + escapeHTML(meta) + '</span>' +
+               '<span class="sc-price">' + escapeHTML(o.price_display || 'POA') + '</span>' +
+               '</a>';
+      }).join('');
+    }
+
+    bodyEl.style.display = 'block';
+  }
+
+  async function init() {
+    if (!wantId && !wantUrl && wantIdx === null) {
+      showError('No caravan was specified. Head <a href="caravans.html">back to all listings</a> and pick one.');
+      return;
+    }
+    try {
+      // parks.json is a nice-to-have: if it's missing we still render the listing
+      const parksReq = fetch(PARKS_PATH)
+        .then(r => r.ok ? r.json() : [])
+        .catch(() => []);
+
+      const res = await fetch(DATA_PATH);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      let text = await res.text();
+      text = text.replace(/:\s*NaN/g, ': null');
+      const data = JSON.parse(text);
+      const rec = findRecord(data);
+      if (!rec) {
+        showError('We couldn’t find that caravan in the current data — listings drop off as they sell. ' +
+                  '<a href="caravans.html">Browse all listings</a> instead.');
+        return;
+      }
+      ALL_PARKS = await parksReq;
+      render(rec, data);
+    } catch (err) {
+      console.error(err);
+      showError("Couldn't load <code>data.json</code> — this page needs to be served from a web server " +
+                "(not opened straight off disk) with <code>data.json</code> in the same folder.");
+    }
+  }
+
+  init();
+
+  // "Back" returns to wherever you came from, if that was one of our own pages
+  document.getElementById('back-link').addEventListener('click', (e) => {
+    if (document.referrer && /\/(caravans|compare|index)\.html/.test(document.referrer)) {
+      e.preventDefault();
+      history.back();
+    }
+  });
+</script>
+
+</body>
+</html>
