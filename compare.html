@@ -446,13 +446,70 @@
     margin: 0 0 2px;
   }
 
+  .chart-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .metric-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .metric-btn {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .metric-btn + .metric-btn { border-left: 1px solid var(--line); }
+  .metric-btn:hover { color: var(--ink); }
+  .metric-btn.active {
+    background: var(--teal);
+    color: #FFFDF8;
+    font-weight: 600;
+  }
+
   .chart-note {
     font-size: 12px;
     color: var(--muted);
     margin: 0 0 10px;
   }
 
-  .chart-box svg { display: block; width: 100%; height: auto; }
+  /* user-select off so dragging a selection box doesn't highlight the axis
+     labels as it sweeps across them */
+  .chart-box svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* the drag-to-select rectangle */
+  .sel-box {
+    fill: rgba(31, 111, 110, 0.10);
+    stroke: var(--teal);
+    stroke-width: 1;
+    stroke-dasharray: 4 3;
+    pointer-events: none;
+  }
+
+  .pick-more {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 7px 0 0;
+  }
 
   .ax-line { stroke: var(--line); stroke-width: 1; }
   .ax-grid { stroke: rgba(223, 213, 193, 0.7); stroke-width: 1; }
@@ -806,7 +863,6 @@
         <a href="compare.html" class="active">Compare</a>
         <a href="caravans.html">All listings</a>
         <a href="map.html">Search by region</a>
-        <a href="parks.html">List of parks</a>
       </nav>
     </div>
   </div>
@@ -862,6 +918,16 @@
       </div>
 
       <div class="field">
+        <span class="field-label">Budget (&pound;)</span>
+        <div class="dim-row">
+          <input id="in-price-min" type="number" min="0" step="500" placeholder="Min" aria-label="Lowest price">
+          <span class="dim-x">&ndash;</span>
+          <input id="in-price-max" type="number" min="0" step="500" placeholder="Max" aria-label="Highest price">
+        </div>
+        <span class="hint">Leave either blank for no limit</span>
+      </div>
+
+      <div class="field">
         <label for="in-region">Region</label>
         <select id="in-region">
           <option value="">Any region</option>
@@ -873,7 +939,7 @@
     <div class="form-actions">
       <button class="btn-primary" type="submit">Find matching caravans</button>
       <button class="clear-btn" type="button" id="reset-btn">Start again</button>
-      <p class="form-error hidden" id="form-error">Enter at least one detail &mdash; make, model, a dimension, bedrooms, a year or a region.</p>
+      <p class="form-error hidden" id="form-error">Enter at least one detail &mdash; make, model, a dimension, bedrooms, a year, a budget or a region.</p>
     </div>
   </form>
 
@@ -1279,6 +1345,15 @@
     if (c.region !== '') {
       if (listingRegion(d).toLowerCase() !== c.region.toLowerCase()) return false;
     }
+
+    // Budget, like year, is a hard limit: a listing with no price can't be
+    // shown to be within it, so it drops out once one is set.
+    if (c.priceMin !== null || c.priceMax !== null) {
+      const price = d.price_number;
+      if (price === null || price === undefined || isNaN(price)) return false;
+      if (c.priceMin !== null && price < c.priceMin) return false;
+      if (c.priceMax !== null && price > c.priceMax) return false;
+    }
     return true;
   }
 
@@ -1298,7 +1373,17 @@
   function readCriteria() {
     const lenRaw = document.getElementById('in-length').value.trim();
     const widRaw = document.getElementById('in-width').value.trim();
+    const loRaw = document.getElementById('in-price-min').value.trim();
+    const hiRaw = document.getElementById('in-price-max').value.trim();
+    let priceMin = loRaw === '' ? null : Number(loRaw);
+    let priceMax = hiRaw === '' ? null : Number(hiRaw);
+    // typed the other way round — take it as the range they meant
+    if (priceMin !== null && priceMax !== null && priceMin > priceMax) {
+      const swap = priceMin; priceMin = priceMax; priceMax = swap;
+    }
     return {
+      priceMin: priceMin,
+      priceMax: priceMax,
       make: document.getElementById('in-make').value.trim(),
       model: document.getElementById('in-model').value.trim(),
       length: lenRaw === '' ? null : Number(lenRaw),
@@ -1311,7 +1396,8 @@
 
   function criteriaEmpty(c) {
     return !c.make && !c.model && c.length === null && c.width === null &&
-      c.bedrooms === '' && c.year === '' && c.region === '';
+      c.bedrooms === '' && c.year === '' && c.region === '' &&
+      c.priceMin === null && c.priceMax === null;
   }
 
   // Value used to sort by a given column, plus whether that listing lacks the
@@ -1394,6 +1480,9 @@
     if (c.bedrooms !== '') chips.push(c.bedrooms + ' bedroom' + (c.bedrooms === '1' ? '' : 's'));
     if (c.year !== '') chips.push(c.year + ' or newer');
     if (c.region !== '') chips.push('Region: ' + c.region);
+    if (c.priceMin !== null && c.priceMax !== null) chips.push('Budget: ' + money(c.priceMin) + ' \u2013 ' + money(c.priceMax));
+    else if (c.priceMax !== null) chips.push('Up to ' + money(c.priceMax));
+    else if (c.priceMin !== null) chips.push(money(c.priceMin) + ' and up');
     return chips.map(t => '<span class="chip">' + escapeHTML(t) + '</span>').join('');
   }
 
@@ -1559,7 +1648,46 @@
   const DOT_R = 3.4;
 
   // Points currently drawn, per chart, so click handling can find neighbours.
-  const CHART_POINTS = { area: [], year: [] };
+  const CHART_POINTS = { size: [], year: [] };
+
+  // The size chart can plot price against either the caravan's length or its
+  // floor area; both point sets are built up front and the toggle just swaps
+  // which one is drawn. Length is the default — it's the figure listings
+  // quote, and the one people shop by.
+  const SIZE_POINTS = { length: [], area: [] };
+  let sizeMetric = 'length';
+
+  // Drop-down list of the caravans behind a clicked dot; every chart gets one.
+  const PICK_PANEL_HTML = `<div class="pick-panel hidden">
+        <div class="pick-head">
+          <p class="pick-title"></p>
+          <button type="button" class="pick-close">Clear</button>
+        </div>
+        <ul class="pick-list"></ul>
+      </div>`;
+
+  // Price runs along the bottom on every chart; the y axis is whatever the
+  // chart plots against it.
+  const PRICE_AXIS = { xTitle: 'Price', xTicks: 6, xFormat: t => shortMoney(t) };
+
+  const SIZE_METRICS = {
+    length: {
+      label: 'Length',
+      yTitle: 'Length (ft)',
+      yTicks: 5,
+      yFormat: t => String(Math.round(t * 10) / 10),
+      aria: 'Scatter chart of length against price',
+      note: 'Length is the longer side of the stated size.'
+    },
+    area: {
+      label: 'Floor area',
+      yTitle: 'Floor area (sq ft)',
+      yTicks: 5,
+      yFormat: t => Math.round(t).toLocaleString('en-GB'),
+      aria: 'Scatter chart of floor area against price',
+      note: 'Area is length &times; width.'
+    }
+  };
 
   function scatterSVG(points, opts) {
     const W = 640, H = 340;
@@ -1569,14 +1697,14 @@
 
     const xs = points.map(p => p.x), ys = points.map(p => p.y);
     const xr = niceTicks(Math.min(...xs), Math.max(...xs), opts.xTicks || 6);
-    const yr = niceTicks(Math.min(...ys), Math.max(...ys), 5);
+    const yr = niceTicks(Math.min(...ys), Math.max(...ys), opts.yTicks || 5);
 
     const sx = v => PAD.left + ((v - xr.lo) / (xr.hi - xr.lo)) * plotW;
     const sy = v => PAD.top + plotH - ((v - yr.lo) / (yr.hi - yr.lo)) * plotH;
 
     const yGrid = yr.ticks.map(t => `
       <line class="ax-grid" x1="${PAD.left}" y1="${sy(t).toFixed(1)}" x2="${(PAD.left + plotW).toFixed(1)}" y2="${sy(t).toFixed(1)}"></line>
-      <text class="ax-text" x="${PAD.left - 8}" y="${(sy(t) + 3.5).toFixed(1)}" text-anchor="end">${shortMoney(t)}</text>`).join('');
+      <text class="ax-text" x="${PAD.left - 8}" y="${(sy(t) + 3.5).toFixed(1)}" text-anchor="end">${opts.yFormat(t)}</text>`).join('');
 
     const xGrid = xr.ticks.map(t => `
       <line class="ax-grid" x1="${sx(t).toFixed(1)}" y1="${PAD.top}" x2="${sx(t).toFixed(1)}" y2="${(PAD.top + plotH).toFixed(1)}"></line>
@@ -1594,8 +1722,27 @@
       <line class="ax-line" x1="${PAD.left}" y1="${PAD.top + plotH}" x2="${PAD.left + plotW}" y2="${PAD.top + plotH}"></line>
       ${dots}
       <text class="ax-title" x="${(PAD.left + plotW / 2).toFixed(1)}" y="${H - 10}" text-anchor="middle">${escapeHTML(opts.xTitle)}</text>
-      <text class="ax-title" transform="translate(14 ${(PAD.top + plotH / 2).toFixed(1)}) rotate(-90)" text-anchor="middle">Price</text>
+      <text class="ax-title" transform="translate(14 ${(PAD.top + plotH / 2).toFixed(1)}) rotate(-90)" text-anchor="middle">${escapeHTML(opts.yTitle)}</text>
     </svg>`;
+  }
+
+  // Everything inside the size chart box, so switching metric is a re-render
+  // of the box rather than a re-run of the whole results page.
+  function sizeChartInnerHTML() {
+    const pts = SIZE_POINTS[sizeMetric];
+    const cfg = SIZE_METRICS[sizeMetric];
+    const buttons = Object.keys(SIZE_METRICS).map(key => {
+      const disabled = SIZE_POINTS[key].length < 2 ? ' disabled' : '';
+      return `<button type="button" class="metric-btn${key === sizeMetric ? ' active' : ''}" data-metric="${key}"${disabled}>${SIZE_METRICS[key].label}</button>`;
+    }).join('');
+
+    return `<div class="chart-head">
+        <h3>${escapeHTML(cfg.label)} vs price</h3>
+        <div class="metric-toggle" role="group" aria-label="Plot price against">${buttons}</div>
+      </div>
+      <p class="chart-note">${pts.length} match${pts.length === 1 ? '' : 'es'} state a size. ${cfg.note} Click a dot for the caravans it covers, or drag a box to select a group.</p>
+      ${scatterSVG(pts, Object.assign({}, PRICE_AXIS, cfg))}
+      ${PICK_PANEL_HTML}`;
   }
 
   function scattersHTML(list) {
@@ -1603,61 +1750,56 @@
     if (!priced.length) return '';
 
     const areaPts = [];
+    const lengthPts = [];
     const yearPts = [];
     priced.forEach(d => {
       const dims = parseDims(d.dimensions);
       if (dims) {
         const area = dims.length * dims.width;
         areaPts.push({
-          x: area,
-          y: d.price_number,
+          x: d.price_number,
+          y: area,
           d: d,
           label: `${d.name} — ${Math.round(area)} sq ft (${d.dimensions}) — ${d.price_display}`
+        });
+        lengthPts.push({
+          x: d.price_number,
+          y: dims.length,
+          d: d,
+          label: `${d.name} — ${Math.round(dims.length * 10) / 10}ft long (${d.dimensions}) — ${d.price_display}`
         });
       }
       const y = Number(d.year);
       if (d.year !== null && d.year !== undefined && !isNaN(y) && y > 1900) {
-        yearPts.push({ x: y, y: d.price_number, d: d, label: `${d.name} — ${Math.round(y)} — ${d.price_display}` });
+        yearPts.push({ x: d.price_number, y: y, d: d, label: `${d.name} — ${Math.round(y)} — ${d.price_display}` });
       }
     });
 
-    CHART_POINTS.area = areaPts.length >= 2 ? areaPts : [];
+    SIZE_POINTS.area = areaPts.length >= 2 ? areaPts : [];
+    SIZE_POINTS.length = lengthPts.length >= 2 ? lengthPts : [];
+    if (!SIZE_POINTS[sizeMetric].length) {
+      sizeMetric = SIZE_POINTS.length.length ? 'length' : 'area';
+    }
+    CHART_POINTS.size = SIZE_POINTS[sizeMetric];
     CHART_POINTS.year = yearPts.length >= 2 ? yearPts : [];
-
-    const panel = `<div class="pick-panel hidden">
-        <div class="pick-head">
-          <p class="pick-title"></p>
-          <button type="button" class="pick-close">Clear</button>
-        </div>
-        <ul class="pick-list"></ul>
-      </div>`;
 
     const boxes = [];
 
-    if (areaPts.length >= 2) {
-      boxes.push(`<div class="chart-box is-area" data-chart="area">
-        <h3>Price vs floor area</h3>
-        <p class="chart-note">${areaPts.length} match${areaPts.length === 1 ? '' : 'es'} state a size. Area is length &times; width. Click a dot for the caravans it covers.</p>
-        ${scatterSVG(areaPts, {
-          xTitle: 'Floor area (sq ft)',
-          xFormat: t => Math.round(t).toLocaleString('en-GB'),
-          aria: 'Scatter chart of price against floor area'
-        })}
-        ${panel}
-      </div>`);
+    if (SIZE_POINTS[sizeMetric].length >= 2) {
+      boxes.push(`<div class="chart-box is-size" data-chart="size">${sizeChartInnerHTML()}</div>`);
     }
 
     if (yearPts.length >= 2) {
       boxes.push(`<div class="chart-box is-year" data-chart="year">
-        <h3>Price vs year</h3>
-        <p class="chart-note">${yearPts.length} match${yearPts.length === 1 ? '' : 'es'} state a year. Click a dot for the caravans it covers.</p>
-        ${scatterSVG(yearPts, {
-          xTitle: 'Year',
-          xTicks: 5,
-          xFormat: t => String(Math.round(t)),
-          aria: 'Scatter chart of price against year'
-        })}
-        ${panel}
+        <h3>Year vs price</h3>
+        <p class="chart-note">${yearPts.length} match${yearPts.length === 1 ? '' : 'es'} state a year. Click a dot for the caravans it covers, or drag a box to select a group.</p>
+        ${scatterSVG(yearPts, Object.assign({}, PRICE_AXIS, {
+          yTitle: 'Year',
+          yTicks: 5,
+          yFormat: t => String(Math.round(t)),
+          aria: 'Scatter chart of year against price'
+        }))}
+        ${PICK_PANEL_HTML}
       </div>`);
     }
 
@@ -1702,6 +1844,29 @@
     }
   }
 
+  // Longest list we'll actually put in the DOM — a box drag can cover
+  // thousands of dots, and nobody scrolls that far.
+  const PICK_LIMIT = 200;
+
+  function renderPick(box, group, title) {
+    if (!group.length) { clearPick(box); return; }
+
+    box.classList.add('has-pick');
+    box.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
+    const picked = new Set(group.map(p => p.i));
+    box.querySelectorAll('.dot-pt').forEach(c => {
+      if (picked.has(Number(c.dataset.i))) c.classList.add('picked');
+    });
+
+    const shown = group.slice(0, PICK_LIMIT);
+    const rest = group.length - shown.length;
+    const panel = box.querySelector('.pick-panel');
+    panel.querySelector('.pick-title').textContent = title;
+    panel.querySelector('.pick-list').innerHTML = shown.map(pickRowHTML).join('') +
+      (rest ? `<li class="pick-more">&hellip; and ${rest} more, cheapest shown first.</li>` : '');
+    panel.classList.remove('hidden');
+  }
+
   function showPick(box, index) {
     const pts = CHART_POINTS[box.dataset.chart] || [];
     const hit = pts[index];
@@ -1715,33 +1880,132 @@
     // clicked caravan first, then cheapest
     group.sort((a, b) => (a === hit ? -1 : b === hit ? 1 : a.d.price_number - b.d.price_number));
 
-    box.classList.add('has-pick');
-    box.querySelectorAll('.dot-pt').forEach(c => c.classList.remove('picked'));
-    const picked = new Set(group.map(p => p.i));
-    box.querySelectorAll('.dot-pt').forEach(c => {
-      if (picked.has(Number(c.dataset.i))) c.classList.add('picked');
+    renderPick(box, group, group.length === 1
+      ? '1 caravan at this dot'
+      : `${group.length} caravans at this dot`);
+  }
+
+  /* ---- dragging a box over the chart -----------------------------------
+     Same idea as clicking a dot, over an area: every dot whose circle
+     touches the rectangle you drew counts as inside it, so a dot half-caught
+     by the edge is still picked up.
+     -------------------------------------------------------------------- */
+
+  function showBoxPick(box, rect) {
+    const pts = CHART_POINTS[box.dataset.chart] || [];
+    const group = pts.filter(p => {
+      const nx = Math.min(Math.max(p.cx, rect.x1), rect.x2);
+      const ny = Math.min(Math.max(p.cy, rect.y1), rect.y2);
+      const dx = p.cx - nx, dy = p.cy - ny;
+      return (dx * dx + dy * dy) <= DOT_R * DOT_R;
+    });
+    group.sort((a, b) => a.d.price_number - b.d.price_number);
+
+    if (!group.length) {
+      clearPick(box);
+      return;
+    }
+    renderPick(box, group, group.length === 1
+      ? '1 caravan in this box'
+      : `${group.length} caravans in this box`);
+  }
+
+  // Client coordinates -> the SVG's own user units, so the maths below works
+  // in the same space the dots were laid out in.
+  function svgPoint(svg, evt) {
+    const pt = svg.createSVGPoint();
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+    const ctm = svg.getScreenCTM();
+    return ctm ? pt.matrixTransform(ctm.inverse()) : { x: 0, y: 0 };
+  }
+
+  function wireBoxSelect(box, svg) {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const DRAG_MIN = 3; // user units before a click becomes a drag
+    let drag = null;
+
+    const endDrag = () => {
+      if (drag && drag.rect) drag.rect.remove();
+      drag = null;
+    };
+
+    svg.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      e.preventDefault(); // don't start a text selection on the axis labels
+      // a drag that never got its trailing click mustn't swallow this one
+      delete box.dataset.dragged;
+      const p = svgPoint(svg, e);
+      drag = { x0: p.x, y0: p.y, moved: false, rect: null };
     });
 
-    const panel = box.querySelector('.pick-panel');
-    panel.querySelector('.pick-title').textContent = group.length === 1
-      ? '1 caravan at this dot'
-      : `${group.length} caravans at this dot`;
-    panel.querySelector('.pick-list').innerHTML = group.map(pickRowHTML).join('');
-    panel.classList.remove('hidden');
+    svg.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const p = svgPoint(svg, e);
+      const x1 = Math.min(drag.x0, p.x), x2 = Math.max(drag.x0, p.x);
+      const y1 = Math.min(drag.y0, p.y), y2 = Math.max(drag.y0, p.y);
+      if (!drag.moved && (x2 - x1) < DRAG_MIN && (y2 - y1) < DRAG_MIN) return;
+      if (!drag.moved) {
+        drag.moved = true;
+        drag.rect = document.createElementNS(SVG_NS, 'rect');
+        drag.rect.setAttribute('class', 'sel-box');
+        svg.appendChild(drag.rect);
+        svg.setPointerCapture(e.pointerId);
+      }
+      drag.rect.setAttribute('x', x1.toFixed(1));
+      drag.rect.setAttribute('y', y1.toFixed(1));
+      drag.rect.setAttribute('width', (x2 - x1).toFixed(1));
+      drag.rect.setAttribute('height', (y2 - y1).toFixed(1));
+    });
+
+    svg.addEventListener('pointerup', e => {
+      if (!drag) return;
+      const moved = drag.moved;
+      const p = svgPoint(svg, e);
+      const rect = {
+        x1: Math.min(drag.x0, p.x), x2: Math.max(drag.x0, p.x),
+        y1: Math.min(drag.y0, p.y), y2: Math.max(drag.y0, p.y)
+      };
+      endDrag();
+      if (!moved) return; // a plain click — the click handler deals with it
+      box.dataset.dragged = '1';   // stop the click that follows a drag
+      showBoxPick(box, rect);
+    });
+
+    svg.addEventListener('pointercancel', endDrag);
+    svg.addEventListener('pointerleave', () => { if (drag && !drag.moved) endDrag(); });
+  }
+
+  function wireChartBox(box) {
+    const svg = box.querySelector('svg');
+    if (!svg) return;
+    svg.addEventListener('click', e => {
+      // the click that ends a box drag isn't a click on the chart
+      if (box.dataset.dragged) { delete box.dataset.dragged; return; }
+      const dot = e.target.closest('.dot-pt');
+      if (dot) showPick(box, Number(dot.dataset.i));
+      else clearPick(box);
+    });
+    wireBoxSelect(box, svg);
+    const closeBtn = box.querySelector('.pick-close');
+    if (closeBtn) closeBtn.addEventListener('click', () => clearPick(box));
+
+    // length / floor area switch on the size chart
+    box.querySelectorAll('.metric-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const metric = btn.dataset.metric;
+        if (!metric || metric === sizeMetric || SIZE_POINTS[metric].length < 2) return;
+        sizeMetric = metric;
+        CHART_POINTS.size = SIZE_POINTS[metric];
+        box.classList.remove('has-pick');
+        box.innerHTML = sizeChartInnerHTML();
+        wireChartBox(box);
+      });
+    });
   }
 
   function wireScatters() {
-    resultsEl.querySelectorAll('.chart-box').forEach(box => {
-      const svg = box.querySelector('svg');
-      if (!svg) return;
-      svg.addEventListener('click', e => {
-        const dot = e.target.closest('.dot-pt');
-        if (dot) showPick(box, Number(dot.dataset.i));
-        else clearPick(box);
-      });
-      const closeBtn = box.querySelector('.pick-close');
-      if (closeBtn) closeBtn.addEventListener('click', () => clearPick(box));
-    });
+    resultsEl.querySelectorAll('.chart-box').forEach(wireChartBox);
   }
 
   function buildPageNumbers(current, total) {
@@ -1956,6 +2220,8 @@
     set('in-model', p.get('model'));
     set('in-length', p.get('length'));
     set('in-width', p.get('width'));
+    set('in-price-min', p.get('minPrice') || p.get('budgetMin'));
+    set('in-price-max', p.get('maxPrice') || p.get('budget'));
     const beds = p.get('beds') || p.get('bedrooms');
     if (beds) {
       const sel = document.getElementById('in-bedrooms');
