@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Static Caravan Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16283A;
+    --navy: #122536;
+    --navy-deep: #0C1B29;
+    --cream: #F6F0E4;
+    --card: #FFFDF8;
+    --mustard: #E8A93D;
+    --mustard-dark: #8A5F1E;
+    --teal: #1F6F6E;
+    --coral: #C6503F;
+    --line: #DFD5C1;
+    --muted: #6B6558;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  a { color: var(--teal); }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 0 0 130px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar-wrap {
+    position: relative;
+    z-index: 3;
+    border-bottom: 1px solid rgba(246, 240, 228, 0.14);
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .topbar-brand .mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--mustard);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  nav.topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav.topbar-nav a {
+    color: #C3D0DA;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.16s ease, border-color 0.16s ease;
+  }
+
+  nav.topbar-nav a:hover { color: var(--mustard); }
+  nav.topbar-nav a.active { color: var(--mustard); border-bottom-color: var(--mustard); }
+  nav.topbar-nav a:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; border-radius: 2px; }
+
+  /* soft colour wash + fine texture, all in CSS so nothing extra to load */
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90ch 50ch at 88% -10%, rgba(232, 169, 61, 0.22), transparent 62%),
+      radial-gradient(80ch 46ch at 4% 106%, rgba(31, 111, 110, 0.42), transparent 64%),
+      linear-gradient(160deg, #16304A 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(246, 240, 228, 0.9) 0 1px, transparent 1px 9px);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 68px 24px 0;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    font-weight: 600;
+    background: rgba(232, 169, 61, 0.12);
+    border: 1px solid rgba(232, 169, 61, 0.34);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin: 0 0 20px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mustard);
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(52px, 10vw, 104px);
+    letter-spacing: 0.005em;
+    margin: 0 0 16px;
+    line-height: 0.9;
+  }
+  h1.hero-title .accent { color: var(--mustard); }
+
+  .hero-sub {
+    font-size: 17.5px;
+    color: #CFDAE2;
+    max-width: 50ch;
+    margin: 0;
+  }
+
+  .hero-rule {
+    width: 68px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--mustard);
+    margin: 26px 0 0;
+  }
+
+  /* ---------- Options ---------- */
+  main {
+    max-width: 1100px;
+    margin: -86px auto 0;
+    position: relative;
+    z-index: 2;
+    padding: 0 24px 76px;
+  }
+
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+    gap: 18px;
+  }
+
+  a.option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px 24px 22px;
+    text-decoration: none;
+    color: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(12, 27, 41, 0.10);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  /* accent rail along the top of each card */
+  a.option::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s cubic-bezier(0.22, 0.8, 0.3, 1);
+  }
+
+  a.option:hover, a.option:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 18px 38px rgba(12, 27, 41, 0.16);
+  }
+  a.option:hover::before, a.option:focus-visible::before { transform: scaleX(1); }
+  a.option:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .option-index {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  h3.option-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 31px;
+    letter-spacing: 0.012em;
+    line-height: 1;
+    margin: 0;
+    transition: color 0.18s ease;
+  }
+  a.option:hover h3.option-title { color: var(--accent); }
+
+  .option-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 0;
+    flex: 1 1 auto;
+  }
+
+  .option-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 10px;
+    padding-top: 13px;
+    border-top: 1px solid var(--line);
+  }
+  .option-go .arrow {
+    transition: transform 0.22s cubic-bezier(0.22, 0.8, 0.3, 1);
+  }
+  a.option:hover .option-go .arrow { transform: translateX(5px); }
+
+  /* per-card accents, all drawn from the site palette */
+  .option.c-teal    { --accent: var(--teal); }
+  .option.c-ink     { --accent: #2C5D8A; }
+  .option.c-coral   { --accent: var(--coral); }
+  .option.c-mustard { --accent: var(--mustard-dark); }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 24px 32px;
+  }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 0 0 110px; }
+    .hero-inner { padding-top: 46px; }
+    .topbar { gap: 10px 16px; }
+    nav.topbar-nav { gap: 14px; }
+    nav.topbar-nav a { font-size: 11.5px; }
+    main { margin-top: -76px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <a class="topbar-brand" href="index.html" title="Home" aria-label="Static Caravan Watch — home"><span class="mark"></span>Static Caravan Watch</a>
+      <nav class="topbar-nav">
+        <a href="compare.html">Compare</a>
+        <a href="caravans.html">All listings</a>
+        <a href="map.html">Search by region</a>
+      </nav>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow"><span class="dot"></span>Static caravans &amp; holiday homes</p>
+    <h1 class="hero-title">Static Caravan <span class="accent">Watch</span></h1>
+    <p class="hero-sub">Every listing we've found for sale across England's holiday parks, refreshed weekly.</p>
+    <div class="hero-rule"></div>
+  </div>
+</header>
+
+<main>
+  <div class="option-grid">
+
+    <a class="option c-teal" href="compare.html">
+      <span class="option-index">01</span>
+      <h3 class="option-title">Compare caravans or search for a caravan</h3>
+      <p class="option-desc">for you have a caravan you a considering buying, enter its details and see similar caravans on the market or just want to buy a caravan and have an idea of what you want</p>
+      <span class="option-go">Compare a caravan <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-ink" href="caravans.html">
+      <span class="option-index">02</span>
+      <h3 class="option-title">browse all caravans </h3>
+      <p class="option-desc">search and browse our database of caravans</p>
+      <span class="option-go">Start searching <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-coral" href="map.html">
+      <span class="option-index">03</span>
+      <h3 class="option-title">Find parks</h3>
+      <p class="option-desc">Explore holiday parks on the map by region, with pitch fees and contact details for each one.</p>
+      <span class="option-go">Open the map <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="option c-mustard" href="comingsoon.html">
+      <span class="option-index">04</span>
+      <h3 class="option-title">Browse parks </h3>
+      <p class="option-desc">search parks</p>
+      <span class="option-go">Coming soon <span class="arrow">&rarr;</span></span>
+    </a>
+
+  </div>
+</main>
+
+<footer>Data collected weekly from public caravan listing sites, for personal browsing use.</footer>
+
+</body>
+</html>
