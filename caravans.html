@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="leaflet.css">
 <style>
   :root {
     --ink: #16283A;
@@ -374,41 +375,11 @@
     margin: 0;
   }
 
-  /* ---------- Make & model combined filter ---------- */
-  #makemodel-ms .ms-panel { width: max(320px, 100%); }
-
-  .mm-make { border-bottom: 1px solid rgba(223, 213, 193, 0.6); }
-  .mm-make:last-child { border-bottom: none; }
-
-  .mm-make-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 1px 0;
+  .ms-toggle:disabled {
+    color: var(--muted);
+    cursor: not-allowed;
+    background-color: rgba(223, 213, 193, 0.25);
   }
-
-  .mm-caret {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    color: var(--teal);
-    background: rgba(31, 111, 110, 0.09);
-    border: none;
-    border-radius: 5px;
-    padding: 0;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .mm-caret svg { width: 14px; height: 14px; display: block; }
-  .mm-caret:hover { background: rgba(31, 111, 110, 0.2); }
-  .mm-caret.open { transform: rotate(90deg); background: rgba(31, 111, 110, 0.18); }
-  .mm-caret:disabled { opacity: 0.2; cursor: default; background: none; }
-  .mm-caret:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
-
-  .mm-make-row .ms-option { font-weight: 600; flex: 1 1 auto; }
 
   .mm-count {
     font-size: 11px;
@@ -476,6 +447,108 @@
     color: var(--muted);
     margin: 4px 0 18px;
   }
+
+  /* ---------- grid / map switch ---------- */
+  .results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 0 0 10px;
+  }
+  .results-bar .results-label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .view-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .view-btn {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 6px 14px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .view-btn + .view-btn { border-left: 1px solid var(--line); }
+  .view-btn:hover { color: var(--ink); }
+  .view-btn.active { background: var(--teal); color: #FFFDF8; }
+
+  .park-map-wrap { margin: 0 0 20px; }
+  .park-map-wrap.hidden { display: none; }
+  .park-map {
+    height: 600px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+  }
+  .park-map-hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .pagination.hidden, .grid.hidden { display: none; }
+
+  .leaflet-popup-content-wrapper {
+    background: var(--card);
+    color: var(--ink);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(22,40,58,0.22);
+  }
+  .leaflet-popup-content { font-family: var(--font-body); margin: 12px 14px; min-width: 210px; }
+  .leaflet-popup-tip { background: var(--card); }
+  .popup-park-name { font-weight: 700; font-size: 14px; margin: 0 0 4px; line-height: 1.3; }
+  .popup-park-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .popup-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  .popup-park-list { max-height: 280px; overflow-y: auto; margin: 0 -4px 0 0; padding-right: 4px; }
+  .popup-park-item + .popup-park-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+  .popup-vans { list-style: none; margin: 0 0 8px; padding: 0; }
+  .popup-vans li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12.5px;
+    padding: 3px 0;
+    border-top: 1px solid rgba(223, 213, 193, 0.55);
+  }
+  .popup-vans li:first-child { border-top: none; }
+  .leaflet-container a.popup-van-link { color: var(--ink); text-decoration: none; font-weight: 600; }
+  .leaflet-container a.popup-van-link:hover { color: var(--teal); text-decoration: underline; }
+  .popup-van-price { color: var(--mustard-dark); font-weight: 700; white-space: nowrap; }
+  .popup-more { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+  .pin-count { font-family: var(--font-body); font-size: 14px; font-weight: 700; }
+  .popup-park-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  /* Leaflet's own `.leaflet-container a` rule outranks a bare class, hence the prefix */
+  .leaflet-container a.popup-park-btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cream);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 6px 11px;
+    border-radius: 6px;
+    line-height: 1;
+    border: 1px solid var(--ink);
+  }
+  .leaflet-container a.popup-park-btn:hover { background: #234e78; color: var(--cream); }
+  .leaflet-container a.popup-park-info { color: var(--ink); background: transparent; }
+  .leaflet-container a.popup-park-info:hover { color: var(--cream); background: var(--ink); }
 
   .grid {
     display: grid;
@@ -735,7 +808,7 @@
       <nav class="topbar-nav">
         <a href="compare.html">Compare</a>
         <a href="caravans.html" class="active">All listings</a>
-        <a href="map.html">Search by region</a>
+        <a href="map.html">park search</a>
       </nav>
     </div>
   </div>
@@ -769,14 +842,56 @@
       </div>
     </div>
     <div class="field">
-      <label id="makemodel-label">Make &amp; model</label>
-      <div class="multiselect" id="makemodel-ms">
-        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="makemodel-label">All makes</button>
+      <label id="region-label">Region</label>
+      <div class="multiselect" data-key="region">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="region-label">All regions</button>
         <div class="ms-panel hidden" role="listbox">
-          <input type="text" class="ms-search" placeholder="Search makes or models&hellip;">
+          <input type="text" class="ms-search" placeholder="Search regions&hellip;">
           <div class="ms-actions">
-            <button type="button" class="ms-link-btn mm-expand">Expand all</button>
-            <button type="button" class="ms-link-btn mm-clear">Clear</button>
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label id="county-label">County</label>
+      <div class="multiselect" data-key="county">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="county-label">All counties</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search counties&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label id="make-label">Make</label>
+      <div class="multiselect" data-key="make">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="make-label">All makes</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search makes&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label id="model-label">Model</label>
+      <div class="multiselect" data-key="model">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="model-label" disabled>Pick a make first</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search models&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
           </div>
           <div class="ms-options"></div>
         </div>
@@ -820,6 +935,19 @@
 <main>
   <p class="results-count" id="results-count" aria-live="polite"></p>
 
+  <div class="results-bar">
+    <p class="results-label" id="results-label">The caravans</p>
+    <div class="view-toggle" role="group" aria-label="Show results as">
+      <button type="button" class="view-btn active" data-view="grid">Grid</button>
+      <button type="button" class="view-btn" data-view="map">Map</button>
+    </div>
+  </div>
+
+  <div class="park-map-wrap hidden" id="map-view">
+    <div id="park-map" class="park-map"></div>
+    <p class="park-map-hint" id="park-map-hint"></p>
+  </div>
+
   <div class="pagination top">
     <div class="pagination-info"></div>
     <div class="pagination-controls">
@@ -861,6 +989,7 @@
 
 <footer>Data collected weekly from public caravan listing sites, for personal browsing use. Give it a few seconds to load if you don't see anything.</footer>
 
+<script src="leaflet.js"></script>
 <script>
   const ICONS = {
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>',
@@ -877,9 +1006,11 @@
     // dealer / spec marker codes
     'lp','hf','h/f','fe','cs','cl','c/l','hm','lw','se','es','dp','wcf','bf',
     'resi','spec','upgrade','reserved','sold','new','static','fl',
-    'alum','aluminium','canexel','showground'
+    'alum','aluminium','canexel','showground',
+    'lodge','lodges'
   ]);
   const MM_PITCH_RE   = /^[a-z]{0,3}\d{1,3}[a-z]?$/i;   // P63, BF48, B8, D21, H60a, 23
+  const MM_SERIAL_RE  = /^[a-z]{0,2}\d{4,6}$/i;         // 007331, A09918, GS0221 - stock refs
   const MM_MKVER_RE   = /^mk\s*\d+$/i;                  // MK2, MK11 - keep
   const MM_ROMAN_RE   = /^(?:i{1,3}|iv|v|vi{0,3}|ix|x{1,3}v?i{0,3})$/i;
 
@@ -900,6 +1031,7 @@
       if (MM_DROP_WORDS.has(w)) return false;
       if (/^(19|20)\d{2}$/.test(w)) return false;      // stray year
       if (MM_PITCH_RE.test(w)) return false;           // pitch / plot code
+      if (MM_SERIAL_RE.test(w)) return false;
       return true;
     });
     const out = [];
@@ -909,7 +1041,14 @@
     if (out.length > 1 && /^series$/i.test(out[out.length - 1])) out.pop();
     const res = out.join(' ').replace(/\s+/g, ' ').trim();
     // stripping shouldn't leave a stub like "SB" out of "SB Special"
-    return res.replace(/[^A-Za-z0-9]/g, '').length < 3 ? toks.join(' ') : res;
+    if (res.replace(/[^A-Za-z0-9]/g, '').length >= 3) return res;
+    // Cleaning left too little to be a name ("Sb Special 001558" -> "Sb"), so
+    // fall back to the original wording - minus any serial code, which is
+    // never part of a name whatever else is.
+    const noSerial = toks.filter(function (t, i) {
+      return i === 0 || !MM_SERIAL_RE.test(t.replace(/[.,]/g, ''));
+    });
+    return noSerial.join(' ');
   }
 
   // grouping key: case-, space- and punctuation-insensitive, plural-insensitive
@@ -1076,12 +1215,13 @@
 
   const state = {
     search: '',
-    filters: { location: new Set(), bedrooms: new Set() },
-    // makes: Set of selected makes; models: Map(make -> Set of selected models for that make).
-    // A make selected with no models selected means "all models of that make".
-    makeModel: { makes: new Set(), models: new Map(), expanded: new Set() },
+    // make holds canonical make names; model holds "make|model" pairs, so the
+    // same model name under two makes can't be confused. A make with no models
+    // chosen means every model of that make.
+    filters: { location: new Set(), region: new Set(), county: new Set(), make: new Set(), model: new Set(), bedrooms: new Set() },
     minPrice: '', maxPrice: '', sort: 'price-asc',
-    page: 1, pageSize: 48
+    page: 1, pageSize: 48,
+    view: 'grid'            // or 'map'
   };
 
   // Any control that narrows/reorders the results should call this before
@@ -1089,13 +1229,14 @@
   function resetPage() { state.page = 1; }
 
   const MS_DEFAULT_LABEL = {
-    location: 'All parks', bedrooms: 'Any'
+    location: 'All parks', region: 'All regions', county: 'All counties', make: 'All makes', model: 'All models', bedrooms: 'Any'
   };
 
   const filterOptionsData = {};
   const msRefs = {};
 
   let ALL_DATA = [];
+  let ALL_PARKS = [];     // parks.json, for placing caravans on the map
 
   const gridEl = document.getElementById('grid');
   const countEl = document.getElementById('results-count');
@@ -1150,12 +1291,18 @@
     const hasUnspecified = data.some(d => d.bedrooms === null || d.bedrooms === undefined);
 
     filterOptionsData.location = locations.map(l => ({ value: l, label: l }));
+    filterOptionsData.region = [...new Set(data.map(listingRegion).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b)).map(r => ({ value: r, label: r }));
     filterOptionsData.bedrooms = bedroomVals.map(b => ({ value: String(b), label: `${b} bed${b == 1 ? '' : 's'}` }));
     if (hasUnspecified) filterOptionsData.bedrooms.push({ value: 'unspecified', label: 'Not specified' });
 
-    initMultiSelects();
     buildMakeModels(data);
-    initMakeModel();
+    filterOptionsData.make = [...MAKE_MODELS.keys()]
+      .sort((a, b) => a.localeCompare(b))
+      .map(m => ({ value: m, label: m }));
+
+    initMultiSelects();
+    syncModelControl();
   }
 
   // ---- Multi-select dropdown controller (shared by park / make / model / bedrooms) ----
@@ -1176,6 +1323,7 @@
       updateMsToggleLabel(key);
 
       toggle.addEventListener('click', () => {
+        if (toggle.disabled) return;
         const isOpen = !panel.classList.contains('hidden');
         closeAllMs();
         if (!isOpen) {
@@ -1195,6 +1343,7 @@
         getFilteredMsValues(key, searchInput.value).forEach(v => state.filters[key].add(v));
         renderMsOptions(key, searchInput.value);
         updateMsToggleLabel(key);
+        afterMsChange(key);
         resetPage();
         render();
       });
@@ -1203,6 +1352,7 @@
         state.filters[key].clear();
         renderMsOptions(key, searchInput.value);
         updateMsToggleLabel(key);
+        afterMsChange(key);
         resetPage();
         render();
       });
@@ -1217,18 +1367,71 @@
   }
 
   function closeAllMs() {
-    const all = Object.values(msRefs);
-    if (mmRefs) all.push(mmRefs);
-    all.forEach(({ panel, toggle }) => {
+    Object.values(msRefs).forEach(({ panel, toggle }) => {
       panel.classList.add('hidden');
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     });
   }
 
+  // The model list depends on which makes are ticked, so it is built on demand;
+  // every other list is fixed once the data has loaded.
+  function optionsFor(key) {
+    if (key === 'county') {
+      const regions = state.filters.region;
+      const pool = regions.size ? ALL_DATA.filter(d => regions.has(listingRegion(d))) : ALL_DATA;
+      return [...new Set(pool.map(listingCounty).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b))
+        .map(c => ({ value: c, label: c }));
+    }
+    if (key !== 'model') return filterOptionsData[key];
+    const makes = [...state.filters.make].sort((a, b) => a.localeCompare(b));
+    const many = makes.length > 1;
+    const opts = [];
+    makes.forEach(make => {
+      [...(MAKE_MODELS.get(make) || [])].sort((a, b) => a.localeCompare(b)).forEach(model => {
+        opts.push({ value: make + '|' + model, label: many ? `${model} \u00b7 ${make}` : model });
+      });
+    });
+    return opts;
+  }
+
+  // Ticking or clearing makes changes what the model menu can offer: drop any
+  // chosen models whose make has gone, redraw the list, and only let the menu
+  // open once there's a make to list models for.
+  function syncModelControl() {
+    const makes = state.filters.make;
+    [...state.filters.model].forEach(v => {
+      if (!makes.has(v.split('|')[0])) state.filters.model.delete(v);
+    });
+    const { toggle, panel, searchInput } = msRefs.model;
+    toggle.disabled = makes.size === 0;
+    if (toggle.disabled) {
+      panel.classList.add('hidden');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = 'Pick a make first';
+      return;
+    }
+    renderMsOptions('model', searchInput.value);
+    updateMsToggleLabel('model');
+  }
+
+  function syncCountyControl() {
+    const allowed = new Set(optionsFor('county').map(o => o.value));
+    [...state.filters.county].forEach(c => { if (!allowed.has(c)) state.filters.county.delete(c); });
+    renderMsOptions('county', msRefs.county.searchInput.value);
+    updateMsToggleLabel('county');
+  }
+
+  function afterMsChange(key) {
+    if (key === 'make') syncModelControl();
+    if (key === 'region') syncCountyControl();
+  }
+
   function getFilteredMsValues(key, query) {
     const q = query.trim().toLowerCase();
-    return filterOptionsData[key]
+    return optionsFor(key)
       .filter(opt => !q || opt.label.toLowerCase().includes(q))
       .map(opt => opt.value);
   }
@@ -1236,7 +1439,7 @@
   function renderMsOptions(key, query) {
     const { optionsEl } = msRefs[key];
     const q = query.trim().toLowerCase();
-    const opts = filterOptionsData[key].filter(opt => !q || opt.label.toLowerCase().includes(q));
+    const opts = optionsFor(key).filter(opt => !q || opt.label.toLowerCase().includes(q));
 
     if (opts.length === 0) {
       optionsEl.innerHTML = `<p class="ms-empty">No matches</p>`;
@@ -1257,6 +1460,7 @@
         if (cb.checked) state.filters[key].add(cb.value);
         else state.filters[key].delete(cb.value);
         updateMsToggleLabel(key);
+        afterMsChange(key);
         resetPage();
         render();
       });
@@ -1270,21 +1474,16 @@
       toggle.textContent = MS_DEFAULT_LABEL[key];
     } else if (selected.size === 1) {
       const val = [...selected][0];
-      const opt = filterOptionsData[key].find(o => o.value === val);
+      const opt = optionsFor(key).find(o => o.value === val);
       toggle.textContent = opt ? opt.label : val;
     } else {
       toggle.textContent = `${selected.size} selected`;
     }
   }
 
-  // ---- Combined make + model filter ----------------------------------------
-  // One dropdown: makes at the top level, each expandable to reveal only the
-  // models that actually exist for that make in the data.
-
-  const CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+  // ---- Make -> models, from the tidied names -------------------------------
 
   const MAKE_MODELS = new Map();   // make -> Set(models)
-  let mmRefs = null;
 
   function makeOf(d) { return d.make_canon || 'Unknown'; }
 
@@ -1297,178 +1496,6 @@
     });
   }
 
-  function clearMakeModel() {
-    state.makeModel.makes.clear();
-    state.makeModel.models.clear();
-    state.makeModel.expanded.clear();
-  }
-
-  function mmVisibleMakes(query) {
-    const q = (query || '').trim().toLowerCase();
-    return [...MAKE_MODELS.keys()].sort((a, b) => a.localeCompare(b)).filter(make => {
-      if (!q || make.toLowerCase().includes(q)) return true;
-      return [...MAKE_MODELS.get(make)].some(m => m.toLowerCase().includes(q));
-    });
-  }
-
-  function initMakeModel() {
-    const root = document.getElementById('makemodel-ms');
-    mmRefs = {
-      root,
-      toggle: root.querySelector('.ms-toggle'),
-      panel: root.querySelector('.ms-panel'),
-      searchInput: root.querySelector('.ms-search'),
-      optionsEl: root.querySelector('.ms-options')
-    };
-    const { toggle, panel, searchInput, optionsEl } = mmRefs;
-
-    toggle.addEventListener('click', () => {
-      const isOpen = !panel.classList.contains('hidden');
-      closeAllMs();
-      if (!isOpen) {
-        panel.classList.remove('hidden');
-        toggle.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        renderMM();
-        searchInput.focus();
-      }
-    });
-
-    // Keep clicks inside the panel from reaching the document-level
-    // "click outside closes" handler. Re-rendering the option list detaches the
-    // clicked node, so that handler would otherwise treat it as an outside click.
-    panel.addEventListener('click', e => e.stopPropagation());
-    searchInput.addEventListener('input', () => renderMM());
-
-    root.querySelector('.mm-expand').addEventListener('click', () => {
-      const st = state.makeModel;
-      const visible = mmVisibleMakes(searchInput.value).filter(m => MAKE_MODELS.get(m).size);
-      const allOpen = visible.length > 0 && visible.every(m => st.expanded.has(m));
-      visible.forEach(m => allOpen ? st.expanded.delete(m) : st.expanded.add(m));
-      renderMM();
-    });
-
-    root.querySelector('.mm-clear').addEventListener('click', () => {
-      clearMakeModel();
-      renderMM();
-      updateMMLabel();
-      resetPage();
-      render();
-    });
-
-    optionsEl.addEventListener('click', e => {
-      const caret = e.target.closest('.mm-caret');
-      if (!caret) return;
-      e.preventDefault();
-      const st = state.makeModel;
-      const make = caret.dataset.make;
-      st.expanded.has(make) ? st.expanded.delete(make) : st.expanded.add(make);
-      renderMM();
-    });
-
-    optionsEl.addEventListener('change', e => {
-      const st = state.makeModel;
-      const el = e.target;
-      if (el.classList.contains('mm-make-cb')) {
-        const make = el.dataset.make;
-        if (el.checked) {
-          st.makes.add(make);
-          // reveal that make's models straight away, so it's obvious you can
-          // narrow down further
-          if (MAKE_MODELS.get(make).size) st.expanded.add(make);
-        } else {
-          st.makes.delete(make);
-          st.models.delete(make);
-          st.expanded.delete(make);
-        }
-      } else if (el.classList.contains('mm-model-cb')) {
-        const make = el.dataset.make;
-        const model = el.dataset.model;
-        if (!st.models.has(make)) st.models.set(make, new Set());
-        const set = st.models.get(make);
-        if (el.checked) {
-          set.add(model);
-          st.makes.add(make);
-        } else {
-          set.delete(model);
-          if (!set.size) st.models.delete(make);
-        }
-      } else {
-        return;
-      }
-      renderMM();
-      updateMMLabel();
-      resetPage();
-      render();
-    });
-
-    renderMM();
-    updateMMLabel();
-  }
-
-  function renderMM() {
-    const st = state.makeModel;
-    const q = mmRefs.searchInput.value.trim().toLowerCase();
-    const rows = [];
-
-    mmVisibleMakes(q).forEach(make => {
-      const allModels = [...MAKE_MODELS.get(make)].sort((a, b) => a.localeCompare(b));
-      const makeMatch = !q || make.toLowerCase().includes(q);
-      const shown = makeMatch ? allModels : allModels.filter(m => m.toLowerCase().includes(q));
-      const selModels = st.models.get(make);
-      const open = allModels.length > 0 && (st.expanded.has(make) || (q && !makeMatch));
-      const badge = selModels && selModels.size
-        ? `<span class="mm-count">${selModels.size} model${selModels.size === 1 ? '' : 's'}</span>`
-        : '';
-      const modelHTML = open ? shown.map(model => `
-            <label class="ms-option">
-              <input type="checkbox" class="mm-model-cb" data-make="${escapeHTML(make)}" data-model="${escapeHTML(model)}" ${selModels && selModels.has(model) ? 'checked' : ''}>
-              ${escapeHTML(model)}
-            </label>`).join('') : '';
-
-      rows.push(`<div class="mm-make">
-          <div class="mm-make-row">
-            <button type="button" class="mm-caret${open ? ' open' : ''}" data-make="${escapeHTML(make)}" aria-expanded="${open}" aria-label="Show models for ${escapeHTML(make)}"${allModels.length ? '' : ' disabled'}>${CHEVRON}</button>
-            <label class="ms-option">
-              <input type="checkbox" class="mm-make-cb" data-make="${escapeHTML(make)}" ${st.makes.has(make) ? 'checked' : ''}>
-              ${escapeHTML(make)}
-            </label>
-            ${badge}
-          </div>
-          ${open ? `<div class="mm-models">${modelHTML}</div>` : ''}
-        </div>`);
-    });
-
-    mmRefs.optionsEl.innerHTML = rows.length ? rows.join('') : `<p class="ms-empty">No matches</p>`;
-
-    mmRefs.optionsEl.querySelectorAll('.mm-make-cb').forEach(cb => {
-      const sel = st.models.get(cb.dataset.make);
-      cb.indeterminate = !cb.checked && !!(sel && sel.size);
-    });
-  }
-
-  function updateMMLabel() {
-    const st = state.makeModel;
-    const toggle = mmRefs.toggle;
-    let label;
-    if (!st.makes.size) {
-      label = 'All makes';
-    } else if (st.makes.size === 1) {
-      const make = [...st.makes][0];
-      const set = st.models.get(make);
-      if (!set || !set.size) label = make;
-      else if (set.size === 1) label = `${make} \u00b7 ${[...set][0]}`;
-      else label = `${make} \u00b7 ${set.size} models`;
-    } else {
-      const totalModels = [...st.models.values()].reduce((n, s) => n + s.size, 0);
-      label = totalModels
-        ? `${st.makes.size} makes \u00b7 ${totalModels} model${totalModels === 1 ? '' : 's'}`
-        : `${st.makes.size} makes`;
-    }
-    toggle.textContent = label;
-    toggle.title = label;
-  }
-
   function applyFilters(data) {
     return data.filter(d => {
       if (state.search) {
@@ -1476,12 +1503,12 @@
         if (!hay.includes(state.search.toLowerCase())) return false;
       }
       if (state.filters.location.size && !state.filters.location.has(d.location)) return false;
-      const mm = state.makeModel;
-      if (mm.makes.size) {
+      if (state.filters.region.size && !state.filters.region.has(listingRegion(d))) return false;
+      if (state.filters.county.size && !state.filters.county.has(listingCounty(d))) return false;
+      if (state.filters.make.size) {
         const mk = makeOf(d);
-        if (!mm.makes.has(mk)) return false;
-        const chosenModels = mm.models.get(mk);
-        if (chosenModels && chosenModels.size && !chosenModels.has(d.model_canon)) return false;
+        if (!state.filters.make.has(mk)) return false;
+        if (state.filters.model.size && !state.filters.model.has(mk + '|' + d.model_canon)) return false;
       }
       if (state.filters.bedrooms.size) {
         const bedKey = (d.bedrooms === null || d.bedrooms === undefined) ? 'unspecified' : String(d.bedrooms);
@@ -1549,6 +1576,17 @@
   function render() {
     const filtered = applySort(applyFilters(ALL_DATA));
     countEl.textContent = `Showing ${filtered.length} of ${ALL_DATA.length} caravans`;
+
+    const mapMode = state.view === 'map';
+    document.getElementById('map-view').classList.toggle('hidden', !mapMode);
+    gridEl.classList.toggle('hidden', mapMode);
+    document.querySelectorAll('.pagination').forEach(bar => bar.classList.toggle('hidden', mapMode));
+    document.getElementById('results-label').textContent = mapMode ? 'Where they are' : 'The caravans';
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === state.view));
+    if (mapMode) {
+      buildResultsMap(filtered);
+      return;
+    }
 
     if (filtered.length === 0) {
       gridEl.innerHTML = `
@@ -1619,6 +1657,248 @@
     });
   }
 
+  /* ---- map view ---------------------------------------------------------
+     Each caravan is placed by its linked park in parks.json, matched on the
+     park name the same way caravan.html and compare.html do it. One pin per
+     spot, numbered with how many of the caravans shown stand there; parks
+     that share a postcode share a pin.
+     -------------------------------------------------------------------- */
+  function findPark(name) {
+    const target = normPark(String(name ?? '').split(',')[0]);
+    if (!target || !ALL_PARKS.length) return null;
+    const pairs = ALL_PARKS.map(p => ({ p, key: normPark(String(p.park_name || '').split(',')[0]) }));
+    const exact = pairs.find(x => x.key === target);
+    if (exact) return exact.p;
+    const partial = pairs.find(x => x.key.startsWith(target + ' ') || target.startsWith(x.key + ' '));
+    return partial ? partial.p : null;
+  }
+
+  // done once, after both files have loaded
+  function attachParks(data) {
+    const cache = new Map();
+    data.forEach(d => {
+      const key = normPark(String(d.park || d.location || '').split(',')[0]);
+      if (!cache.has(key)) cache.set(key, findPark(d.park || d.location));
+      d._park = cache.get(key);
+    });
+  }
+
+
+  /* ---- where a caravan is: region and county from its park's position ----
+     The same method the park finder uses: a park's latitude/longitude is
+     tested against the ten region outlines (regions.json) and the county
+     outlines (counties.json), and every caravan at that park takes the
+     answer. Only caravans with no placeable park fall back to the text in
+     the data — and for county only when that text is a real county name.
+     ---------------------------------------------------------------------- */
+  const GEO = { regions: null, counties: null };
+
+  function geoInRing(x, y, ring) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+      if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) inside = !inside;
+    }
+    return inside;
+  }
+
+  function geoRingDist(x, y, ring) {
+    let best = Infinity;
+    for (let i = 0; i < ring.length - 1; i++) {
+      const ax = ring[i][0], ay = ring[i][1], bx = ring[i + 1][0], by = ring[i + 1][1];
+      const dx = bx - ax, dy = by - ay, len = dx * dx + dy * dy;
+      let t = len === 0 ? 0 : ((x - ax) * dx + (y - ay) * dy) / len;
+      t = Math.max(0, Math.min(1, t));
+      const d = Math.hypot(x - (ax + t * dx), y - (ay + t * dy));
+      if (d < best) best = d;
+    }
+    return best;
+  }
+
+  // inside one of the shapes, or failing that the nearest — a park on a
+  // generalised coastline can sit a hair outside every outline
+  function geoPlace(x, y, names, ringsOf, bboxOf) {
+    for (const name of names) {
+      const b = bboxOf ? bboxOf(name) : null;
+      if (b && (x < b[0] || x > b[2] || y < b[1] || y > b[3])) continue;
+      if (ringsOf(name).some(r => geoInRing(x, y, r))) return name;
+    }
+    let best = null, bestDist = Infinity;
+    names.forEach(name => {
+      ringsOf(name).forEach(r => {
+        const d = geoRingDist(x, y, r);
+        if (d < bestDist) { bestDist = d; best = name; }
+      });
+    });
+    return best;
+  }
+
+  function geoRegionOf(lon, lat) {
+    const g = GEO.regions;
+    if (!g) return '';
+    return geoPlace(lon, lat, g.order, n => g.boundaries[n]) || '';
+  }
+
+  function geoCountyOf(lon, lat) {
+    const g = GEO.counties;
+    if (!g) return '';
+    const pr = g.projection;
+    const x = pr.ox + (lon - pr.lon0) * pr.cos * pr.k;
+    const y = pr.oy + (pr.lat1 - lat) * pr.k;
+    return geoPlace(x, y, g.order, n => g.counties[n].rings, n => g.counties[n].bbox) || '';
+  }
+
+  function geoLoad() {
+    const get = url => fetch(url).then(r => r.ok ? r.json() : null).catch(() => null);
+    return Promise.all([get('regions.json'), get('counties.json')]).then(([regions, counties]) => {
+      GEO.regions = regions && regions.order ? regions : null;
+      if (counties && counties.order) {
+        counties.order.forEach(name => {
+          const c = counties.counties[name];
+          let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+          c.rings.forEach(r => r.forEach(pt => {
+            if (pt[0] < x0) x0 = pt[0]; if (pt[0] > x1) x1 = pt[0];
+            if (pt[1] < y0) y0 = pt[1]; if (pt[1] > y1) y1 = pt[1];
+          }));
+          c.bbox = [x0, y0, x1, y1];
+        });
+        GEO.counties = counties;
+      }
+    });
+  }
+
+  // once, for every park with coordinates
+  function geoClassifyParks(parks) {
+    parks.forEach(p => {
+      if (typeof p.Latitude !== 'number' || typeof p.Longitude !== 'number') return;
+      p._region = geoRegionOf(p.Longitude, p.Latitude);
+      p._county = geoCountyOf(p.Longitude, p.Latitude);
+    });
+  }
+
+  function geoKnownCounty(text) {
+    const t = String(text || '').trim().toLowerCase();
+    if (!t || !GEO.counties) return '';
+    return GEO.counties.order.find(n => n.toLowerCase() === t) || '';
+  }
+
+  function listingRegion(d) {
+    const p = d._park;
+    return String((p && p._region) || (p && p.region) || d.region || '').trim();
+  }
+
+  function listingCounty(d) {
+    const p = d._park;
+    return String((p && p._county) || geoKnownCounty(p && p.county) || geoKnownCounty(d.county) || '').trim();
+  }
+
+  const PIN_SIZE = { single: [19, 26], group: [24, 32] };
+  const PIN_FILL = '#1F6F6E';
+  const POPUP_VANS = 5;
+  let resultsMap = null;
+  let markersLayer = null;
+
+  function pinDivIcon(count) {
+    const grouped = count > 1;
+    const [w, h] = grouped ? PIN_SIZE.group : PIN_SIZE.single;
+    const middle = grouped
+      ? '<circle cx="14" cy="14" r="8" fill="#FFFDF8"/>' +
+        '<text class="pin-count" x="14" y="18" text-anchor="middle" fill="' + PIN_FILL + '">' + count + '</text>'
+      : '<circle cx="14" cy="14" r="5.5" fill="#FFFDF8"/>';
+    const svg = '<svg width="' + w + '" height="' + h + '" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M14,0 C6.3,0 0,6.1 0,13.7 C0,23.9 14,36 14,36 C14,36 28,23.9 28,13.7 C28,6.1 21.7,0 14,0 Z" fill="' + PIN_FILL + '" stroke="#FFFDF8" stroke-width="1.5"/>' +
+      middle + '</svg>';
+    return L.divIcon({
+      html: svg,
+      className: 'park-pin-icon',
+      iconSize: [w, h],
+      iconAnchor: [Math.round(w / 2), h - 1],
+      popupAnchor: [0, -(h - 3)]
+    });
+  }
+
+  function groupByPark(list) {
+    const byPark = new Map();
+    let unplaced = 0;
+    list.forEach(d => {
+      const p = d._park;
+      if (!p || typeof p.Latitude !== 'number' || typeof p.Longitude !== 'number') { unplaced += 1; return; }
+      if (!byPark.has(p)) byPark.set(p, []);
+      byPark.get(p).push(d);
+    });
+    const bySpot = new Map();
+    byPark.forEach((vans, park) => {
+      const key = park.Latitude.toFixed(5) + ',' + park.Longitude.toFixed(5);
+      if (!bySpot.has(key)) bySpot.set(key, { lat: park.Latitude, lng: park.Longitude, parks: [] });
+      bySpot.get(key).parks.push({ park, vans });
+    });
+    return { spots: [...bySpot.values()], unplaced, parks: byPark.size };
+  }
+
+  function popupParkHTML(entry) {
+    const { park, vans } = entry;
+    const name = park.park_name || '';
+    const shown = vans.slice().sort((a, b) => (a.price_number || 0) - (b.price_number || 0)).slice(0, POPUP_VANS);
+    const rest = vans.length - shown.length;
+    return '<div class="popup-park-item">' +
+      '<p class="popup-park-name">' + escapeHTML(name) + '</p>' +
+      '<div class="popup-park-meta">' + escapeHTML(park.postcode || '') +
+        (park.postcode ? ' \u00b7 ' : '') + vans.length + ' caravan' + (vans.length === 1 ? '' : 's') + ' here</div>' +
+      '<ul class="popup-vans">' + shown.map(d =>
+        '<li><a class="popup-van-link" href="' + caravanHref(d) + '">' + escapeHTML(d.name) + '</a>' +
+        '<span class="popup-van-price">' + escapeHTML(d.price_display || 'POA') + '</span></li>').join('') + '</ul>' +
+      (rest > 0 ? '<p class="popup-more">and ' + rest + ' more at this park</p>' : '') +
+      '<div class="popup-park-actions">' +
+        '<a class="popup-park-btn" href="' + (vans.length === 1 ? caravanHref(vans[0]) : 'caravans.html?park=' + encodeURIComponent(name)) + '">' +
+          'More caravan information</a>' +
+        '<a class="popup-park-btn popup-park-info" href="park.html?park=' + encodeURIComponent(name) +
+          '&pc=' + encodeURIComponent(park.postcode || '') + '">Park information</a>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function buildResultsMap(list) {
+    if (typeof L === 'undefined') return;
+    if (!resultsMap) {
+      resultsMap = L.map('park-map', { scrollWheelZoom: true });
+      resultsMap.setView([54.5, -3], 5.5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+      }).addTo(resultsMap);
+      markersLayer = L.layerGroup().addTo(resultsMap);
+    }
+    markersLayer.clearLayers();
+
+    const { spots, unplaced, parks } = groupByPark(list);
+    const latlngs = [];
+    spots.forEach(spot => {
+      const total = spot.parks.reduce((n, e) => n + e.vans.length, 0);
+      const marker = L.marker([spot.lat, spot.lng], { icon: pinDivIcon(total) });
+      const html = spot.parks.length === 1
+        ? popupParkHTML(spot.parks[0])
+        : '<p class="popup-group-title">' + spot.parks.length + ' parks at this location</p>' +
+          '<div class="popup-park-list">' + spot.parks.map(popupParkHTML).join('') + '</div>';
+      marker.bindPopup(html, { maxWidth: 320 });
+      marker.addTo(markersLayer);
+      latlngs.push([spot.lat, spot.lng]);
+    });
+
+    const hint = document.getElementById('park-map-hint');
+    hint.textContent = (parks ? parks + ' park' + (parks === 1 ? '' : 's') + ' with caravans that fit the filters. ' : 'No caravans fit those filters. ') +
+      'Click a pin to see the caravans there. Scroll or pinch to zoom, drag to pan.' +
+      (unplaced ? ' ' + unplaced + ' caravan' + (unplaced === 1 ? '' : 's') +
+        ' couldn\u2019t be placed \u2014 the park isn\u2019t in our park list.' : '');
+
+    // the container was hidden a moment ago; let it lay out before measuring
+    setTimeout(() => {
+      resultsMap.invalidateSize();
+      if (latlngs.length === 1) resultsMap.setView(latlngs[0], 12);
+      else if (latlngs.length > 1) resultsMap.fitBounds(L.latLngBounds(latlngs), { padding: [30, 30] });
+      else resultsMap.setView([54.5, -3], 5.5);
+    }, 0);
+  }
+
   function scrollToResultsTop() {
     document.querySelector('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1654,6 +1934,13 @@
   }
 
   function wireControls() {
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.view === state.view) return;
+        state.view = btn.dataset.view;
+        render();
+      });
+    });
     document.getElementById('search').addEventListener('input', e => { state.search = e.target.value; resetPage(); render(); });
     document.getElementById('min-price').addEventListener('input', e => { state.minPrice = e.target.value; resetPage(); render(); });
     document.getElementById('max-price').addEventListener('input', e => { state.maxPrice = e.target.value; resetPage(); render(); });
@@ -1661,7 +1948,6 @@
     document.getElementById('clear-btn').addEventListener('click', () => {
       state.search = '';
       Object.keys(state.filters).forEach(k => state.filters[k].clear());
-      clearMakeModel();
       state.minPrice = ''; state.maxPrice = ''; state.sort = 'price-asc';
       resetPage();
       document.getElementById('search').value = '';
@@ -1669,14 +1955,11 @@
       document.getElementById('max-price').value = '';
       document.getElementById('sort').value = 'price-asc';
       Object.keys(state.filters).forEach(k => {
+        msRefs[k].searchInput.value = '';
         updateMsToggleLabel(k);
-        renderMsOptions(k, msRefs[k].searchInput.value);
+        renderMsOptions(k, '');
       });
-      if (mmRefs) {
-        mmRefs.searchInput.value = '';
-        renderMM();
-        updateMMLabel();
-      }
+      syncModelControl();
       closeAllMs();
       const banner = document.querySelector('.park-banner');
       if (banner) banner.remove();
@@ -1780,6 +2063,13 @@
 
   async function init() {
     try {
+      // parks.json only feeds the map view; the page carries on without it
+      const parksReq = fetch('parks.json')
+        .then(r => r.ok ? r.text() : '[]')
+        .then(t => JSON.parse(t.replace(/:\s*NaN/g, ': null')))
+        .catch(() => []);
+      const geoReq = geoLoad();   // region + county outlines; the page copes without them
+
       const res = await fetch('data.json');
       if (!res.ok) throw new Error('Fetch failed: ' + res.status);
       let text = await res.text();
@@ -1789,6 +2079,10 @@
       // remember each record's position so detail-page links can jump straight to it
       ALL_DATA.forEach((d, i) => { d._idx = i; });
       canonicalise(ALL_DATA);
+      ALL_PARKS = await parksReq;
+      if (Array.isArray(ALL_PARKS)) attachParks(ALL_DATA); else ALL_PARKS = [];
+      await geoReq;
+      geoClassifyParks(ALL_PARKS);
       populateFilters(ALL_DATA);
       wireControls();
       applyIncomingSearch();
