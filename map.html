@@ -528,6 +528,11 @@
     transition: border-color 0.15s ease, transform 0.15s ease;
   }
 
+  .park-card.focus {
+    border-color: var(--mustard);
+    box-shadow: 0 0 0 2px rgba(232, 169, 61, 0.35);
+  }
+
   .park-card:hover {
     border-color: var(--teal);
     transform: translateY(-1px);
@@ -745,6 +750,24 @@
         <p class="town-error hidden" id="county-error"></p>
       </div>
 
+      <div class="town-search" id="park-search">
+        <h3>Search for a park</h3>
+        <p class="town-sub">Find a park by name, along with parks nearby</p>
+        <div class="town-search-row">
+          <input type="text" id="park-input" list="park-list" placeholder="e.g. Seawick" aria-label="Park name">
+          <datalist id="park-list"></datalist>
+          <select id="park-radius" aria-label="Distance">
+            <option value="0">Just this park</option>
+            <option value="5">And parks within 5 miles</option>
+            <option value="10" selected>And parks within 10 miles</option>
+            <option value="15">And parks within 15 miles</option>
+            <option value="25">And parks within 25 miles</option>
+          </select>
+          <button type="button" class="town-search-btn" id="park-search-btn">Find park</button>
+        </div>
+        <p class="town-error hidden" id="park-error"></p>
+      </div>
+
       <div class="town-search" id="town-search">
         <h3>Search near a town or postcode</h3>
         <p class="town-sub">Every park within the distance you pick, closest first.</p>
@@ -849,6 +872,11 @@ const mapLayout = document.getElementById('map-layout');
 const countySelect = document.getElementById('county-select');
 const countySearchBtn = document.getElementById('county-search-btn');
 const countyError = document.getElementById('county-error');
+const parkInput = document.getElementById('park-input');
+const parkList = document.getElementById('park-list');
+const parkRadius = document.getElementById('park-radius');
+const parkSearchBtn = document.getElementById('park-search-btn');
+const parkError = document.getElementById('park-error');
 const townInput = document.getElementById('town-input');
 const townList = document.getElementById('town-list');
 const townRadius = document.getElementById('town-radius');
@@ -1058,6 +1086,7 @@ Promise.all([
 
     dataReady = true;
     finishLoading();
+    fillParkList();
     loadTowns();
     loadPostcodes();
     loadCounties();
@@ -1196,6 +1225,7 @@ function showCountyError(msg) {
 
 function searchCounty() {
   countyError.classList.add('hidden');
+  parkError.classList.add('hidden');
   if (!dataReady || !COUNTY_PARKS) return;
 
   const name = countySelect.value;
@@ -1332,6 +1362,7 @@ function findTown(query) {
 function searchNearTown() {
   if (!dataReady) return;
   clearTownError();
+  parkError.classList.add('hidden');
 
   const typed = townInput.value.trim();
   if (!typed) {
@@ -1367,13 +1398,20 @@ function searchNearTown() {
     originShort = town.name;
   }
 
-  const miles = Number(townRadius.value);
+  showRadiusResults(origin, originLabel, originShort, Number(townRadius.value));
+}
+
+/* Parks within `miles` of a point, closest first, drawn with the search
+   circle. Shared by the town / postcode search and the park search; the park
+   search also passes the park itself so it can be marked out. */
+function showRadiusResults(origin, originLabel, originShort, miles, focusPark) {
   const near = ALL_PARKS
     .map(p => Object.assign({}, p, {
-      distance: distanceMiles(origin.latitude, origin.longitude, p.lat, p.lng)
+      distance: distanceMiles(origin.latitude, origin.longitude, p.lat, p.lng),
+      focus: !!(focusPark && p.name === focusPark.name && p.postcode === focusPark.postcode)
     }))
-    .filter(p => p.distance <= miles)
-    .sort((a, b) => a.distance - b.distance);
+    .filter(p => p.focus || (miles > 0 && p.distance <= miles))
+    .sort((a, b) => (b.focus - a.focus) || (a.distance - b.distance));
 
   currentRegion = null;
   document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
@@ -1386,20 +1424,85 @@ function searchNearTown() {
     parks: near,
     fill: '#1F6F6E',
     center: [origin.latitude, origin.longitude],
-    radius: miles,
+    radius: miles || 0.5,
     emptyText: 'No parks within ' + miles + ' miles of ' + originLabel + '. Try a wider distance.'
   };
 
   resultsEmpty.style.display = 'none';
   resultsContent.style.display = 'block';
-  resultsTitle.textContent = 'Within ' + miles + ' miles of ' + originShort;
-  resultsSubtitle.textContent = near.length + ' park' + (near.length === 1 ? '' : 's') +
-    ', closest first';
+  if (focusPark) {
+    const others = near.length - 1;
+    resultsTitle.textContent = focusPark.name;
+    resultsSubtitle.textContent = miles
+      ? (others ? others + ' other park' + (others === 1 ? '' : 's') + ' within ' + miles + ' miles, closest first' : 'No other parks within ' + miles + ' miles')
+      : 'Just this park';
+  } else {
+    resultsTitle.textContent = 'Within ' + miles + ' miles of ' + originShort;
+    resultsSubtitle.textContent = near.length + ' park' + (near.length === 1 ? '' : 's') +
+      ', closest first';
+  }
   filterInput.value = '';
   drawParkGrid(near);
-  updateParkMap(near, currentView.fill, currentView.center, miles);
+  updateParkMap(near, currentView.fill, currentView.center, currentView.radius);
   resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+/* ---------- search for a park by name --------------------------------- */
+function parkKey(str) {
+  return String(str == null ? '' : str).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function parkLabel(p) {
+  return p.postcode ? p.name + ' (' + p.postcode + ')' : p.name;
+}
+
+function fillParkList() {
+  const seen = new Set();
+  parkList.innerHTML = ALL_PARKS
+    .slice().sort((a, b) => a.name.localeCompare(b.name))
+    .filter(p => { const k = parkLabel(p); if (seen.has(k)) return false; seen.add(k); return true; })
+    .map(p => '<option value="' + escapeHtml(parkLabel(p)) + '"></option>').join('');
+}
+
+// The list offers "Name (postcode)" so two parks with one name can be told
+// apart; a bare name, a prefix or a fragment still finds something.
+function findParkByName(query) {
+  const q = parkKey(query);
+  if (!q) return null;
+  return ALL_PARKS.find(p => parkKey(parkLabel(p)) === q)
+    || ALL_PARKS.find(p => parkKey(p.name) === q)
+    || ALL_PARKS.find(p => parkKey(p.name).startsWith(q))
+    || ALL_PARKS.find(p => parkKey(p.name).includes(q))
+    || null;
+}
+
+function showParkError(msg) {
+  parkError.textContent = msg;
+  parkError.classList.remove('hidden');
+}
+
+function searchPark() {
+  if (!dataReady) return;
+  parkError.classList.add('hidden');
+  clearTownError();
+  const typed = parkInput.value.trim();
+  if (!typed) {
+    showParkError('Type a park name first \u2014 start typing and pick one from the list.');
+    return;
+  }
+  const park = findParkByName(typed);
+  if (!park) {
+    showParkError('No park called \u201c' + typed + '\u201d in our list. Try part of the name.');
+    return;
+  }
+  const miles = Number(parkRadius.value);
+  showRadiusResults({ latitude: park.lat, longitude: park.lng }, park.name, park.name, miles, park);
+}
+
+parkSearchBtn.addEventListener('click', searchPark);
+parkInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); searchPark(); }
+});
 
 townSearchBtn.addEventListener('click', searchNearTown);
 townInput.addEventListener('keydown', e => {
@@ -1445,6 +1548,7 @@ function renderResults(name) {
   };
   clearTownError();
   countyError.classList.add('hidden');
+  parkError.classList.add('hidden');
   drawParkGrid(region.parks);
   updateParkMap(region.parks, region.fill, null, null);
 }
@@ -1460,7 +1564,7 @@ function drawParkGrid(parks) {
   noMatch.style.display = 'none';
   parks.forEach(p => {
     const a = document.createElement('a');
-    a.className = 'park-card';
+    a.className = 'park-card' + (p.focus ? ' focus' : '');
     a.href = p.website;
     a.target = '_blank';
     a.rel = 'noopener';
@@ -1604,7 +1708,8 @@ function updateParkMap(parks, fill, center, radiusMiles) {
 
   groupByPosition(parks).forEach(group => {
     const first = group[0];
-    const marker = L.marker([first.lat, first.lng], { icon: pinDivIcon(fill, group.length) });
+    const isFocus = group.some(p => p.focus);
+    const marker = L.marker([first.lat, first.lng], { icon: pinDivIcon(isFocus ? '#E8A93D' : fill, group.length) });
     const popupHtml = group.length === 1
       ? popupParkHTML(first)
       : '<p class="popup-group-title">' + group.length + ' parks at this location</p>' +

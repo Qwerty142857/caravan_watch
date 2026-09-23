@@ -518,19 +518,26 @@
   .popup-park-list { max-height: 280px; overflow-y: auto; margin: 0 -4px 0 0; padding-right: 4px; }
   .popup-park-item + .popup-park-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
   .popup-vans { list-style: none; margin: 0 0 8px; padding: 0; }
+  .popup-vans {
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
   .popup-vans li {
+    font-size: 12.5px;
+    padding: 4px 0;
+    border-top: 1px solid rgba(223, 213, 193, 0.55);
+  }
+  .popup-van-row {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    font-size: 12.5px;
-    padding: 3px 0;
-    border-top: 1px solid rgba(223, 213, 193, 0.55);
   }
+  .popup-van-facts { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
   .popup-vans li:first-child { border-top: none; }
   .leaflet-container a.popup-van-link { color: var(--ink); text-decoration: none; font-weight: 600; }
   .leaflet-container a.popup-van-link:hover { color: var(--teal); text-decoration: underline; }
   .popup-van-price { color: var(--mustard-dark); font-weight: 700; white-space: nowrap; }
-  .popup-more { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
   .pin-count { font-family: var(--font-body); font-size: 14px; font-weight: 700; }
   .popup-park-actions { display: flex; flex-wrap: wrap; gap: 8px; }
   /* Leaflet's own `.leaflet-container a` rule outranks a bare class, hence the prefix */
@@ -751,6 +758,15 @@
   .card-source {
     font-size: 11px;
     color: var(--muted);
+  }
+
+  /* the two links stack, right-aligned, under the "seen on" note */
+  .card-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    margin-left: auto;   /* stays on the right even when the footer wraps */
   }
 
   .card-link {
@@ -1567,7 +1583,10 @@
         </ul>
         <div class="card-footer">
           <span class="card-source">Seen on ${escapeHTML(d.source_site)} &middot; ${formatDate(d.date_scraped)}</span>
-          <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">Source listing &nearr;</a>
+          <div class="card-links">
+            <a class="card-link" href="${escapeHTML(d.listing_url)}" target="_blank" rel="noopener">Source listing &nearr;</a>
+            <a class="card-link" href="${caravanHref(d)}">View caravan information &rsaquo;</a>
+          </div>
         </div>
       </article>
     `;
@@ -1794,7 +1813,6 @@
 
   const PIN_SIZE = { single: [19, 26], group: [24, 32] };
   const PIN_FILL = '#1F6F6E';
-  const POPUP_VANS = 5;
   let resultsMap = null;
   let markersLayer = null;
 
@@ -1838,16 +1856,20 @@
   function popupParkHTML(entry) {
     const { park, vans } = entry;
     const name = park.park_name || '';
-    const shown = vans.slice().sort((a, b) => (a.price_number || 0) - (b.price_number || 0)).slice(0, POPUP_VANS);
-    const rest = vans.length - shown.length;
+    const shown = vans.slice().sort((a, b) => (a.price_number || 0) - (b.price_number || 0));
     return '<div class="popup-park-item">' +
       '<p class="popup-park-name">' + escapeHTML(name) + '</p>' +
       '<div class="popup-park-meta">' + escapeHTML(park.postcode || '') +
         (park.postcode ? ' \u00b7 ' : '') + vans.length + ' caravan' + (vans.length === 1 ? '' : 's') + ' here</div>' +
-      '<ul class="popup-vans">' + shown.map(d =>
-        '<li><a class="popup-van-link" href="' + caravanHref(d) + '">' + escapeHTML(d.name) + '</a>' +
-        '<span class="popup-van-price">' + escapeHTML(d.price_display || 'POA') + '</span></li>').join('') + '</ul>' +
-      (rest > 0 ? '<p class="popup-more">and ' + rest + ' more at this park</p>' : '') +
+      '<ul class="popup-vans">' + shown.map(d => {
+        const yr = (d.year !== null && d.year !== undefined && !isNaN(d.year)) ? String(Math.round(d.year)) : '';
+        const facts = [yr, d.dimensions ? String(d.dimensions) : ''].filter(Boolean).join(' · ');
+        return '<li>' +
+          '<div class="popup-van-row"><a class="popup-van-link" href="' + caravanHref(d) + '">' + escapeHTML(d.name) + '</a>' +
+          '<span class="popup-van-price">' + escapeHTML(d.price_display || 'POA') + '</span></div>' +
+          (facts ? '<span class="popup-van-facts">' + escapeHTML(facts) + '</span>' : '') +
+        '</li>';
+      }).join('') + '</ul>' +
       '<div class="popup-park-actions">' +
         '<a class="popup-park-btn" href="' + (vans.length === 1 ? caravanHref(vans[0]) : 'caravans.html?park=' + encodeURIComponent(name)) + '">' +
           'More caravan information</a>' +
@@ -1879,7 +1901,7 @@
         ? popupParkHTML(spot.parks[0])
         : '<p class="popup-group-title">' + spot.parks.length + ' parks at this location</p>' +
           '<div class="popup-park-list">' + spot.parks.map(popupParkHTML).join('') + '</div>';
-      marker.bindPopup(html, { maxWidth: 320 });
+      marker.bindPopup(html, { maxWidth: 340 });
       marker.addTo(markersLayer);
       latlngs.push([spot.lat, spot.lng]);
     });

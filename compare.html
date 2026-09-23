@@ -573,6 +573,25 @@
     flex-wrap: wrap;
   }
   .results-bar { margin: 0 0 10px; }
+  .results-bar.picked .results-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pick-flag { color: var(--teal); }
+  .pick-clear {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 3px 9px;
+    cursor: pointer;
+  }
+  .pick-clear:hover { border-color: var(--teal); background: rgba(31, 111, 110, 0.08); }
   .results-bar .results-count { margin: 0; font-weight: 600; color: var(--ink); }
 
   .view-toggle {
@@ -630,19 +649,26 @@
   .popup-park-item + .popup-park-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
 
   .popup-vans { list-style: none; margin: 0 0 8px; padding: 0; }
+  .popup-vans {
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
   .popup-vans li {
+    font-size: 12.5px;
+    padding: 4px 0;
+    border-top: 1px solid rgba(223, 213, 193, 0.55);
+  }
+  .popup-van-row {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    font-size: 12.5px;
-    padding: 3px 0;
-    border-top: 1px solid rgba(223, 213, 193, 0.55);
   }
+  .popup-van-facts { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
   .popup-vans li:first-child { border-top: none; }
   .leaflet-container a.popup-van-link { color: var(--ink); text-decoration: none; font-weight: 600; }
   .leaflet-container a.popup-van-link:hover { color: var(--teal); text-decoration: underline; }
   .popup-van-price { color: var(--mustard-dark); font-weight: 700; white-space: nowrap; }
-  .popup-more { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
 
   .pin-count { font-family: var(--font-body); font-size: 14px; font-weight: 700; }
 
@@ -707,8 +733,6 @@
     flex: 0 0 auto;
     max-height: calc(100vh - 190px);
   }
-  .chart-box:fullscreen .pick-list,
-  .chart-box.is-fullscreen .pick-list { max-height: 32vh; }
   .chart-box:fullscreen .fs-btn,
   .chart-box.is-fullscreen .fs-btn {
     background: var(--teal);
@@ -768,12 +792,6 @@
     pointer-events: none;
   }
 
-  .pick-more {
-    font-size: 12px;
-    color: var(--muted);
-    padding: 7px 0 0;
-  }
-
   .ax-line { stroke: var(--line); stroke-width: 1; }
   .ax-grid { stroke: rgba(223, 213, 193, 0.7); stroke-width: 1; }
   .ax-text {
@@ -806,90 +824,6 @@
   }
 
   /* ---------- Clicked-dot panel ---------- */
-  .pick-panel {
-    border-top: 1px solid var(--line);
-    margin-top: 12px;
-    padding-top: 12px;
-  }
-  .pick-panel.hidden { display: none; }
-
-  .pick-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
-  .pick-title {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    font-weight: 700;
-    margin: 0;
-  }
-
-  .pick-close {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--teal);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 3px 9px;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .pick-close:hover { border-color: var(--teal); background: rgba(31, 111, 110, 0.08); }
-
-  .pick-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 260px;
-    overflow-y: auto;
-  }
-
-  .pick-list li {
-    padding: 7px 0;
-    border-bottom: 1px solid rgba(223, 213, 193, 0.55);
-  }
-  .pick-list li:last-child { border-bottom: none; }
-
-  .pick-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .pick-name {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--ink);
-    text-decoration: none;
-    overflow-wrap: anywhere;
-  }
-  .pick-name:hover { color: var(--teal); text-decoration: underline; }
-  .pick-name .ext { color: var(--teal); font-weight: 400; }
-
-  .pick-price {
-    font-size: 13.5px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: var(--mustard-dark);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .pick-meta {
-    display: block;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 1px;
-  }
 
   .results-count {
     font-size: 13px;
@@ -1191,11 +1125,17 @@
       </div>
 
       <div class="field">
-        <label for="in-year">Year</label>
-        <select id="in-year">
-          <option value="">Any year</option>
-        </select>
-        <span class="hint">Shows that year and newer</span>
+        <span class="field-label">Year</span>
+        <div class="dim-row">
+          <select id="in-year-from" aria-label="Earliest year">
+            <option value="">From</option>
+          </select>
+          <span class="dim-x">&ndash;</span>
+          <select id="in-year-to" aria-label="Latest year">
+            <option value="">To</option>
+          </select>
+        </div>
+        <span class="hint">Pick both for a range, or just one for a single year</span>
       </div>
 
       <div class="field">
@@ -1744,12 +1684,13 @@
       if (String(d.bedrooms) !== c.bedrooms) return false;
     }
 
-    // Year is a "from" filter: that year and anything newer. Listings that
-    // don't state a year drop out once you pick one.
-    if (c.year !== '') {
+    // Year is a range (a single year when only one end was picked). Listings
+    // that don't state a year drop out once any year is set.
+    if (c.yearFrom !== null || c.yearTo !== null) {
       const y = Number(d.year);
       if (d.year === null || d.year === undefined || isNaN(y)) return false;
-      if (y < Number(c.year)) return false;
+      if (c.yearFrom !== null && y < c.yearFrom) return false;
+      if (c.yearTo !== null && y > c.yearTo) return false;
     }
 
     if (c.region !== '') {
@@ -1788,6 +1729,16 @@
     const widRaw = document.getElementById('in-width').value.trim();
     const loRaw = document.getElementById('in-price-min').value.trim();
     const hiRaw = document.getElementById('in-price-max').value.trim();
+    const yfRaw = document.getElementById('in-year-from').value;
+    const ytRaw = document.getElementById('in-year-to').value;
+    let yearFrom = yfRaw === '' ? null : Number(yfRaw);
+    let yearTo = ytRaw === '' ? null : Number(ytRaw);
+    // one end on its own means just that year, not "onwards" or "and older"
+    if (yearFrom === null && yearTo !== null) yearFrom = yearTo;
+    if (yearTo === null && yearFrom !== null) yearTo = yearFrom;
+    if (yearFrom !== null && yearTo !== null && yearFrom > yearTo) {
+      const swapY = yearFrom; yearFrom = yearTo; yearTo = swapY;
+    }
     let priceMin = loRaw === '' ? null : Number(loRaw);
     let priceMax = hiRaw === '' ? null : Number(hiRaw);
     // typed the other way round — take it as the range they meant
@@ -1802,7 +1753,8 @@
       length: lenRaw === '' ? null : Number(lenRaw),
       width: widRaw === '' ? null : Number(widRaw),
       bedrooms: document.getElementById('in-bedrooms').value,
-      year: document.getElementById('in-year').value,
+      yearFrom: yearFrom,
+      yearTo: yearTo,
       region: document.getElementById('in-region').value,
       county: document.getElementById('in-county').value
     };
@@ -1810,7 +1762,7 @@
 
   function criteriaEmpty(c) {
     return !c.makes.size && !c.models.size && c.length === null && c.width === null &&
-      c.bedrooms === '' && c.year === '' && c.region === '' && c.county === '' &&
+      c.bedrooms === '' && c.yearFrom === null && c.yearTo === null && c.region === '' && c.county === '' &&
       c.priceMin === null && c.priceMax === null;
   }
 
@@ -1892,7 +1844,7 @@
     else if (c.length !== null) chips.push('Length: ' + c.length + 'ft');
     else if (c.width !== null) chips.push('Width: ' + c.width + 'ft');
     if (c.bedrooms !== '') chips.push(c.bedrooms + ' bedroom' + (c.bedrooms === '1' ? '' : 's'));
-    if (c.year !== '') chips.push(c.year + ' or newer');
+    if (c.yearFrom !== null) chips.push(c.yearFrom === c.yearTo ? 'Year: ' + c.yearFrom : 'Years: ' + c.yearFrom + ' – ' + c.yearTo);
     if (c.region !== '') chips.push('Region: ' + c.region);
     if (c.county !== '') chips.push('County: ' + c.county);
     if (c.priceMin !== null && c.priceMax !== null) chips.push('Budget: ' + money(c.priceMin) + ' \u2013 ' + money(c.priceMax));
@@ -2074,15 +2026,6 @@
 
   const FS_BUTTON_HTML = '<button type="button" class="fs-btn" aria-label="View this chart full screen">Full screen</button>';
 
-  // Drop-down list of the caravans behind a clicked dot; every chart gets one.
-  const PICK_PANEL_HTML = `<div class="pick-panel hidden">
-        <div class="pick-head">
-          <p class="pick-title"></p>
-          <button type="button" class="pick-close">Clear</button>
-        </div>
-        <ul class="pick-list"></ul>
-      </div>`;
-
   // Price runs along the bottom on every chart; the y axis is whatever the
   // chart plots against it.
   const PRICE_AXIS = { xTitle: 'Price', xTicks: 6, xFormat: t => shortMoney(t) };
@@ -2161,8 +2104,7 @@
         </div>
       </div>
       <p class="chart-note">${pts.length} match${pts.length === 1 ? '' : 'es'} state a size. ${cfg.note} Click a dot for the caravans it covers, or drag a box to select a group.</p>
-      ${scatterSVG(pts, Object.assign({}, PRICE_AXIS, cfg))}
-      ${PICK_PANEL_HTML}`;
+      ${scatterSVG(pts, Object.assign({}, PRICE_AXIS, cfg))}`;
   }
 
   function scattersHTML(list) {
@@ -2222,7 +2164,6 @@
           yFormat: t => String(Math.round(t)),
           aria: 'Scatter chart of year against price'
         }))}
-        ${PICK_PANEL_HTML}
       </div>`);
     }
 
@@ -2236,44 +2177,43 @@
      dot whose circle overlaps it, and lists the lot underneath.
      -------------------------------------------------------------------- */
 
-  function pickRowHTML(p) {
-    const d = p.d;
-    const bits = [];
-    if (d.make || d.model) bits.push(`${escapeHTML(d.make || '')}${d.make && d.model ? ' · ' : ''}${escapeHTML(d.model || '')}`);
-    const y = Number(d.year);
-    if (d.year !== null && d.year !== undefined && !isNaN(y)) bits.push(String(Math.round(y)));
-    if (d.dimensions) bits.push(escapeHTML(d.dimensions));
-    if (d.bedrooms !== null && d.bedrooms !== undefined) {
-      const b = Number(d.bedrooms);
-      bits.push(`${b} bedroom${b === 1 ? '' : 's'}`);
-    }
-    if (d.location) bits.push(escapeHTML(d.location));
-    return `<li>
-      <div class="pick-row">
-        <a class="pick-name" href="${caravanHref(d)}">${escapeHTML(d.name)} <span class="ext">&rsaquo;</span></a>
-        <span class="pick-price">${escapeHTML(d.price_display)}</span>
-      </div>
-      <span class="pick-meta">${bits.join(' &middot; ')}</span>
-    </li>`;
-  }
+  /* A selection on a chart — a clicked dot or a dragged box — doesn't get its
+     own little list any more: it narrows the table (or map) of matching
+     caravans underneath to just those picked, until it's cleared. */
+  let chartPick = null;   // { set: Set of listings, title }
 
   function clearPick(box) {
     box.classList.remove('has-pick');
     box.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
-    const panel = box.querySelector('.pick-panel');
-    if (panel) {
-      panel.classList.add('hidden');
-      panel.querySelector('.pick-list').innerHTML = '';
+    if (chartPick) {
+      chartPick = null;
+      page = 1;
+      renderResultsBody();
     }
   }
 
-  // Longest list we'll actually put in the DOM — a box drag can cover
-  // thousands of dots, and nobody scrolls that far.
-  const PICK_LIMIT = 200;
+  function clearAllPicks() {
+    resultsEl.querySelectorAll('.chart-box.has-pick').forEach(b => {
+      b.classList.remove('has-pick');
+      b.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
+    });
+    if (chartPick) {
+      chartPick = null;
+      page = 1;
+      renderResultsBody();
+    }
+  }
 
   function renderPick(box, group, title) {
     if (!group.length) { clearPick(box); return; }
 
+    // only one chart holds a selection at a time
+    resultsEl.querySelectorAll('.chart-box.has-pick').forEach(b => {
+      if (b !== box) {
+        b.classList.remove('has-pick');
+        b.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
+      }
+    });
     box.classList.add('has-pick');
     box.querySelectorAll('.dot-pt.picked').forEach(c => c.classList.remove('picked'));
     const picked = new Set(group.map(p => p.i));
@@ -2281,13 +2221,11 @@
       if (picked.has(Number(c.dataset.i))) c.classList.add('picked');
     });
 
-    const shown = group.slice(0, PICK_LIMIT);
-    const rest = group.length - shown.length;
-    const panel = box.querySelector('.pick-panel');
-    panel.querySelector('.pick-title').textContent = title;
-    panel.querySelector('.pick-list').innerHTML = shown.map(pickRowHTML).join('') +
-      (rest ? `<li class="pick-more">&hellip; and ${rest} more, cheapest shown first.</li>` : '');
-    panel.classList.remove('hidden');
+    chartPick = { set: new Set(group.map(p => p.d)), title };
+    page = 1;
+    renderResultsBody();
+    const body = document.getElementById('results-body');
+    if (body && !isFullscreen(box)) body.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function showPick(box, index) {
@@ -2464,8 +2402,6 @@
       else clearPick(box);
     });
     wireBoxSelect(box, svg);
-    const closeBtn = box.querySelector('.pick-close');
-    if (closeBtn) closeBtn.addEventListener('click', () => clearPick(box));
 
     // length / floor area switch on the size chart
     box.querySelectorAll('.metric-btn').forEach(btn => {
@@ -2474,7 +2410,7 @@
         if (!metric || metric === sizeMetric || SIZE_POINTS[metric].length < 2) return;
         sizeMetric = metric;
         CHART_POINTS.size = SIZE_POINTS[metric];
-        box.classList.remove('has-pick');
+        clearPick(box);
         box.innerHTML = sizeChartInnerHTML();
         wireChartBox(box);
       });
@@ -2493,7 +2429,6 @@
      -------------------------------------------------------------------- */
   const PIN_SIZE = { single: [19, 26], group: [24, 32] };
   const PIN_FILL = '#1F6F6E';
-  const POPUP_VANS = 5;
 
   function pinDivIcon(count) {
     const grouped = count > 1;
@@ -2538,16 +2473,20 @@
   function popupParkHTML(entry) {
     const { park, vans } = entry;
     const name = park.park_name || '';
-    const shown = vans.slice().sort((a, b) => (a.price_number || 0) - (b.price_number || 0)).slice(0, POPUP_VANS);
-    const rest = vans.length - shown.length;
+    const shown = vans.slice().sort((a, b) => (a.price_number || 0) - (b.price_number || 0));
     return '<div class="popup-park-item">' +
       '<p class="popup-park-name">' + escapeHTML(name) + '</p>' +
       '<div class="popup-park-meta">' + escapeHTML(park.postcode || '') +
         (park.postcode ? ' \u00b7 ' : '') + vans.length + ' matching caravan' + (vans.length === 1 ? '' : 's') + '</div>' +
-      '<ul class="popup-vans">' + shown.map(d =>
-        '<li><a class="popup-van-link" href="' + caravanHref(d) + '">' + escapeHTML(d.name) + '</a>' +
-        '<span class="popup-van-price">' + escapeHTML(d.price_display || 'POA') + '</span></li>').join('') + '</ul>' +
-      (rest > 0 ? '<p class="popup-more">and ' + rest + ' more at this park</p>' : '') +
+      '<ul class="popup-vans">' + shown.map(d => {
+        const yr = (d.year !== null && d.year !== undefined && !isNaN(d.year)) ? String(Math.round(d.year)) : '';
+        const facts = [yr, d.dimensions ? String(d.dimensions) : ''].filter(Boolean).join(' · ');
+        return '<li>' +
+          '<div class="popup-van-row"><a class="popup-van-link" href="' + caravanHref(d) + '">' + escapeHTML(d.name) + '</a>' +
+          '<span class="popup-van-price">' + escapeHTML(d.price_display || 'POA') + '</span></div>' +
+          (facts ? '<span class="popup-van-facts">' + escapeHTML(facts) + '</span>' : '') +
+        '</li>';
+      }).join('') + '</ul>' +
       '<div class="popup-park-actions">' +
         '<a class="popup-park-btn" href="' + (vans.length === 1 ? caravanHref(vans[0]) : 'caravans.html?park=' + encodeURIComponent(name)) + '">' +
           'More caravan information</a>' +
@@ -2579,7 +2518,7 @@
         ? popupParkHTML(spot.parks[0])
         : '<p class="popup-group-title">' + spot.parks.length + ' parks at this location</p>' +
           '<div class="popup-park-list">' + spot.parks.map(popupParkHTML).join('') + '</div>';
-      marker.bindPopup(html, { maxWidth: 320 });
+      marker.bindPopup(html, { maxWidth: 340 });
       marker.addTo(map);
       latlngs.push([spot.lat, spot.lng]);
     });
@@ -2613,8 +2552,8 @@
   }
 
   function renderResults() {
-    const c = lastCriteria;
     const list = lastResults;
+    chartPick = null;
 
     if (!list.length) {
       resultsEl.innerHTML = `
@@ -2626,14 +2565,35 @@
       return;
     }
 
-    const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
-    if (page > totalPages) page = totalPages;
-    const start = (page - 1) * PAGE_SIZE;
-    const items = list.slice(start, start + PAGE_SIZE);
-
     const orderText = lastUsesDims
       ? 'closest to your size first, then cheapest'
       : 'cheapest first';
+
+    resultsEl.innerHTML = `
+      <p class="results-count">${list.length} matching caravan${list.length === 1 ? '' : 's'}, ${orderText}.</p>
+      ${priceBoxHTML(list)}
+      ${scattersHTML(list)}
+      <div id="results-body"></div>`;
+
+    wireScatters();
+    renderResultsBody();
+  }
+
+  // The table or map of matching caravans, with its heading, view switch and
+  // pagination. Redrawn on its own when a page, sort, view or chart selection
+  // changes, so the charts above keep their state.
+  function renderResultsBody() {
+    const body = document.getElementById('results-body');
+    if (!body) return;
+
+    const all = lastResults;
+    const list = chartPick ? all.filter(d => chartPick.set.has(d)) : all;
+
+    const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    if (page > totalPages) page = totalPages;
+    if (page < 1) page = 1;
+    const start = (page - 1) * PAGE_SIZE;
+    const items = list.slice(start, start + PAGE_SIZE);
 
     const viewToggle = `<div class="view-toggle" role="group" aria-label="Show results as">
         <button type="button" class="view-btn${resultsView === 'table' ? ' active' : ''}" data-view="table">Table</button>
@@ -2643,13 +2603,14 @@
         <div id="park-map" class="park-map"></div>
         <p class="park-map-hint" id="park-map-hint"></p>
       </div>`;
+    const heading = chartPick
+      ? `<span class="pick-flag">${escapeHTML(chartPick.title)}</span>
+         <button type="button" class="pick-clear" id="pick-clear">Show all ${all.length}</button>`
+      : (resultsView === 'map' ? 'Where the matches are' : 'The matching caravans');
 
-    resultsEl.innerHTML = `
-      <p class="results-count">${list.length} matching caravan${list.length === 1 ? '' : 's'}, ${orderText}.</p>
-      ${priceBoxHTML(list)}
-      ${scattersHTML(list)}
-      <div class="results-bar">
-        <p class="results-count">${resultsView === 'map' ? 'Where the matches are' : 'The matching caravans'}</p>
+    body.innerHTML = `
+      <div class="results-bar${chartPick ? ' picked' : ''}">
+        <p class="results-count">${heading}</p>
         ${viewToggle}
       </div>
       ${resultsView === 'map' ? mapView : tableHTML(items)}
@@ -2665,19 +2626,20 @@
         </div>
       </div>`;
 
-    wireScatters();
+    const clearBtn = document.getElementById('pick-clear');
+    if (clearBtn) clearBtn.addEventListener('click', clearAllPicks);
 
-    resultsEl.querySelectorAll('.view-btn').forEach(btn => {
+    body.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         if (btn.dataset.view === resultsView) return;
         resultsView = btn.dataset.view;
-        renderResults();
+        renderResultsBody();
       });
     });
     if (resultsView === 'map') buildResultsMap(list);
     else if (resultsMap) { resultsMap.remove(); resultsMap = null; }
 
-    const bar = resultsEl.querySelector('.pagination');
+    const bar = body.querySelector('.pagination');
     if (bar) {
       bar.addEventListener('click', e => {
         const btn = e.target.closest('button');
@@ -2686,12 +2648,12 @@
         else if (btn.dataset.action === 'next') page += 1;
         else if (btn.dataset.page) page = Number(btn.dataset.page);
         else return;
-        renderResults();
-        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        renderResultsBody();
+        body.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
 
-    const headRow = resultsEl.querySelector('table.results thead tr');
+    const headRow = body.querySelector('table.results thead tr');
     if (headRow) {
       const applySort = th => {
         const field = th.dataset.field;
@@ -2704,7 +2666,7 @@
         }
         sortList(lastResults, lastUsesDims);
         page = 1;
-        renderResults();
+        renderResultsBody();
       };
       headRow.addEventListener('click', e => {
         const th = e.target.closest('th[data-field]');
@@ -2916,15 +2878,14 @@
     fillCountyOptions();
     rsel.addEventListener('change', fillCountyOptions);
 
+    // oldest first in "From", newest first in "To" - each list starts where
+    // you'd usually want it
     const years = [...new Set(data.map(d => Number(d.year)).filter(y => !isNaN(y) && y > 1900))]
-      .sort((a, b) => b - a);
-    const ysel = document.getElementById('in-year');
-    years.forEach(y => {
-      const opt = document.createElement('option');
-      opt.value = String(y);
-      opt.textContent = `${y} or newer`;
-      ysel.appendChild(opt);
-    });
+      .sort((a, b) => a - b);
+    const fromSel = document.getElementById('in-year-from');
+    const toSel = document.getElementById('in-year-to');
+    years.forEach(y => fromSel.appendChild(new Option(String(y), String(y))));
+    years.slice().reverse().forEach(y => toSel.appendChild(new Option(String(y), String(y))));
   }
 
   function wireForm() {
@@ -3011,11 +2972,15 @@
       const sel = document.getElementById('in-bedrooms');
       if ([...sel.options].some(o => o.value === beds)) sel.value = beds;
     }
-    const year = p.get('year');
-    if (year) {
-      const ysel = document.getElementById('in-year');
-      if ([...ysel.options].some(o => o.value === year)) ysel.value = year;
-    }
+    // ?year= on its own means just that year; ?yearFrom= / ?yearTo=
+    // (or minYear / maxYear) set the two ends of a range
+    const pickYear = (id, val) => {
+      if (!val) return;
+      const sel = document.getElementById(id);
+      if ([...sel.options].some(o => o.value === val)) sel.value = val;
+    };
+    pickYear('in-year-from', p.get('yearFrom') || p.get('minYear') || p.get('year'));
+    pickYear('in-year-to', p.get('yearTo') || p.get('maxYear'));
     const region = p.get('region');
     if (region) {
       const rsel = document.getElementById('in-region');
