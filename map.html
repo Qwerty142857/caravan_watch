@@ -388,6 +388,17 @@
     letter-spacing: 0.01em;
   }
 
+  /* a chain's name links to its own website */
+  .results-heading h3 a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--mustard);
+  }
+  .results-heading h3 a:hover { color: var(--teal); }
+  .results-heading h3 a .ext { font-size: 0.6em; vertical-align: 0.35em; margin-left: 4px; }
+
   .results-heading p {
     margin: 0;
     color: var(--muted);
@@ -1298,6 +1309,34 @@ areaClearBtn.addEventListener('click', clearArea);
    ----------------------------------------------------------------------- */
 const CHAIN_COLOUR = '#C6503F';
 
+// Groups whose parks each have their own website, so the group's home page
+// can't be worked out from parks.json.
+const CHAIN_HOME_OVERRIDES = {
+  'Daly Parks': 'https://www.dalyparks.co.uk/',
+};
+
+/* A chain's home page is the website most of its parks share (Parkdean's
+   parks all point at parkdeanresorts.co.uk). With no clear majority there's
+   no single home page to link to. */
+function chainHome(name) {
+  if (CHAIN_HOME_OVERRIDES[name]) return CHAIN_HOME_OVERRIDES[name];
+  const parks = CHAIN_PARKS[name] || [];
+  const byHost = new Map();
+  parks.forEach(p => {
+    if (!p.website) return;
+    let url;
+    try { url = new URL(/^https?:\/\//i.test(p.website || '') ? p.website : 'https://' + p.website); }
+    catch (e) { return; }
+    const host = url.hostname.toLowerCase().replace(/^www\./, '');
+    const entry = byHost.get(host) || { count: 0, origin: url.origin };
+    entry.count += 1;
+    byHost.set(host, entry);
+  });
+  let best = null;
+  byHost.forEach(e => { if (!best || e.count > best.count) best = e; });
+  return best && best.count * 2 > parks.length ? best.origin + '/' : null;
+}
+
 function fillChainSelect() {
   const names = Object.keys(CHAIN_PARKS).sort((a, b) => a.localeCompare(b));
   chainSelect.innerHTML = '<option value="">Pick a chain&hellip;</option>' +
@@ -1343,7 +1382,13 @@ function searchChain() {
 
   resultsEmpty.style.display = 'none';
   resultsContent.style.display = 'block';
-  resultsTitle.textContent = name;
+  const home = chainHome(name);
+  if (home) {
+    resultsTitle.innerHTML = '<a href="' + escapeHtml(home) + '" target="_blank" rel="noopener" title="Visit the ' +
+      escapeHtml(name) + ' website">' + escapeHtml(name) + '<span class="ext" aria-hidden="true">&#8599;</span></a>';
+  } else {
+    resultsTitle.textContent = name;
+  }
   resultsSubtitle.textContent = countText + ' in this chain' +
     (unmapped ? ' (' + unmapped + ' not on the map yet — we don’t have a location for ' +
                 (unmapped === 1 ? 'it' : 'them') + ')' : '');
