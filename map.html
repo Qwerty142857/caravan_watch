@@ -323,51 +323,6 @@
     margin: 0 0 14px;
   }
 
-  .region-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .region-list button {
-    width: 100%;
-    text-align: left;
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 8px 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .region-list button .swatch {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
-
-  .region-list button .count {
-    margin-left: auto;
-    color: var(--muted);
-    font-weight: 500;
-    font-size: 12px;
-  }
-
-  .region-list button:hover, .region-list button.active {
-    border-color: var(--teal);
-    background: rgba(31, 111, 110, 0.08);
-  }
-
   /* results */
   .results {
     margin-top: 40px;
@@ -499,6 +454,12 @@
     cursor: pointer;
   }
   .town-search-btn:hover { filter: brightness(1.08); }
+  .town-search-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .town-search-btn.secondary:hover { filter: none; border-color: var(--teal); background: rgba(31, 111, 110, 0.08); }
   .town-error {
     margin: 10px 0 0;
     font-size: 13.5px;
@@ -728,7 +689,7 @@
 <main>
   <p class="page-eyebrow">Search</p>
   <h2 class="page-title">By region</h2>
-  <p class="page-intro">Click a region on the map, or pick one from the list, to see every park we're tracking there. <strong id="grand-total">&nbsp;</strong></p>
+  <p class="page-intro">Click a region on the map, or pick a county or region from the list, to see every park we're tracking there. <strong id="grand-total">&nbsp;</strong></p>
 
   <div class="map-layout" id="map-layout">
     <div class="map-wrap">
@@ -739,13 +700,17 @@
 
     <div class="side-panel">
       <div class="town-search" id="county-search">
-        <h3>Search by county</h3>
-        <p class="town-sub">Every park in one county, wherever the region lines fall.</p>
+        <h3>Search by county or region</h3>
+        <p class="town-sub">Pick one, or click a region on the map.</p>
         <div class="town-search-row">
           <select id="county-select" aria-label="County">
             <option value="">Loading counties&hellip;</option>
           </select>
+          <select id="region-select" aria-label="Region">
+            <option value="">Pick a region&hellip;</option>
+          </select>
           <button type="button" class="town-search-btn" id="county-search-btn">Find parks</button>
+          <button type="button" class="town-search-btn secondary" id="area-clear-btn">Clear filters</button>
         </div>
         <p class="town-error hidden" id="county-error"></p>
       </div>
@@ -803,8 +768,6 @@
         <p class="region-name" id="selected-name">None yet</p>
         <p class="region-stats" id="selected-stats">Pick a region to get started.</p>
       </div>
-
-      <ul class="region-list" id="region-list"></ul>
     </div>
   </div>
 
@@ -868,7 +831,8 @@ const TOWNS_JSON_PATH = 'towns.json';
 const POSTCODES_JSON_PATH = 'postcodes.json';
 
 const svg = document.getElementById('uk-map');
-const regionListEl = document.getElementById('region-list');
+const regionSelect = document.getElementById('region-select');
+const areaClearBtn = document.getElementById('area-clear-btn');
 const selectedName = document.getElementById('selected-name');
 const selectedStats = document.getElementById('selected-stats');
 const resultsEmpty = document.getElementById('results-empty');
@@ -986,17 +950,12 @@ MAP_DATA.order.forEach(name => {
   svg.appendChild(g);
 });
 
+// the region dropdown gets its park counts once parks.json has loaded
 MAP_DATA.order.forEach(name => {
-  const region = MAP_DATA.regions[name];
-  const li = document.createElement('li');
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.dataset.region = name;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="swatch" style="background:' + region.fill + '"></span>' + name + '<span class="count">&hellip;</span>';
-  btn.addEventListener('click', () => selectRegion(name));
-  li.appendChild(btn);
-  regionListEl.appendChild(li);
+  const opt = document.createElement('option');
+  opt.value = name;
+  opt.textContent = name;
+  regionSelect.appendChild(opt);
 });
 
 grandTotal.textContent = 'Loading parks\u2026';
@@ -1144,10 +1103,8 @@ function finishLoading() {
   });
   grandTotal.textContent = fmt(totalParks) + ' parks across ' + MAP_DATA.order.length + ' regions right now.';
 
-  document.querySelectorAll('.region-list button').forEach(btn => {
-    const region = MAP_DATA.regions[btn.dataset.region];
-    btn.disabled = false;
-    btn.querySelector('.count').textContent = region.count;
+  Array.from(regionSelect.options).forEach(opt => {
+    if (opt.value) opt.textContent = opt.value + ' (' + MAP_DATA.regions[opt.value].count + ')';
   });
 
   if (currentRegion) selectRegion(currentRegion, false);
@@ -1198,7 +1155,6 @@ function loadCounties() {
     .catch(err => {
       console.error('Could not load counties data:', err);
       countySelect.innerHTML = '<option value="">Counties unavailable</option>';
-      countySearchBtn.disabled = true;
       showCountyError("County search isn't available \u2014 counties.json couldn't be loaded. " +
                       'Check that it sits alongside map.html on the server.');
     });
@@ -1268,20 +1224,18 @@ function searchCounty() {
   if (!dataReady || !COUNTY_PARKS) return;
 
   const name = countySelect.value;
-  if (!name) {
-    showCountyError('Pick a county from the list first.');
-    return;
-  }
+  if (!name) return;
   const parks = COUNTY_PARKS[name] || [];
 
   currentRegion = null;
   document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
-  document.querySelectorAll('.region-list button').forEach(b => b.classList.remove('active'));
+  regionSelect.value = '';
   selectedName.textContent = name;
   selectedStats.textContent = parks.length + ' park' + (parks.length === 1 ? '' : 's');
 
   currentView = {
     parks: parks,
+    source: 'area',
     fill: COUNTY_MAP.counties[name].fill,
     center: null,
     radius: null,
@@ -1298,18 +1252,51 @@ function searchCounty() {
   resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-countySearchBtn.addEventListener('click', searchCounty);
-countySelect.addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); searchCounty(); }
-});
+/* ---------- the county-or-region box -------------------------------------
+   One county or one region at a time: picking either empties the other, and
+   Find parks runs whichever is set. */
+function searchArea() {
+  countyError.classList.add('hidden');
+  if (!dataReady) return;
+  if (countySelect.value) {
+    searchCounty();
+  } else if (regionSelect.value) {
+    selectRegion(regionSelect.value);
+  } else {
+    showCountyError('Pick a county or a region first.');
+  }
+}
+
+function clearArea() {
+  countySelect.value = '';
+  regionSelect.value = '';
+  countyError.classList.add('hidden');
+  // only empty the results if they came from this box, not a chain or town search
+  if (!currentView || currentView.source !== 'area') return;
+  currentRegion = null;
+  currentView = null;
+  document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
+  selectedName.textContent = 'None yet';
+  selectedStats.textContent = 'Pick a region to get started.';
+  filterInput.value = '';
+  resultsContent.style.display = 'none';
+  resultsEmpty.style.display = 'block';
+}
+
+countySelect.addEventListener('change', () => { if (countySelect.value) regionSelect.value = ''; });
+regionSelect.addEventListener('change', () => { if (regionSelect.value) countySelect.value = ''; });
+countySearchBtn.addEventListener('click', searchArea);
+areaClearBtn.addEventListener('click', clearArea);
+[countySelect, regionSelect].forEach(sel => sel.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); searchArea(); }
+}));
 
 /* ---------- search by chain ----------------------------------------------
    parks.json names the operator of each park in its `chain` field (null for
-   independents). A chain's parks are spread across the country, so the map
-   always shows the whole of Great Britain rather than zooming to fit them.
+   independents). The map zooms in as far as it can while still showing all
+   of the chain's parks, the same as a region or county search.
    ----------------------------------------------------------------------- */
 const CHAIN_COLOUR = '#C6503F';
-const GB_BOUNDS = [[49.9, -8.2], [58.7, 1.8]];
 
 function fillChainSelect() {
   const names = Object.keys(CHAIN_PARKS).sort((a, b) => a.localeCompare(b));
@@ -1341,7 +1328,8 @@ function searchChain() {
 
   currentRegion = null;
   document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
-  document.querySelectorAll('.region-list button').forEach(b => b.classList.remove('active'));
+  countySelect.value = '';
+  regionSelect.value = '';
   selectedName.textContent = name;
   selectedStats.textContent = countText;
 
@@ -1350,7 +1338,6 @@ function searchChain() {
     fill: CHAIN_COLOUR,
     center: null,
     radius: null,
-    bounds: GB_BOUNDS,
     emptyText: 'No ' + name + ' parks match that search.'
   };
 
@@ -1362,7 +1349,7 @@ function searchChain() {
                 (unmapped === 1 ? 'it' : 'them') + ')' : '');
   filterInput.value = '';
   drawParkGrid(parks);
-  updateParkMap(parks, CHAIN_COLOUR, null, null, GB_BOUNDS);
+  updateParkMap(parks, CHAIN_COLOUR, null, null);
   resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -1522,7 +1509,8 @@ function showRadiusResults(origin, originLabel, originShort, miles, focusPark) {
 
   currentRegion = null;
   document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
-  document.querySelectorAll('.region-list button').forEach(b => b.classList.remove('active'));
+  countySelect.value = '';
+  regionSelect.value = '';
   selectedName.textContent = originLabel;
   selectedStats.textContent = near.length + ' park' + (near.length === 1 ? '' : 's') +
     ' within ' + miles + ' miles';
@@ -1625,9 +1613,8 @@ function selectRegion(name, shouldScroll) {
   document.querySelectorAll('.region-group').forEach(g => {
     g.classList.toggle('selected', g.dataset.region === name);
   });
-  document.querySelectorAll('.region-list button').forEach(b => {
-    b.classList.toggle('active', b.dataset.region === name);
-  });
+  regionSelect.value = name;
+  countySelect.value = '';
 
   selectedName.textContent = name;
   selectedStats.textContent = region.count + ' park' + (region.count === 1 ? '' : 's');
@@ -1648,6 +1635,7 @@ function renderResults(name) {
   filterInput.value = '';
   currentView = {
     parks: region.parks,
+    source: 'area',
     fill: region.fill,
     center: null,
     radius: null,
@@ -1792,8 +1780,7 @@ function groupByPosition(parks) {
   return [...groups.values()];
 }
 
-// `bounds` pins the view to a fixed area (the chain search shows all of GB).
-function updateParkMap(parks, fill, center, radiusMiles, bounds) {
+function updateParkMap(parks, fill, center, radiusMiles) {
   const map = ensureParkMap();
   markersLayer.clearLayers();
 
@@ -1831,14 +1818,14 @@ function updateParkMap(parks, fill, center, radiusMiles, bounds) {
   // give the container a moment to be laid out before Leaflet measures it
   setTimeout(() => {
     map.invalidateSize();
-    if (bounds) {
-      map.fitBounds(bounds);
-    } else if (circle) {
+    if (circle) {
       map.fitBounds(circle.getBounds(), { padding: [30, 30] });
     } else if (latlngs.length === 1) {
       map.setView(latlngs[0], 12);
     } else if (latlngs.length > 1) {
-      map.fitBounds(L.latLngBounds(latlngs), { padding: [30, 30] });
+      // parks a few doors apart would otherwise zoom to street level; stop at
+      // the same town-sized view a single park gets
+      map.fitBounds(L.latLngBounds(latlngs), { padding: [30, 30], maxZoom: 12 });
     } else {
       map.setView([54.5, -3], 5.5);
     }
@@ -1850,7 +1837,7 @@ filterInput.addEventListener('input', () => {
   const q = filterInput.value.trim().toLowerCase();
   const parks = currentView.parks.filter(p => p.name.toLowerCase().includes(q));
   drawParkGrid(parks);
-  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius, currentView.bounds);
+  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius);
 });
 </script>
 
