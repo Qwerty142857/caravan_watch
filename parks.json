@@ -1610,7 +1610,7 @@
     "region": "North East",
     "region_fallback_used": "no",
     "status": "listings",
-    "chain": null,
+    "chain": "Daly Parks",
     "Latitude": 54.960333,
     "Longitude": -2.117432
   },
@@ -1788,7 +1788,7 @@
   {
     "park_name": "Church Farm Holiday Village",
     "postcode": "PO21 4NR",
-    "website": "http://churchfarmparkaldeburgh.co.uk/",
+    "website": "https://www.haven.com",
     "staticcaravanparks_url": "https://www.staticcaravanparks.co.uk/parks/suffolk/church-farm-holiday-park",
     "telephone": "01728 453 433",
     "no_pitches": null,
@@ -1800,7 +1800,7 @@
     "region": "South East",
     "region_fallback_used": "no",
     "status": "listings",
-    "chain": "Amber Leisure",
+    "chain": "Haven",
     "Latitude": 50.770238,
     "Longitude": -0.744946
   },
@@ -2541,7 +2541,7 @@
     "region": "North East",
     "region_fallback_used": "yes",
     "status": "listings",
-    "chain": null,
+    "chain": "Daly Parks",
     "Latitude": 55.75293,
     "Longitude": -1.99025
   },
@@ -7348,7 +7348,7 @@
     "region": "North West",
     "region_fallback_used": "no",
     "status": "listings",
-    "chain": null,
+    "chain": "Daly Parks",
     "Latitude": 54.145894,
     "Longitude": -2.790225
   },
@@ -10008,7 +10008,7 @@
     "region": "North West",
     "region_fallback_used": "no",
     "status": "listings",
-    "chain": null,
+    "chain": "Daly Parks",
     "Latitude": 54.169799,
     "Longitude": -2.966626
   },
@@ -19553,7 +19553,7 @@
   {
     "park_name": "Church Farm Holiday Park",
     "postcode": "IP15 5DW",
-    "website": "http://churchfarmparkaldeburgh.co.uk/",
+    "website": "https://churchfarmparkaldeburgh.co.uk/",
     "staticcaravanparks_url": "https://www.staticcaravanparks.co.uk/parks/suffolk/church-farm-holiday-park",
     "telephone": "01728 453 433",
     "no_pitches": null,
@@ -30459,7 +30459,7 @@
   {
     "park_name": "Palm Beach Holiday Park",
     "postcode": "PE31 7AR",
-    "website": "https://www.parklink.uk",
+    "website": "https://palmbeachparkheacham.co.uk/",
     "staticcaravanparks_url": null,
     "telephone": null,
     "no_pitches": null,
@@ -30471,7 +30471,7 @@
     "region": null,
     "region_fallback_used": null,
     "status": "listings",
-    "chain": null,
+    "chain": "Amber Leisure",
     "Latitude": 52.909195,
     "Longitude": 0.477383
   },
@@ -44519,7 +44519,7 @@
   {
     "park_name": "Poplars Holiday Park",
     "postcode": "PE31 8EN",
-    "website": null,
+    "website": "https://luxurylodgeescapes.co.uk/",
     "staticcaravanparks_url": null,
     "telephone": null,
     "no_pitches": null,
@@ -44531,7 +44531,7 @@
     "region": "General East",
     "region_fallback_used": "no",
     "status": "no website found",
-    "chain": null,
+    "chain": "Amber Leisure",
     "Latitude": 52.94409,
     "Longitude": 0.730613
   },
@@ -44614,7 +44614,7 @@
   {
     "park_name": "Seashore Caravan Park",
     "postcode": "PE31 7AR",
-    "website": null,
+    "website": "https://palmbeachparkheacham.co.uk/",
     "staticcaravanparks_url": null,
     "telephone": null,
     "no_pitches": null,
@@ -44626,7 +44626,7 @@
     "region": "General East",
     "region_fallback_used": "no",
     "status": "no website found",
-    "chain": null,
+    "chain": "Amber Leisure",
     "Latitude": 52.909195,
     "Longitude": 0.477383
   },
