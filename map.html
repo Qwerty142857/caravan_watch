@@ -1305,11 +1305,10 @@ countySelect.addEventListener('keydown', e => {
 
 /* ---------- search by chain ----------------------------------------------
    parks.json names the operator of each park in its `chain` field (null for
-   independents). A chain's parks are spread across the country, so the map
-   always shows the whole of Great Britain rather than zooming to fit them.
+   independents). The map zooms in as far as it can while still showing all
+   of the chain's parks, the same as a region or county search.
    ----------------------------------------------------------------------- */
 const CHAIN_COLOUR = '#C6503F';
-const GB_BOUNDS = [[49.9, -8.2], [58.7, 1.8]];
 
 function fillChainSelect() {
   const names = Object.keys(CHAIN_PARKS).sort((a, b) => a.localeCompare(b));
@@ -1350,7 +1349,6 @@ function searchChain() {
     fill: CHAIN_COLOUR,
     center: null,
     radius: null,
-    bounds: GB_BOUNDS,
     emptyText: 'No ' + name + ' parks match that search.'
   };
 
@@ -1362,7 +1360,7 @@ function searchChain() {
                 (unmapped === 1 ? 'it' : 'them') + ')' : '');
   filterInput.value = '';
   drawParkGrid(parks);
-  updateParkMap(parks, CHAIN_COLOUR, null, null, GB_BOUNDS);
+  updateParkMap(parks, CHAIN_COLOUR, null, null);
   resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -1792,8 +1790,7 @@ function groupByPosition(parks) {
   return [...groups.values()];
 }
 
-// `bounds` pins the view to a fixed area (the chain search shows all of GB).
-function updateParkMap(parks, fill, center, radiusMiles, bounds) {
+function updateParkMap(parks, fill, center, radiusMiles) {
   const map = ensureParkMap();
   markersLayer.clearLayers();
 
@@ -1831,14 +1828,14 @@ function updateParkMap(parks, fill, center, radiusMiles, bounds) {
   // give the container a moment to be laid out before Leaflet measures it
   setTimeout(() => {
     map.invalidateSize();
-    if (bounds) {
-      map.fitBounds(bounds);
-    } else if (circle) {
+    if (circle) {
       map.fitBounds(circle.getBounds(), { padding: [30, 30] });
     } else if (latlngs.length === 1) {
       map.setView(latlngs[0], 12);
     } else if (latlngs.length > 1) {
-      map.fitBounds(L.latLngBounds(latlngs), { padding: [30, 30] });
+      // parks a few doors apart would otherwise zoom to street level; stop at
+      // the same town-sized view a single park gets
+      map.fitBounds(L.latLngBounds(latlngs), { padding: [30, 30], maxZoom: 12 });
     } else {
       map.setView([54.5, -3], 5.5);
     }
@@ -1850,7 +1847,7 @@ filterInput.addEventListener('input', () => {
   const q = filterInput.value.trim().toLowerCase();
   const parks = currentView.parks.filter(p => p.name.toLowerCase().includes(q));
   drawParkGrid(parks);
-  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius, currentView.bounds);
+  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius);
 });
 </script>
 
