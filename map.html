@@ -750,6 +750,18 @@
         <p class="town-error hidden" id="county-error"></p>
       </div>
 
+      <div class="town-search" id="chain-search">
+        <h3>Search by chain</h3>
+        <p class="town-sub">Every park run by one operator, across England, Wales and Scotland.</p>
+        <div class="town-search-row">
+          <select id="chain-select" aria-label="Chain">
+            <option value="">Loading chains&hellip;</option>
+          </select>
+          <button type="button" class="town-search-btn" id="chain-search-btn">Find parks</button>
+        </div>
+        <p class="town-error hidden" id="chain-error"></p>
+      </div>
+
       <div class="town-search" id="park-search">
         <h3>Search for a park</h3>
         <p class="town-sub">Find a park by name, along with parks nearby</p>
@@ -872,6 +884,9 @@ const mapLayout = document.getElementById('map-layout');
 const countySelect = document.getElementById('county-select');
 const countySearchBtn = document.getElementById('county-search-btn');
 const countyError = document.getElementById('county-error');
+const chainSelect = document.getElementById('chain-select');
+const chainSearchBtn = document.getElementById('chain-search-btn');
+const chainError = document.getElementById('chain-error');
 const parkInput = document.getElementById('park-input');
 const parkList = document.getElementById('park-list');
 const parkRadius = document.getElementById('park-radius');
@@ -907,6 +922,9 @@ let postcodesFailed = false;
 // counties.json, plus the park list worked out from it once both have loaded
 let COUNTY_MAP = null;
 let COUNTY_PARKS = null;
+
+// chain name -> its parks in Great Britain, including any not yet geocoded
+let CHAIN_PARKS = {};
 
 // What the results section is currently showing, so the name filter and the
 // Leaflet map can be redrawn without caring whether it came from a region
@@ -1084,8 +1102,27 @@ Promise.all([
       region.count = region.parks.length;
     });
 
+    // Parks without coordinates stay in so they're listed under the map, even
+    // though they can't be pinned on it.
+    CHAIN_PARKS = {};
+    parks.forEach(p => {
+      const chain = (p['chain'] || '').trim();
+      if (!chain) return;
+      if ((p['postcode'] || '').trim().toUpperCase().startsWith('BT')) return; // GB only
+      const hasCoords = typeof p['Latitude'] === 'number' && typeof p['Longitude'] === 'number';
+      (CHAIN_PARKS[chain] = CHAIN_PARKS[chain] || []).push({
+        name: p['park_name'],
+        postcode: p['postcode'],
+        website: p['website'],
+        lat: hasCoords ? p['Latitude'] : null,
+        lng: hasCoords ? p['Longitude'] : null,
+      });
+    });
+    Object.values(CHAIN_PARKS).forEach(list => list.sort((a, b) => a.name.localeCompare(b.name)));
+
     dataReady = true;
     finishLoading();
+    fillChainSelect();
     fillParkList();
     loadTowns();
     loadPostcodes();
@@ -1095,6 +1132,8 @@ Promise.all([
     console.error('Could not load parks data:', err);
     grandTotal.textContent = "Couldn't load parks.json \u2014 this page needs to be served from a web server (not opened as a local file) with that file in the same folder as map.html.";
     resultsEmpty.textContent = "Parks data isn't available right now. Check that parks.json sits alongside map.html on the server, then reload.";
+    chainSelect.innerHTML = '<option value="">Chains unavailable</option>';
+    chainSearchBtn.disabled = true;
   });
 
 function finishLoading() {
@@ -1262,6 +1301,74 @@ function searchCounty() {
 countySearchBtn.addEventListener('click', searchCounty);
 countySelect.addEventListener('keydown', e => {
   if (e.key === 'Enter') { e.preventDefault(); searchCounty(); }
+});
+
+/* ---------- search by chain ----------------------------------------------
+   parks.json names the operator of each park in its `chain` field (null for
+   independents). A chain's parks are spread across the country, so the map
+   always shows the whole of Great Britain rather than zooming to fit them.
+   ----------------------------------------------------------------------- */
+const CHAIN_COLOUR = '#C6503F';
+const GB_BOUNDS = [[49.9, -8.2], [58.7, 1.8]];
+
+function fillChainSelect() {
+  const names = Object.keys(CHAIN_PARKS).sort((a, b) => a.localeCompare(b));
+  chainSelect.innerHTML = '<option value="">Pick a chain&hellip;</option>' +
+    names.map(n => '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) +
+                   ' (' + CHAIN_PARKS[n].length + ')</option>').join('');
+}
+
+function showChainError(msg) {
+  chainError.textContent = msg;
+  chainError.classList.remove('hidden');
+}
+
+function searchChain() {
+  chainError.classList.add('hidden');
+  countyError.classList.add('hidden');
+  parkError.classList.add('hidden');
+  clearTownError();
+  if (!dataReady) return;
+
+  const name = chainSelect.value;
+  if (!name) {
+    showChainError('Pick a chain from the list first.');
+    return;
+  }
+  const parks = CHAIN_PARKS[name] || [];
+  const unmapped = parks.filter(p => p.lat === null).length;
+  const countText = parks.length + ' park' + (parks.length === 1 ? '' : 's');
+
+  currentRegion = null;
+  document.querySelectorAll('.region-group').forEach(g => g.classList.remove('selected'));
+  document.querySelectorAll('.region-list button').forEach(b => b.classList.remove('active'));
+  selectedName.textContent = name;
+  selectedStats.textContent = countText;
+
+  currentView = {
+    parks: parks,
+    fill: CHAIN_COLOUR,
+    center: null,
+    radius: null,
+    bounds: GB_BOUNDS,
+    emptyText: 'No ' + name + ' parks match that search.'
+  };
+
+  resultsEmpty.style.display = 'none';
+  resultsContent.style.display = 'block';
+  resultsTitle.textContent = name;
+  resultsSubtitle.textContent = countText + ' in this chain' +
+    (unmapped ? ' (' + unmapped + ' not on the map yet — we don’t have a location for ' +
+                (unmapped === 1 ? 'it' : 'them') + ')' : '');
+  filterInput.value = '';
+  drawParkGrid(parks);
+  updateParkMap(parks, CHAIN_COLOUR, null, null, GB_BOUNDS);
+  resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+chainSearchBtn.addEventListener('click', searchChain);
+chainSelect.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); searchChain(); }
 });
 
 const MILES_PER_KM = 0.621371;
@@ -1548,6 +1655,7 @@ function renderResults(name) {
   };
   clearTownError();
   countyError.classList.add('hidden');
+  chainError.classList.add('hidden');
   parkError.classList.add('hidden');
   drawParkGrid(region.parks);
   updateParkMap(region.parks, region.fill, null, null);
@@ -1684,7 +1792,8 @@ function groupByPosition(parks) {
   return [...groups.values()];
 }
 
-function updateParkMap(parks, fill, center, radiusMiles) {
+// `bounds` pins the view to a fixed area (the chain search shows all of GB).
+function updateParkMap(parks, fill, center, radiusMiles, bounds) {
   const map = ensureParkMap();
   markersLayer.clearLayers();
 
@@ -1722,7 +1831,9 @@ function updateParkMap(parks, fill, center, radiusMiles) {
   // give the container a moment to be laid out before Leaflet measures it
   setTimeout(() => {
     map.invalidateSize();
-    if (circle) {
+    if (bounds) {
+      map.fitBounds(bounds);
+    } else if (circle) {
       map.fitBounds(circle.getBounds(), { padding: [30, 30] });
     } else if (latlngs.length === 1) {
       map.setView(latlngs[0], 12);
@@ -1739,7 +1850,7 @@ filterInput.addEventListener('input', () => {
   const q = filterInput.value.trim().toLowerCase();
   const parks = currentView.parks.filter(p => p.name.toLowerCase().includes(q));
   drawParkGrid(parks);
-  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius);
+  updateParkMap(parks, currentView.fill, currentView.center, currentView.radius, currentView.bounds);
 });
 </script>
 
