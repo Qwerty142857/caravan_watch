@@ -1018,7 +1018,7 @@
     <div class="cc-scroll">
       <table class="cc-table">
         <thead>
-          <tr><th>Chain</th><th>Listings</th><th>Lowest</th><th>Median</th><th>Average</th><th>Highest</th></tr>
+          <tr><th>Chain</th><th>Listings</th><th>Lowest</th><th>Median</th><th>Average</th><th>Highest</th><th>Avg age</th></tr>
         </thead>
         <tbody id="chain-compare-body"></tbody>
       </table>
@@ -1392,8 +1392,9 @@
     filterOptionsData.chain = [...chainCounts.keys()]
       .sort((a, b) => a.localeCompare(b))
       .map(c => ({ value: c, label: `${c} (${chainCounts.get(c)})` }));
+    // independents go first so they're easy to find above the long chain list
     const independents = data.filter(d => listingChain(d) === INDEPENDENT).length;
-    if (independents) filterOptionsData.chain.push({ value: INDEPENDENT, label: `Independent parks (${independents})` });
+    if (independents) filterOptionsData.chain.unshift({ value: INDEPENDENT, label: `Independent parks (${independents})` });
 
     filterOptionsData.bedrooms = bedroomVals.map(b => ({ value: String(b), label: `${b} bed${b == 1 ? '' : 's'}` }));
     if (hasUnspecified) filterOptionsData.bedrooms.push({ value: 'unspecified', label: 'Not specified' });
@@ -1679,6 +1680,17 @@
     `;
   }
 
+  /* A caravan's age is counted from the year the listings were collected.
+     Next year's models are already on sale in the autumn, so a model year one
+     ahead counts as new; anything further out is a typo and is left out. */
+  let AGE_BASE_YEAR = new Date().getFullYear();
+
+  function caravanAge(d) {
+    const y = Number(d.year);
+    if (!y || isNaN(y) || y < 1950 || y > AGE_BASE_YEAR + 1) return null;
+    return Math.max(0, AGE_BASE_YEAR - Math.round(y));
+  }
+
   function formatPounds(n) {
     return '\u00a3' + Math.round(n).toLocaleString('en-GB');
   }
@@ -1696,7 +1708,9 @@
       const prices = vans.filter(hasPrice).map(d => d.price_number).sort((a, b) => a - b);
       const n = prices.length;
       const median = n ? (n % 2 ? prices[(n - 1) / 2] : (prices[n / 2 - 1] + prices[n / 2]) / 2) : null;
+      const ages = vans.map(caravanAge).filter(a => a !== null);
       return {
+        age: ages.length ? ages.reduce((a, b) => a + b, 0) / ages.length : null,
         name: value === INDEPENDENT ? 'Independent parks' : value,
         listings: vans.length,
         priced: n,
@@ -1710,14 +1724,16 @@
     rows.sort((a, b) => (a.median === null) - (b.median === null) || (a.median - b.median) || a.name.localeCompare(b.name));
 
     document.getElementById('chain-compare-sub').textContent =
-      'Prices from the listings that match your other filters. Listings without a price (POA, sold) aren\u2019t counted. Cheapest median first.';
+      'Prices from the listings that match your other filters. Listings without a price (POA, sold) aren\u2019t counted. ' +
+      'Average age is years since the caravan was built, from the listings that give a year. Cheapest median first.';
     document.getElementById('chain-compare-body').innerHTML = rows.map(r => {
       const cell = v => v === null ? '<td class="cc-none">&ndash;</td>' : `<td>${formatPounds(v)}</td>`;
       const count = r.priced === r.listings ? String(r.listings) : `${r.listings} <span class="cc-none">(${r.priced} priced)</span>`;
       return `<tr><td class="cc-name">${escapeHTML(r.name)}</td><td>${count}</td>` +
         cell(r.min) +
         (r.median === null ? '<td class="cc-none">&ndash;</td>' : `<td class="cc-median">${formatPounds(r.median)}</td>`) +
-        cell(r.avg) + cell(r.max) + '</tr>';
+        cell(r.avg) + cell(r.max) +
+        (r.age === null ? '<td class="cc-none">&ndash;</td>' : `<td>${r.age.toFixed(1)} yrs</td>`) + '</tr>';
     }).join('');
   }
 
@@ -2134,6 +2150,7 @@
   function setUpdatedBadge(data) {
     const dates = data.map(d => d.date_scraped).filter(Boolean).sort();
     const latest = dates[dates.length - 1];
+    if (latest && /^\d{4}/.test(latest)) AGE_BASE_YEAR = Number(latest.slice(0, 4));
     updatedBadge.innerHTML = `<span class="dot"></span>Last updated ${formatDate(latest)}`;
   }
 
