@@ -448,6 +448,53 @@
     margin: 4px 0 18px;
   }
 
+  /* ---------- price comparison for the chains ticked in the Chain filter ---------- */
+  .chain-compare {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 0 0 22px;
+  }
+  .chain-compare.hidden { display: none; }
+  .chain-compare h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    margin: 0 0 2px;
+  }
+  .chain-compare .cc-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0 0 12px;
+  }
+  .cc-scroll { overflow-x: auto; }
+  .cc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cc-table th, .cc-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .cc-table th:first-child, .cc-table td:first-child { text-align: left; white-space: normal; }
+  .cc-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .cc-table tr:last-child td { border-bottom: none; }
+  .cc-table td.cc-name { font-weight: 700; }
+  .cc-table td.cc-median { font-weight: 700; color: var(--teal); }
+  .cc-table td.cc-none { color: var(--muted); }
+
   /* ---------- grid / map switch ---------- */
   .results-bar {
     display: flex;
@@ -886,6 +933,20 @@
       </div>
     </div>
     <div class="field">
+      <label id="chain-label">Chain</label>
+      <div class="multiselect" data-key="chain">
+        <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="chain-label">All chains</button>
+        <div class="ms-panel hidden" role="listbox">
+          <input type="text" class="ms-search" placeholder="Search chains&hellip;">
+          <div class="ms-actions">
+            <button type="button" class="ms-link-btn ms-select-all">Select all</button>
+            <button type="button" class="ms-link-btn ms-clear">Clear</button>
+          </div>
+          <div class="ms-options"></div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
       <label id="make-label">Make</label>
       <div class="multiselect" data-key="make">
         <button type="button" class="ms-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="make-label">All makes</button>
@@ -950,6 +1011,19 @@
 
 <main>
   <p class="results-count" id="results-count" aria-live="polite"></p>
+
+  <section class="chain-compare hidden" id="chain-compare" aria-live="polite">
+    <h2>Chain price comparison</h2>
+    <p class="cc-sub" id="chain-compare-sub"></p>
+    <div class="cc-scroll">
+      <table class="cc-table">
+        <thead>
+          <tr><th>Chain</th><th>Listings</th><th>Lowest</th><th>Median</th><th>Average</th><th>Highest</th></tr>
+        </thead>
+        <tbody id="chain-compare-body"></tbody>
+      </table>
+    </div>
+  </section>
 
   <div class="results-bar">
     <p class="results-label" id="results-label">The caravans</p>
@@ -1234,7 +1308,7 @@
     // make holds canonical make names; model holds "make|model" pairs, so the
     // same model name under two makes can't be confused. A make with no models
     // chosen means every model of that make.
-    filters: { location: new Set(), region: new Set(), county: new Set(), make: new Set(), model: new Set(), bedrooms: new Set() },
+    filters: { location: new Set(), region: new Set(), county: new Set(), chain: new Set(), make: new Set(), model: new Set(), bedrooms: new Set() },
     minPrice: '', maxPrice: '', sort: 'price-asc',
     page: 1, pageSize: 48,
     view: 'grid'            // or 'map'
@@ -1245,7 +1319,7 @@
   function resetPage() { state.page = 1; }
 
   const MS_DEFAULT_LABEL = {
-    location: 'All parks', region: 'All regions', county: 'All counties', make: 'All makes', model: 'All models', bedrooms: 'Any'
+    location: 'All parks', region: 'All regions', county: 'All counties', chain: 'All chains', make: 'All makes', model: 'All models', bedrooms: 'Any'
   };
 
   const filterOptionsData = {};
@@ -1309,6 +1383,18 @@
     filterOptionsData.location = locations.map(l => ({ value: l, label: l }));
     filterOptionsData.region = [...new Set(data.map(listingRegion).filter(Boolean))]
       .sort((a, b) => a.localeCompare(b)).map(r => ({ value: r, label: r }));
+    // chains with at least one listing, busiest first in the count but listed A-Z
+    const chainCounts = new Map();
+    data.forEach(d => {
+      const c = listingChain(d);
+      if (c && c !== INDEPENDENT) chainCounts.set(c, (chainCounts.get(c) || 0) + 1);
+    });
+    filterOptionsData.chain = [...chainCounts.keys()]
+      .sort((a, b) => a.localeCompare(b))
+      .map(c => ({ value: c, label: `${c} (${chainCounts.get(c)})` }));
+    const independents = data.filter(d => listingChain(d) === INDEPENDENT).length;
+    if (independents) filterOptionsData.chain.push({ value: INDEPENDENT, label: `Independent parks (${independents})` });
+
     filterOptionsData.bedrooms = bedroomVals.map(b => ({ value: String(b), label: `${b} bed${b == 1 ? '' : 's'}` }));
     if (hasUnspecified) filterOptionsData.bedrooms.push({ value: 'unspecified', label: 'Not specified' });
 
@@ -1521,6 +1607,7 @@
       if (state.filters.location.size && !state.filters.location.has(d.location)) return false;
       if (state.filters.region.size && !state.filters.region.has(listingRegion(d))) return false;
       if (state.filters.county.size && !state.filters.county.has(listingCounty(d))) return false;
+      if (state.filters.chain.size && !state.filters.chain.has(listingChain(d))) return false;
       if (state.filters.make.size) {
         const mk = makeOf(d);
         if (!state.filters.make.has(mk)) return false;
@@ -1592,9 +1679,52 @@
     `;
   }
 
+  function formatPounds(n) {
+    return '\u00a3' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  // One row per ticked chain, worked out from the listings the other filters
+  // leave, so a price range or bedroom count narrows the comparison too.
+  function renderChainCompare(filtered) {
+    const box = document.getElementById('chain-compare');
+    const chosen = [...state.filters.chain];
+    box.classList.toggle('hidden', chosen.length === 0);
+    if (!chosen.length) return;
+
+    const rows = chosen.map(value => {
+      const vans = filtered.filter(d => listingChain(d) === value);
+      const prices = vans.filter(hasPrice).map(d => d.price_number).sort((a, b) => a - b);
+      const n = prices.length;
+      const median = n ? (n % 2 ? prices[(n - 1) / 2] : (prices[n / 2 - 1] + prices[n / 2]) / 2) : null;
+      return {
+        name: value === INDEPENDENT ? 'Independent parks' : value,
+        listings: vans.length,
+        priced: n,
+        min: n ? prices[0] : null,
+        max: n ? prices[n - 1] : null,
+        avg: n ? prices.reduce((a, b) => a + b, 0) / n : null,
+        median: median
+      };
+    });
+    // cheapest typical price first; chains with nothing priced go last
+    rows.sort((a, b) => (a.median === null) - (b.median === null) || (a.median - b.median) || a.name.localeCompare(b.name));
+
+    document.getElementById('chain-compare-sub').textContent =
+      'Prices from the listings that match your other filters. Listings without a price (POA, sold) aren\u2019t counted. Cheapest median first.';
+    document.getElementById('chain-compare-body').innerHTML = rows.map(r => {
+      const cell = v => v === null ? '<td class="cc-none">&ndash;</td>' : `<td>${formatPounds(v)}</td>`;
+      const count = r.priced === r.listings ? String(r.listings) : `${r.listings} <span class="cc-none">(${r.priced} priced)</span>`;
+      return `<tr><td class="cc-name">${escapeHTML(r.name)}</td><td>${count}</td>` +
+        cell(r.min) +
+        (r.median === null ? '<td class="cc-none">&ndash;</td>' : `<td class="cc-median">${formatPounds(r.median)}</td>`) +
+        cell(r.avg) + cell(r.max) + '</tr>';
+    }).join('');
+  }
+
   function render() {
     const filtered = applySort(applyFilters(ALL_DATA));
     countEl.textContent = `Showing ${filtered.length} of ${ALL_DATA.length} caravans`;
+    renderChainCompare(filtered);
 
     const mapMode = state.view === 'map';
     document.getElementById('map-view').classList.toggle('hidden', !mapMode);
@@ -1804,6 +1934,17 @@
   function listingRegion(d) {
     const p = d._park;
     return String((p && p._region) || (p && p.region) || d.region || '').trim();
+  }
+
+  /* A listing's chain is its park's `chain` in parks.json. Parks with no chain
+     count as independent; listings whose park isn't in parks.json have no
+     chain at all, so they drop out while the Chain filter is in use. */
+  const INDEPENDENT = '__independent__';
+
+  function listingChain(d) {
+    const p = d._park;
+    if (!p) return '';
+    return p.chain ? String(p.chain) : INDEPENDENT;
   }
 
   function listingCounty(d) {
